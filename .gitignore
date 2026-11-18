@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.pio/
+*.pyc
+runtime/
+.env
+firmware/include/config.local.h
+report/build/
+*.aux
+*.log
+!evidence/*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.synctex.gz

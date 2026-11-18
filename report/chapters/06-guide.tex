@@ -1,0 +1,91 @@
+\chapter{HƯỚNG DẪN SỬ DỤNG MÃ NGUỒN}
+\section{Repository và cấu trúc thư mục}
+Repository: \href{\RepoURL}{github.com/Funacius/smartroom-iot-co3037}. Dự án được tạo riêng tư; trước khi nộp, chủ repository cấp quyền cho tài khoản GitHub do giảng viên cung cấp hoặc tự quyết định chuyển công khai. Không cần công khai token/cấu hình local.
+\begin{verbatim}
+smartroom-iot-co3037/
+  firmware/      platformio.ini, boards/, include/, src/
+  gateway/       core.py, transports.py, server.py, dashboard.html
+  ai/            train.py, model.joblib
+  coreiot/       templates/, rulechain/, JSON, README.md
+  tests/         test_gateway.py, test_transports.py
+  scripts/       evaluate, verify, build_report, record_hardware
+  report/        main.tex, chapters/, metadata.json, PDF
+  docs/          DEMO.md, source/
+  evidence/      logs, metrics, CSV, charts, screenshots
+  README.md
+\end{verbatim}
+Các đường dẫn trong hướng dẫn được tính từ gốc repository. Thư mục \code{runtime/}, môi trường ảo, \code{.pio/}, token và cấu hình local được bỏ qua bởi Git. Không giả lập commit của từng thành viên; mỗi người tự commit đóng góp thực tế.
+
+\section{Yêu cầu môi trường}
+Máy phát triển cần Python 3.12, PlatformIO Core 6.2.0 hoặc extension PlatformIO đã cài trên VS Code, Git và trình duyệt. Phần nạp cần cáp dữ liệu, USB driver tương ứng và quyền mở cổng COM. Dựng báo cáo cần XeLaTeX từ MiKTeX/TeX Live với Times New Roman, Arial và Consolas. Các thư viện Python được liệt kê trong \code{requirements.txt}; phiên bản đã dùng được lưu ở \code{evidence/python_versions.json}.
+
+Tiện ích \href{https://marketplace.visualstudio.com/items?itemName=lxvs.docx-previewer}{Docx Previewer -- lxvs.docx-previewer} đã được cài trên VS Code để mở \code{IoTReport_Template.docx}. Chọn file DOCX; nếu VS Code mở dạng nhị phân, dùng Open With rồi chọn Docx Previewer. Tiện ích dùng để xem, không thay thế toàn bộ khả năng chỉnh sửa Word. VS Code đã có PDF viewer để mở PDF đầu ra.
+
+\section{Cài đặt và cấu hình}
+\subsection{Lấy mã và tạo môi trường Python}
+\begin{verbatim}
+git clone https://github.com/Funacius/smartroom-iot-co3037.git
+cd smartroom-iot-co3037
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python ai/train.py
+\end{verbatim}
+Repository riêng tư yêu cầu tài khoản đã được cấp quyền. Lệnh train mặc định sinh dữ liệu có nhãn nguồn, xuất model, metrics, dự đoán từng dòng và confusion matrix. Môi trường khác phiên bản scikit-learn nên train lại trước khi chạy gateway.
+
+\subsection{Cấu hình phần cứng}
+Copy \code{firmware/include/config.example.h} thành \code{config.local.h}. Kiểm tra GPIO, logic active-high/low của driver, khóa radio 16 byte, channel, SSID và mật khẩu. Nạp từng role để đọc STA MAC; đặt PEER MAC trên mỗi board thành MAC của board còn lại và nạp lại. File local là cấu hình cho board đang build; phải lưu hai bản riêng ngoài Git hoặc thay đúng MAC khi chuyển role.
+
+Không dùng MAC mẫu cho demo. Flash 4~MB/no PSRAM là cấu hình build bảo thủ của dự án, cần đối chiếu revision thật. Nếu board yêu cầu bootloader mode, dùng BOOT/RESET theo hướng dẫn của thiết bị. Không tự động nạp vào COM3/COM4 Bluetooth chỉ vì các cổng đó xuất hiện.
+
+\subsection{Cấu hình gateway và CoreIOT}
+Copy \code{gateway/config.example.json} sang \code{runtime/config.json}; thư mục runtime có thể tạo thủ công trước lần chạy phần cứng. Điền cổng Serial của bridge, hostname MQTT, cổng và TLS theo server lớp. Token là của thiết bị được bật Is gateway, không phải token child. Đọc đầy đủ \code{coreiot/README.md} để tạo gateway, import dashboard, gắn chain và tạo recipient/template thông báo.
+
+Để nhập token kín trong PowerShell:
+\begin{verbatim}
+$secret = Read-Host 'Gateway access token' -AsSecureString
+$env:COREIOT_TOKEN = [System.Net.NetworkCredential]::new(
+  '', $secret).Password
+\end{verbatim}
+Trong terminal thực, có thể đặt phép gán token trên cùng một dòng như README. Không điền token vào source, report, ảnh chụp hoặc commit. Nếu server chỉ hỗ trợ cổng không TLS, xác nhận cấu hình lớp trước khi đổi mặc định; không tắt kiểm tra chứng chỉ để vượt lỗi hostname/CA.
+
+\section{Build, nạp và chạy}
+\subsection{Chạy mô phỏng trước khi có board}
+\begin{verbatim}
+.venv\Scripts\python -m gateway.main --simulate
+\end{verbatim}
+Mở \code{http://127.0.0.1:8080}. Trong mỗi vòng 60 giây, có 20 giây bình thường, 20 giây nóng và 20 giây hồi phục. Xem alarm/AI/journal, thử bật/tắt và xuất CSV. Database simulation tách khỏi database hardware. Không có \code{--cloud} thì không kết nối CoreIOT và outbox sẽ tăng. Ctrl+C dừng dịch vụ.
+
+\subsection{Build và nạp firmware}
+\begin{verbatim}
+pio run -d firmware
+pio run -d firmware -e sensor -t upload --upload-port COM5
+pio device monitor --port COM5 --baud 115200
+pio run -d firmware -e bridge -t upload --upload-port COM6
+\end{verbatim}
+COM5/COM6 là ví dụ phải thay theo máy. Nếu \code{pio} chưa có trong PATH, dùng terminal PlatformIO hoặc cài CLI vào môi trường Python. Tắt monitor đang giữ cổng bridge trước khi chạy gateway. Sensor phải có cấu hình peer của bridge và ngược lại; cùng channel và key. Cấp nguồn node A, nối USB node B với PC rồi chạy:
+\begin{verbatim}
+.venv\Scripts\python -m gateway.main --config runtime/config.json
+\end{verbatim}
+Để thêm cloud, sau khi nhập token và hostname đúng, thêm \code{--cloud}. Có thể dùng \code{--simulate --cloud} để thử API trước; dữ liệu phải giữ nhãn simulation và không dùng làm số đo phần cứng. Khi chạy web bridge, PC vẫn cần gateway để thực hiện yêu cầu điều khiển.
+
+\subsection{Chạy kiểm thử và dựng lại PDF}
+\begin{verbatim}
+.venv\Scripts\python -m pytest -q --junitxml=evidence/pytest.xml
+.venv\Scripts\python scripts/evaluate.py
+.venv\Scripts\python scripts/verify.py --firmware
+.venv\Scripts\python scripts/build_report.py
+\end{verbatim}
+Script dựng báo cáo lấy tên, mã nhóm, email và link từ \code{report/metadata.json}; đọc số đo AI/benchmark/JUnit rồi chạy XeLaTeX hai lượt. Khi đã có mã nhóm, thay metadata và dựng lại để tên PDF đúng \code{[ClassCode]_[GroupCode]_IoTReport.pdf}. Ngày trong metadata là ngày báo cáo, cần cập nhật khi nộp.
+
+\subsection{Xử lý lỗi thường gặp}
+\begin{longtable}{P{4cm}P{10.8cm}}
+\toprule Biểu hiện & Kiểm tra và cách xử lý \\ \midrule
+Không có mẫu mới & Đúng COM, monitor đã đóng, cáp dữ liệu, DHT20/pin, MAC/key/channel hai board. Không sửa bằng cách tạo telemetry giả. \\
+Web bridge điều khiển không đổi quạt & PC gateway phải chạy; xem pending/failed và Serial ACK. Web bridge không tự cấp command ID. \\
+Lệnh luôn timeout sau đổi máy & Kiểm tra DB/NVS command ID. Nếu bắt đầu đợt mới và đã xóa DB, chủ ý đồng bộ/reset NVS node; sao lưu trước. \\
+Outbox tăng & Không bật cloud, sai hostname/token/TLS hoặc chưa đăng ký child. Kiểm tra token gateway và quyền server. \\
+CoreIOT không hiện dữ liệu & Tên child chính xác, gateway Is gateway, topic Gateway API tương thích; xác minh trên Latest telemetry trước dashboard. \\
+Alarm có nhưng không có thông báo & Notification rule/recipient/template và SMTP; alarm table không phải bằng chứng notification. \\
+Model không nạp hoặc sai phiên bản & Chạy lại train trong cùng môi trường rồi restart gateway; không nạp model từ nguồn không tin cậy. \\
+\bottomrule
+\end{longtable}

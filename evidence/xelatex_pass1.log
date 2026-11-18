@@ -1,0 +1,151 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse
+.sty (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xete
+x.def)))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex.
+sty (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
+g)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def))
+) (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+ (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinek
+eys.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
+y (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.
+sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.st
+y))) (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+) (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitl
+estring.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty)
+)) (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.st
+y) (C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.
+sty)))
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfile
+check.sty
+(C:\Users\USER\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniqueco
+unter.sty))) (generated.tex) (C:\Study\IOT\BTL\report\build\main.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(C:\Study\IOT\BTL\report\build\main.out)
+(C:\Study\IOT\BTL\report\build\main.out) [1] [1] [2] [3] [4]
+(C:\Study\IOT\BTL\report\build\main.toc [5] [6]) [7]
+(C:\Study\IOT\BTL\report\build\main.lof) [8]
+(C:\Study\IOT\BTL\report\build\main.lot) [9] [10] (chapters/01-introduction.tex
+
+Chương 1.
+[1] [2]) (chapters/02-analysis.tex [3] [4]
+Chương 2.
+[5] [6] [7] [8]) (chapters/03-implementation.tex [9]
+Chương 3.
+[10] [11] [12] [13] [14] [15]) (chapters/04-testing.tex [16]
+Chương 4.
+[17] [18] [19] [20]) (chapters/05-conclusion.tex [21]
+Chương 5.
+[22]) (chapters/06-guide.tex [23]
+Chương 6.
+[24] [25]
+Underfull \hbox (badness 2443) in paragraph at lines 69--70
+\TU/TimesNewRoman(0)/m/n/12 Để thêm cloud, sau khi nhập token và hostname đúng,
+ thêm $[][][][][][][][][]$. Có thể dùng
+
+Underfull \hbox (badness 1337) in paragraph at lines 69--70
+[][][][][][][][][][][][][][][][][][][][][]$ \TU/TimesNewRoman(0)/m/n/12 để thử 
+API trước; dữ liệu phải giữ nhãn simulation và không dùng
+[26]) (references.tex [27]
+Underfull \hbox (badness 6348) in paragraph at lines 5--6
+[]\TU/TimesNewRoman(0)/m/n/12 Espressif Systems, “ESP-NOW,” ESP-IDF Programming
+ Guide v4.4.7, ESP32-S3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+\TU/TimesNewRoman(0)/m/n/12 [Trực tuyến]. [][]$[][][][][] [] [] [] [][][][] [] 
+[][][][][][][][][] [] [][][] [] [][][][][][][][] [] [][][][][][][][] [] [][] []
+ [][] [] [] [] [] [] [][][][][][][] []
+
+Underfull \hbox (badness 1009) in paragraph at lines 7--8
+[]\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Thermostats demo dashboard,
+” ThingsBoard source repository,
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+[][][][][][][][][][][] [] [][][] [] [][][][] [] [][][][] [] [][][][] [] [][][][
+] [] [][][][][][][][][][] [] [][][][][][][][][][][] [] [][][][]$[][]\TU/TimesNe
+wRoman(0)/m/n/12 . Bản tải có
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+[]\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Gateway API Overview,” “Tel
+emetry,” và “RPC.” [Trực
+
+Underfull \hbox (badness 2512) in paragraph at lines 8--9
+\TU/TimesNewRoman(0)/m/n/12 tuyến]. [][]$[][][][][] [] [] [] [][][][][][][][][]
+[][] [] [][] [] [][][][] [] [][][][][][][][][] [] [][][][][][][][][][][][] [] [
+][][][][][][][][]$[][]; [][]$[][][][][] [] [] []
+
+Underfull \hbox (badness 7468) in paragraph at lines 9--10
+[]\TU/TimesNewRoman(0)/m/n/12 scikit-learn Developers, “IsolationForest,” API R
+eference. [Trực tuyến]. [][]$[][][][][] [] [] []
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+[][][][][][][][][][][][][] [] [][][] [] [][][][][][] [] [][][][][][][] [] [][][
+][][][][][][] [] [][][][][][][] [] [][][][][][][][] [] [][][][][][][][][][][][]
+[][][] []
+
+Underfull \hbox (badness 2626) in paragraph at lines 11--12
+[]\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Rule Engine.” [Trực tuyến].
+ [][]$[][][][][] [] [] [] [][][][][][][][][][][] [] [][] [] [][][][] []
+) (appendix.tex [28]
+Appendix A.
+[29]) [30] (C:\Study\IOT\BTL\report\build\main.aux) )
+(see the transcript file for additional information)
+Output written on C:\Study\IOT\BTL\report\build\main.pdf (41 pages).
+Transcript written on C:\Study\IOT\BTL\report\build\main.log.
+miktex-dvipdfmx: major issue: So far, you have not checked for MiKTeX updates.
+xelatex: major issue: So far, you have not checked for MiKTeX updates.

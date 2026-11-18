@@ -1,0 +1,9 @@
+* text=auto
+*.py text eol=lf
+*.tex text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+evidence/*.log whitespace=-trailing-space

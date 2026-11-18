@@ -1,0 +1,23 @@
+{
+  "pytest": {
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=evidence/pytest.xml"
+    ],
+    "scope": "software/build; no physical board or live cloud"
+  },
+  "firmware_build": {
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\USER\\.platformio\\penv\\Scripts\\platformio.exe",
+      "run",
+      "-d",
+      "firmware"
+    ],
+    "scope": "software/build; no physical board or live cloud"
+  }
+}

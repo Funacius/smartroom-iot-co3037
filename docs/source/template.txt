@@ -1,0 +1,588 @@
+VIETNAM NATIONAL UNIVERSITY – HO CHI MINH CITY
+HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY
+FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+
+
+COURSE PROJECT REPORT
+COURSE: INTERNET OF THINGS (IoT)
+PROJECT TOPIC
+[PROJECT TITLE IN CAPITAL LETTERS]
+Instructor: Dr. Nguyễn Hòa Hưng
+Class: [ClassCode]     –     Group: [GroupCode]
+No.
+Full name
+Student ID
+Email
+1
+[Full name]
+[Student ID]
+[email]@hcmut.edu.vn
+2
+[Full name]
+[Student ID]
+[email]@hcmut.edu.vn
+3
+[Full name]
+[Student ID]
+[email]@hcmut.edu.vn
+Ho Chi Minh City, […] [20…]
+
+SUBMISSION INFORMATION
+Item
+Link / Information
+GitHub repository
+[https://github.com/…]
+Video demo
+[https://…]
+CoreIOT dashboard (public link, if any)
+[https://…]
+Submission date
+[dd/mm/yyyy]
+
+TASK ASSIGNMENT TABLE
+Guidance
+List the specific tasks each member was responsible for (linked to technology element codes where applicable) and their contribution percentage. The group’s contributions must total 100%. This table is used to adjust individual scores and serves as the basis for the oral examination.
+
+No.
+Full name
+Student ID
+Assigned tasks
+Share
+1
+[Full name]
+[Student ID]
+[E.g.: Modbus sensor node (T02), OTA (T14)]
+[…%]
+2
+[Full name]
+[Student ID]
+[…]
+[…%]
+3
+[Full name]
+[Student ID]
+[…]
+[…%]
+
+TECHNOLOGY ELEMENT SELF-ASSESSMENT TABLE
+Guidance
+Mark the elements your group has implemented, stating the report section where each is presented and the evidence (timestamp in the demo video, images, source code links). The lecturer grades based on this table; elements without evidence will not earn points.
+Technology score: maximum 8 points; advanced feature score: maximum 1 point.
+
+Table A. Technology elements (maximum 8 points)
+ID
+Technology element
+Pts
+Done?
+Report section
+Evidence
+Group 1 – Sensors
+T01
+Sensor using the I2C interface on Tasmota
+0.5
+Yes/No
+[Section x.y]
+[video / image link]
+T02
+Sensor using the Modbus RS485 interface
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T03
+Sensor connected to another device via BLE
+1.5
+Yes/No
+[Section x.y]
+[video / image link]
+Group 2 – On-device Artificial Intelligence (TinyML)
+T04
+Information inferred by AI (TinyML running on the device)
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T05
+Tooling for data collection, training and exporting a TinyML model
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+Group 3 – Local Communication and Interfaces
+T06
+Wireless communication using ESP-NOW
+1.5
+Yes/No
+[Section x.y]
+[video / image link]
+T07
+On-device web server (self-implemented – local display and control)
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+Group 4 – Local IoT Gateway
+T08
+IoT Gateway implemented on a PC (or Raspberry Pi): aggregates data, sends it to CoreIOT, receives control commands from CoreIOT and distributes them to devices on the local network
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T09
+AI function running on the local IoT Gateway to analyze data, detect events and send the results to the server
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T10
+Monitoring and control interface on the local IoT Gateway
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+Group 5 – CoreIOT Platform
+T11
+Using templates to develop the application, design dashboards, and monitor and control remotely
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T12
+Using RuleChain to develop smart features
+1.0
+Yes/No
+[Section x.y]
+[video / image link]
+T13
+Sending alert notifications when data exceeds a threshold
+0.5
+Yes/No
+[Section x.y]
+[video / image link]
+T14
+OTA firmware updates for devices
+2.0
+Yes/No
+[Section x.y]
+[video / image link]
+T15
+IoT Gateway on CoreIOT synchronized with the local IoT Gateway
+2.0
+Yes/No
+[Section x.y]
+[video / image link]
+Table B. Advanced features (maximum 1 point)
+ID
+Advanced feature
+Pts
+Done?
+Report section
+Evidence
+N01
+Virtual assistant – LLM
+1.0
+Yes/No
+[Section x.y]
+[link]
+N02
+Voice – Audio
+1.0
+Yes/No
+[Section x.y]
+[link]
+N03
+LVGL-based display
+1.0
+Yes/No
+[Section x.y]
+[link]
+N04
+AI running on the device GPU
+1.0
+Yes/No
+[Section x.y]
+[link]
+N05
+Custom-designed mobile app
+1.0
+Yes/No
+[Section x.y]
+[link]
+N06
+Custom-designed dashboard able to detect and record events
+1.0
+Yes/No
+[Section x.y]
+[link]
+N07
+Self-deployed ThingsBoard on a local machine
+1.0
+Yes/No
+[Section x.y]
+[link]
+Total self-assessed score: Technology: […]/8   –   Advanced: […]/1
+
+TABLE OF CONTENTS
+SUBMISSION INFORMATION1
+TASK ASSIGNMENT TABLE1
+TECHNOLOGY ELEMENT SELF-ASSESSMENT TABLE1
+TABLE OF CONTENTS1
+LIST OF ABBREVIATIONS1
+CHAPTER 1. INTRODUCTION1
+1.1. Problem Statement1
+1.2. Related Solutions1
+1.3. Project Objectives1
+1.4. Proposed System Features1
+1.5. Scope and Limitations1
+1.6. Report Structure1
+CHAPTER 2. SYSTEM ANALYSIS1
+2.1. Overall Architecture1
+2.2. Functional Decomposition1
+2.3. Feature Layers1
+2.3.1. Sensor Layer1
+2.3.2. Communication Layer1
+2.3.3. IoT Gateway Layer1
+2.3.4. Artificial Intelligence Layer1
+2.3.5. Application Layer and CoreIOT Platform1
+2.4. Feature – Technology Element Mapping1
+2.5. New Technologies (if any)1
+2.6. Hardware List1
+CHAPTER 3. SYSTEM IMPLEMENTATION1
+3.1. Hardware and Wiring Diagrams1
+3.2. Device Firmware1
+3.2.1. Node [[node name]] ([[technology code]])1
+3.2.2. On-device Web Server (T07)1
+3.3. Device-to-Device Communication1
+3.4. IoT Gateway1
+3.5. Artificial Intelligence1
+3.5.1. Data Collection and Preparation1
+3.5.2. Model Training and Evaluation1
+3.5.3. Model Deployment1
+3.6. CoreIOT Platform1
+3.6.1. Device Profile, Template and Dashboard (T11)1
+3.6.2. RuleChain (T12) and Notification Alerts (T13)1
+3.6.3. OTA Firmware Update (T14)1
+3.7. Advanced Features1
+CHAPTER 4. SYSTEM MEASUREMENT AND TESTING1
+4.1. Test Environment and Scenarios1
+4.2. Measurement Results1
+4.3. Evaluation1
+CHAPTER 5. CONCLUSION AND FUTURE WORK1
+5.1. Achieved Results1
+5.2. Limitations1
+5.3. Future Work1
+CHAPTER 6. SOURCE CODE USER GUIDE1
+6.1. Repository Link and Directory Structure1
+6.2. Environment Requirements1
+6.3. Installation and Configuration1
+6.4. Build, Flash and Run1
+REFERENCES1
+APPENDIX1
+
+(Right-click the table of contents → Update Field to refresh page numbers.)
+
+LIST OF ABBREVIATIONS
+Abbreviation
+Meaning
+BLE
+Bluetooth Low Energy
+OTA
+Over-The-Air (remote firmware update)
+TinyML
+Tiny Machine Learning
+[…]
+[…]
+
+CHAPTER 1. INTRODUCTION
+Guidance
+This chapter answers the questions: What is the problem? Why does it need to be solved? What can your group’s system do? Recommended length: 3–5 pages.
+Mandatory: at least 5 quality references (scientific papers, official technical documentation, statistical reports, similar commercial products), cited in the text as [1], [2]…
+1.1. Problem Statement
+Guidance
+Describe the real-world context and the problem to be solved, the target users and their specific needs. Include supporting data (with citations) to show that the problem is real and significant.
+Example: “According to [1], …% of urban flooding occurs … leading to …; current solutions such as [2], [3] are limited in …”.
+[Content]
+1.2. Related Solutions
+Guidance
+Briefly survey 2–4 similar systems/products/studies: main functions, technologies used, strengths and weaknesses. Conclude with a remark on the gap your project aims to address.
+A comparison table may be used to highlight what sets your project apart.
+[Content]
+1.3. Project Objectives
+Guidance
+State the overall objective and specific, measurable objectives (e.g., alert latency under 5 seconds, recognition accuracy above 90%, a system of 3 sensor nodes…). These objectives will be verified in Chapter 4.
+[Content]
+1.4. Proposed System Features
+Guidance
+This is the most important part of Chapter 1. List all system features, each with an identifier (F01, F02…) to be referenced throughout the report.
+Each feature must be described clearly, specifically and verifiably. Avoid vague descriptions such as “smart monitoring”; write instead “Measure temperature and humidity every 10 seconds, display them on the dashboard and raise an alert when the temperature exceeds 35 °C”.
+
+Table 1.1. List of system features
+Code
+Feature description
+Implementing device
+Priority
+F01
+[Specific feature description]
+[Node 1]
+[Required]
+F02
+[…]
+[Gateway]
+[Required]
+F03
+[…]
+[CoreIOT]
+[Extension]
+1.5. Scope and Limitations
+Guidance
+State clearly what the system will and will not do within the scope of the project (e.g., tested only in the lab, solar battery power not considered…).
+[Content]
+1.6. Report Structure
+[Summarize the following chapters in one paragraph.]
+
+CHAPTER 2. SYSTEM ANALYSIS
+Guidance
+This chapter turns the features in Section 1.4 into a system architecture and technology choices. Every technology choice must be mapped to the technology element list T01–T15, N01–N07 in the project announcement.
+If a technology outside the list is used, dedicate a section to describing it (Section 2.5).
+2.1. Overall Architecture
+Guidance
+Draw a block diagram of the whole system: device nodes, IoT Gateway, CoreIOT server, users (dashboard, mobile). Clearly show the direction of the data flow (telemetry) and the control flow (RPC/command), and the protocol on each link (I2C, RS485, BLE, ESP-NOW, Wi-Fi, MQTT, HTTP…).
+State whether your group chose the direct connection model, the IoT Gateway model or a combination, and explain why.
+[Insert figure here]
+Figure 2.1. Overall system architecture
+2.2. Functional Decomposition
+Guidance
+Decompose each feature F0x into sub-functions (acquisition, processing, transmission, storage, display, control). A tree-style functional decomposition diagram or a use case diagram may be used.
+[Insert figure here]
+Figure 2.2. Functional decomposition diagram
+2.3. Feature Layers
+Guidance
+Analyze the system layer by layer. For each layer, present: requirements, candidate technology options, the chosen option and the rationale (comparing cost, latency, range, energy, complexity…).
+2.3.1. Sensor Layer
+Guidance
+Sensor types, measured quantities, interfaces (I2C on Tasmota – T01, Modbus RS485 – T02, BLE – T03), sampling rate, accuracy.
+[Content]
+2.3.2. Communication Layer
+Guidance
+Communication between devices (ESP-NOW – T06, BLE…) and between devices/gateway and CoreIOT (MQTT, HTTP). Describe the packet format, MQTT topics, and the JSON structure of telemetry/attributes/RPC.
+[Content]
+2.3.3. IoT Gateway Layer
+Guidance
+Hardware platform (PC/Raspberry Pi), data aggregation and command distribution (T08), local interface (T10), synchronization mechanism with the Gateway on CoreIOT (T15).
+[Content]
+2.3.4. Artificial Intelligence Layer
+Guidance
+The AI task to be solved (classification, anomaly detection, forecasting…), where the model runs (on the device – T04, on the Gateway – T09, on a GPU – N04), input/output data, training tools (T05).
+[Content]
+2.3.5. Application Layer and CoreIOT Platform
+Guidance
+Device profile, template, dashboard (T11), RuleChain (T12), notification (T13), OTA (T14); mobile app, custom dashboard (N05, N06), virtual assistant (N01)… if any.
+[Content]
+2.4. Feature – Technology Element Mapping
+Guidance
+This table links Chapter 1 to the grading scheme. Each feature F0x is mapped to one or more technology element codes; conversely, each technology element claimed for grading must serve at least one specific feature.
+
+Table 2.1. Mapping of features to technology elements
+Feature
+Short description
+Technology codes
+Device / Component
+F01
+[…]
+[T02, T06]
+[Node 1 → Gateway]
+F02
+[…]
+[T08, T15]
+[PC Gateway]
+F03
+[…]
+[T12, T13]
+[CoreIOT RuleChain]
+2.5. New Technologies (if any)
+Guidance
+If a technology outside the list is used (e.g., LoRa, Zigbee, Matter, Node-RED…), describe its operating principle, the reason for choosing it and its role in the system, with citations.
+[Content, or write “Not used”]
+2.6. Hardware List
+Table 2.2. Hardware list
+No.
+Device / Component
+Interface
+Qty
+Role in the system
+1
+YoloUNO (ESP32-S3)
+Wi-Fi, BLE
+[…]
+[Sensor node / Gateway]
+2
+[Sensor …]
+[I2C / RS485]
+[…]
+[…]
+3
+[…]
+[…]
+[…]
+[…]
+
+CHAPTER 3. SYSTEM IMPLEMENTATION
+Guidance
+Present the implementation of each component analyzed in Chapter 2 and the results achieved for each part (circuit photos, dashboard screenshots, logs, key code excerpts).
+Include only short, important code excerpts (configuration, core processing); the full source code belongs on GitHub. Each section should state the related technology element codes, e.g., “3.2.1. Water level node (T02, T06)”.
+3.1. Hardware and Wiring Diagrams
+Guidance
+Wiring diagram of each node (GPIO pins, power supply, RS485 converter…) and photos of the actual hardware.
+[Content]
+[Insert figure here]
+Figure 3.1. Wiring diagram and photo of node […]
+3.2. Device Firmware
+Guidance
+Present each node in its own subsection: development environment (Arduino/PlatformIO/ESP-IDF/Tasmota), flowchart or state machine, main tasks (FreeRTOS tasks if any), and how it connects to CoreIOT or the Gateway. If Tasmota is used (T01), present the template and rule configuration and the data received.
+3.2.1. Node [[node name]] ([[technology code]])
+[Content]
+3.2.2. On-device Web Server (T07)
+Guidance
+The web interface implemented by your group, its local display/control functions, and screenshots.
+[Content]
+3.3. Device-to-Device Communication
+Guidance
+Implementation of BLE (T03) and ESP-NOW (T06): pairing, packet structure, acknowledgement/retransmission mechanism. Provide send/receive logs as evidence.
+[Content]
+3.4. IoT Gateway
+Guidance
+Languages and libraries used; data aggregation flow and upload to CoreIOT; receiving commands from CoreIOT and distributing them to devices (T08); AI on the Gateway (T09); local monitoring and control interface (T10); synchronization with the Gateway on CoreIOT (T15).
+[Content]
+3.5. Artificial Intelligence
+Guidance
+Present the full pipeline: data collection (number of samples, number of classes, labeling method) → preprocessing → training (tools, model architecture) → evaluation (accuracy, confusion matrix) → export and deployment to the device (model size, inference time). Corresponds to T04, T05, T09, N04.
+3.5.1. Data Collection and Preparation
+[Content]
+3.5.2. Model Training and Evaluation
+[Content]
+3.5.3. Model Deployment
+[Content]
+3.6. CoreIOT Platform
+Guidance
+Each subsection must include screenshots of the configuration and of the system actually working.
+3.6.1. Device Profile, Template and Dashboard (T11)
+[Content]
+3.6.2. RuleChain (T12) and Notification Alerts (T13)
+Guidance
+Include a screenshot of the RuleChain, and explain each processing node, the trigger conditions, the alert thresholds and the notifications received.
+[Content]
+3.6.3. OTA Firmware Update (T14)
+Guidance
+The process of packaging and uploading firmware to CoreIOT, assigning it to devices, and the device download and update process; logs and firmware versions before/after the update.
+[Content]
+3.7. Advanced Features
+Guidance
+Present the features N01–N07 your group has implemented (if any). If none, write “Not implemented”.
+[Content]
+
+CHAPTER 4. SYSTEM MEASUREMENT AND TESTING
+Guidance
+This chapter verifies the objectives in Section 1.3 with actual measurement data, rather than simply stating that “the system works well”. Each measurement should be repeated several times, reporting the mean, minimum and maximum values.
+4.1. Test Environment and Scenarios
+Guidance
+Describe the test space, number of devices, distances and network conditions; list the scenarios (e.g., continuous 24-hour operation, Wi-Fi disconnection, simulated threshold violations…).
+[Content]
+4.2. Measurement Results
+Guidance
+Suggested metrics: end-to-end latency (sensor → dashboard), control latency (dashboard → device), packet loss rate (ESP-NOW, BLE), transmission range, AI model accuracy and inference time, OTA update time, alert response time, power consumption. Present them in tables with charts.
+
+Table 4.1. Summary of measurement results
+No.
+Metric
+No. of trials
+Mean
+Min / Max
+Target
+1
+Sensor → dashboard latency (ms)
+[…]
+[…]
+[…]
+[< …]
+2
+ESP-NOW packet loss (%)
+[…]
+[…]
+[…]
+[< …]
+3
+AI model accuracy (%)
+[…]
+[…]
+[…]
+[> …]
+4
+OTA update time (s)
+[…]
+[…]
+[…]
+[…]
+[Insert figure here]
+Figure 4.1. Chart of […]
+4.3. Evaluation
+Guidance
+Compare the results with the objectives, explain why any targets were not met, and describe the errors encountered during testing and how they were resolved.
+[Content]
+
+CHAPTER 5. CONCLUSION AND FUTURE WORK
+5.1. Achieved Results
+Guidance
+Summarize the features completed against those proposed in Section 1.4 (a table may be used: Feature – Status Completed/Partial/Not implemented).
+[Content]
+5.2. Limitations
+Guidance
+Honestly present the limitations in terms of technique, test scale and stability.
+[Content]
+5.3. Future Work
+Guidance
+Propose feasible, specific directions for further development (e.g., adding battery power, scaling up the number of nodes, field deployment…).
+[Content]
+
+CHAPTER 6. SOURCE CODE USER GUIDE
+Guidance
+The content of this chapter must be consistent with the README.md file on GitHub. Goal: someone else should be able to install and run the system on their own just by following the instructions.
+6.1. Repository Link and Directory Structure
+Source code repository: [https://github.com/…]
+iot-project/
+├── firmware/
+│   ├── node_sensor/      # Sensor node firmware
+│   └── node_actuator/    # Actuator node firmware
+├── gateway/              # IoT Gateway source code (PC / Raspberry Pi)
+├── ai/                   # Data, training notebooks, exported models
+├── coreiot/              # Exported dashboard and RuleChain files (JSON)
+├── docs/                 # Images, diagrams
+└── README.md
+(The structure above is for reference only; adapt it to your actual project.)
+6.2. Environment Requirements
+Guidance
+Required hardware; software and versions (PlatformIO/Arduino IDE, Python, libraries…).
+[Content]
+6.3. Installation and Configuration
+Guidance
+Steps to clone, install libraries, configure Wi-Fi and the device access tokens on CoreIOT, and import the dashboard and RuleChain. Do not push real passwords or tokens to GitHub – use sample configuration files (e.g., config.example.h, .env.example).
+[Content]
+6.4. Build, Flash and Run
+Guidance
+Commands to build/flash the firmware and start the Gateway, the order in which to power on devices, and how to check that the system works correctly.
+# Example
+pio run -e yolo_uno -t upload
+python gateway/main.py --config gateway/config.yaml
+
+REFERENCES
+Guidance
+At least 5 references, formatted in IEEE style and numbered in order of appearance in the report. For online sources, give the URL and access date. Avoid using personal blogs or forums as primary sources.
+[1]  A. Author, B. Author, “Title of paper,” Journal Name, vol. x, no. y, pp. 1–10, 2024.
+[2]  Espressif Systems, “ESP-NOW,” ESP-IDF Programming Guide. [Online]. Available: https://docs.espressif.com/… (accessed: dd/mm/yyyy).
+[3]  […]
+[4]  […]
+[5]  […]
+
+APPENDIX
+Guidance
+Supplementary material (if any): detailed data tables, full configurations, additional screenshots, and a declaration of the extent of AI tool use during the project.
+[Content]

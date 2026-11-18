@@ -1,0 +1,13 @@
+{
+  "class_code": "CO3037",
+  "group_code": "Chưa được cấp",
+  "instructor": "TS. Nguyễn Hòa Hưng",
+  "members": [
+    {"name": "Bùi Quốc Thái", "student_id": "2353086", "email": "thai.bui1569@hcmut.edu.vn"},
+    {"name": "Nguyễn Vinh Anh Quân", "student_id": "2353007", "email": "quan.nguyenvinhanh@hcmut.edu.vn"}
+  ],
+  "repository": "https://github.com/Funacius/smartroom-iot-co3037",
+  "video": "Chưa cung cấp",
+  "dashboard": "Chưa cấu hình trên tài khoản CoreIOT",
+  "report_date": "18/11/2026"
+}

@@ -1,0 +1,233 @@
+Ho Chi Minh City University of Technology – VNU-HCM
+Course Project Announcement – IoT
+Page 1
+VIETNAM NATIONAL UNIVERSITY – HO CHI MINH CITY
+HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY
+FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+COURSE PROJECT REQUIREMENTS – INTERNET OF THINGS (IoT)
+Semester 261 – Academic Year 2026–2027
+To help students apply the knowledge of the course in an integrated way to a complete IoT
+system, the course lecturer announces to student groups the requirements, grading scheme
+and rules for the Course Project as follows.
+1. General Information
+Item
+Description
+Format
+Group work, up to 3 students per group
+Required platform
+CoreIOT server and ESP32-S3 (YoloUNO) development board
+Topic
+Students propose their own topic and define the system
+functions themselves
+Deliverables
+Report (following the report template), source code on GitHub,
+demo video
+Weight in the course
+40% of the final grade
+Course Lecturer
+Dr. Nguyễn Hòa Hưng - nguyenhoahung@hcmut.edu.vn
+2. General Requirements
+The project focuses on sensing and connectivity technologies built on the CoreIOT
+platform and the ESP32-S3 (YoloUNO) development board. Students are encouraged to
+study and extend the sample projects presented on CoreIOT; in that case, the report must
+clearly state which parts are reused and which parts were developed by the group.
+The system must integrate multiple devices operating together. Groups may choose one
+of the following two connection models, or combine both:
+• Direct connection model: each device connects and sends its data independently to
+the CoreIOT server; smart features are implemented using RuleChain.
+• IoT Gateway model: devices connect to a device acting as an IoT Gateway that
+aggregates the data; the Gateway then forwards the data to the CoreIOT server.
+The system features must be described in detail in the Introduction section of the report.
+When analyzing and selecting implementation technologies, groups must map each
+feature to the list of technology elements in Section 3 (using codes T01–T15, N01–N07).
+If a technology outside the list is used, the group must describe it in the system analysis
+section.
+
+Ho Chi Minh City University of Technology – VNU-HCM
+Course Project Announcement – IoT
+Page 1
+3. Grading Scheme
+3.1. Technology Elements (maximum 8 points)
+The score for this part is the sum of the points of the technology elements that the group
+successfully implements and supports with evidence in the report and demo; the total is
+capped at 8 points even if the sum of the implemented elements exceeds 8. Groups are
+free to choose any combination of elements that suits their topic.
+Code
+Technology element
+Points
+Group 1 – Sensors
+T01
+Sensor using the I2C interface on Tasmota
+0.5
+T02
+Sensor using the Modbus RS485 interface
+1.0
+T03
+Sensor connected to another device via BLE
+1.5
+Group 2 – On-device Artificial Intelligence (TinyML)
+T04
+Information inferred by AI (TinyML running on the device)
+1.0
+T05
+Tooling for data collection, training and exporting a TinyML model
+1.0
+Group 3 – Local Communication and Interfaces
+T06
+Wireless communication using ESP-NOW
+1.5
+T07
+On-device web server (self-implemented – local display and control)
+1.0
+Group 4 – Local IoT Gateway
+T08
+IoT Gateway implemented on a PC (or Raspberry Pi): aggregates data,
+sends it to CoreIOT, receives control commands from CoreIOT and
+distributes them to devices on the local network
+1.0
+T09
+AI function running on the local IoT Gateway to analyze data, detect
+events and send the results to the server
+1.0
+T10
+Monitoring and control interface on the local IoT Gateway
+1.0
+Group 5 – CoreIOT Platform
+T11
+Using templates to develop the application, design dashboards, and
+monitor and control remotely
+1.0
+T12
+Using RuleChain to develop smart features
+1.0
+T13
+Sending alert notifications when data exceeds a threshold
+0.5
+T14
+OTA firmware updates for devices
+2.0
+T15
+IoT Gateway on CoreIOT synchronized with the local IoT Gateway
+2.0
+3.2. Report (maximum 2 points)
+The report must follow the attached report template and include the following sections:
+Section
+Requirements
+1. Introduction
+Problem statement and a clear proposal of system features;
+well-referenced (at least 5 references)
+
+Ho Chi Minh City University of Technology – VNU-HCM
+Course Project Announcement – IoT
+Page 1
+Section
+Requirements
+2. System Analysis
+Functional decomposition, feature layering (Sensors, Gateway,
+AI, Communication), mapping to the technology elements in
+Section 3.1
+3. System Implementation
+Describe the implementation and the results of each part
+4. Measurement and Testing
+Test scenarios, measurement data and system evaluation
+5. Conclusion and Future
+Work
+Summary of results achieved, limitations and future directions
+6. Source Code User Guide
+Instructions for installing, configuring and running the source
+code on GitHub
+3.3. Advanced Features (bonus, maximum 1 point)
+Code
+Advanced feature
+Points
+N01
+Virtual assistant – LLM
+1.0
+N02
+Voice – Audio
+1.0
+N03
+LVGL-based display
+1.0
+N04
+AI running on the device GPU
+1.0
+N05
+Custom-designed mobile app
+1.0
+N06
+Custom-designed dashboard able to detect and record events
+1.0
+N07
+Self-deployed ThingsBoard on a local machine
+1.0
+3.4. Score Calculation
+Project score = min(8; Σ Technology) + Report (≤2) + min(1; Σ Advanced),
+maximum 10 points
+• An element earns points only if evidence (screenshots, logs, video, source code) is
+provided in the report.
+• A partially implemented element will be graded by the lecturer according to its level
+of completion.
+• Individual scores may be adjusted based on the task assignment table, each member's
+contribution and the oral examination during the presentation session.
+4. Deliverables
+1. Report
+in
+PDF
+format,
+following
+the
+report
+template;
+file
+name:
+[ClassCode]_[GroupCode]_IoTReport.pdf. The report must include a Technology
+Element Self-Assessment Table and a Task Assignment Table.
+2. Source code on GitHub (public, or with access granted to the lecturer), including a
+README.md with usage instructions; the commit history must reflect the work of
+each member.
+3. Demo video (5–10 minutes recommended) showing each feature claimed for grading
+working in practice; include the link in the report.
+
+Ho Chi Minh City University of Technology – VNU-HCM
+Course Project Announcement – IoT
+Page 1
+5. Schedule
+No.
+Description
+Deadline
+Format
+1
+Register group and project topic
+Weeks 10–11
+Students form
+their own
+groups
+2
+Present the proposal: feature description and list
+of planned technology elements
+Weeks 12–13
+In person in
+class (optional)
+4
+Submit report, source code and demo video
+Week 16
+LMS
+5
+Demo and discussion
+Weeks 10–15
+In person in
+class (optional)
+6. General Rules
+• All referenced documents, source code and sample projects must be properly cited.
+Copying reports or source code between groups will be handled according to the
+University's academic integrity regulations.
+• Groups may use AI tools to assist with programming and writing, but must clearly
+state the extent of such use in the report; each member must be able to explain their
+own part of the work during the oral examination.
+• Late submission: points may be deducted according to the number of days late
+• For questions about the project, students should contact the lecturer by email or via
+the course forum on LMS.
+Ho Chi Minh City, October 27th, 2026
+Course Lecturer
+Dr. Nguyễn Hòa Hưng

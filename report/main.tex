@@ -1,0 +1,183 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Consolas}[Scale=0.88]
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm,headheight=16pt]{geometry}
+\usepackage{graphicx,array,longtable,booktabs,xcolor,amsmath,float}
+\usepackage{fancyhdr,titlesec,enumitem}
+\usepackage[unicode,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={SmartRoom - Bao cao do an IoT CO3037},pdfauthor={Bui Quoc Thai; Nguyen Vinh Anh Quan}}
+\definecolor{accent}{HTML}{1A5E47}
+\titleformat{\chapter}[display]{\normalfont\bfseries\Large\color{accent}}{CHƯƠNG \thechapter}{8pt}{\LARGE}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{.7em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{.7em}{}
+\renewcommand{\contentsname}{MỤC LỤC}
+\renewcommand{\listfigurename}{DANH MỤC HÌNH}
+\renewcommand{\listtablename}{DANH MỤC BẢNG}
+\renewcommand{\bibname}{TÀI LIỆU THAM KHẢO}
+\renewcommand{\figurename}{Hình}
+\renewcommand{\tablename}{Bảng}
+\renewcommand{\chaptername}{Chương}
+\setlength{\parindent}{1.1em}
+\setlength{\parskip}{4pt}
+\renewcommand{\baselinestretch}{1.15}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+\setlist{itemsep=3pt,topsep=5pt}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\emergencystretch=3em
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small CO3037 -- Internet of Things}
+\fancyhead[R]{\small SmartRoom}
+\fancyfoot[C]{\thepage}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+% The installed MiKTeX longtable output uses infinitely shrinking \vss.
+% Use stretch-only glue inside tables so page splitting remains well-defined.
+\AddToHook{env/longtable/begin}{\let\vss\vfil}
+\newcommand{\code}[1]{\nolinkurl{#1}}
+\newcommand{\pending}{Chưa kiểm chứng}
+\newcommand{\notice}[1]{\begin{quote}\small\color{accent}\textbf{Phạm vi bằng chứng.} #1\end{quote}}
+\input{generated.tex}
+
+\begin{document}
+\begin{titlepage}
+\centering
+{\bfseries ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH\par}
+{\bfseries TRƯỜNG ĐẠI HỌC BÁCH KHOA\par}
+{\bfseries KHOA KHOA HỌC VÀ KỸ THUẬT MÁY TÍNH\par}
+\vspace{0.9cm}
+\includegraphics[width=2.8cm,height=2.8cm,keepaspectratio]{../docs/source/template-logo.png}\par
+\vspace{0.8cm}
+{\LARGE\bfseries BÁO CÁO ĐỒ ÁN MÔN HỌC\par}
+\vspace{0.3cm}
+{\Large INTERNET OF THINGS (IoT)\par}
+\vspace{0.6cm}
+{Học kỳ 261 -- Năm học 2026--2027\par}
+\vspace{0.7cm}
+{\Large\bfseries\color{accent} SMARTROOM\par}
+\vspace{0.3cm}
+{\Large\bfseries GIÁM SÁT MÔI TRƯỜNG PHÒNG HỌC\par}
+{\Large\bfseries VÀ ĐIỀU KHIỂN QUẠT QUA COREIOT\par}
+\vspace{0.8cm}
+{Giảng viên hướng dẫn: \textbf{\Instructor}\par}
+{Mã môn/lớp: \textbf{\ClassCode} \quad Nhóm: \textbf{\GroupCode}\par}
+\vspace{0.5cm}
+\small
+\begin{tabular}{c P{4.6cm} c P{5.8cm}}
+\toprule STT & Họ và tên & MSSV & Email \\ \midrule
+1 & \MemberOneName & \MemberOneID & \MemberOneEmail \\
+2 & \MemberTwoName & \MemberTwoID & \MemberTwoEmail \\
+\bottomrule
+\end{tabular}
+\vfill
+{Thành phố Hồ Chí Minh, ngày \ReportDate\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\chapter*{THÔNG TIN NỘP BÀI}
+\addcontentsline{toc}{chapter}{Thông tin nộp bài}
+\begin{longtable}{P{4cm}P{11cm}}
+\toprule Hạng mục & Thông tin \\ \midrule
+GitHub & \href{\RepoURL}{github.com/Funacius/smartroom-iot-co3037} \\
+Quyền truy cập & Repository riêng tư; cần cấp quyền cho giảng viên trước khi nộp. \\
+Video demo & \VideoLink. Kịch bản dự kiến tại \code{docs/DEMO.md}. \\
+Dashboard CoreIOT & \DashboardLink. \\
+Ngày dựng báo cáo & \ReportDate; chưa xác nhận ngày nộp LMS. \\
+Mã môn/lớp & \ClassCode\ (theo thông tin nhóm cung cấp). \\
+Mã nhóm & \GroupCode. Tên PDF hiện dùng CHUA\_CAP\_MA\_NHOM. \\
+Tài liệu gốc & \code{Project_Annoucement_IoT.pdf} và \code{IoTReport_Template.docx}. \\
+\bottomrule
+\end{longtable}
+\notice{Báo cáo ghi nhận mã nguồn đã tạo và những phép đo đã thực thi trên máy tính. Hai firmware đã biên dịch; chưa có board USB để nạp và chưa có quyền phiên đăng nhập CoreIOT. Không có ảnh mạch, số đo vô tuyến, thông báo cloud hay video thực tế được giả lập thành minh chứng thật. Cần hoàn tất các bước này trước khi tự đánh giá đầy đủ.}
+
+\chapter*{BẢNG PHÂN CÔNG CÔNG VIỆC}
+\addcontentsline{toc}{chapter}{Bảng phân công công việc}
+Đây là \textbf{phân công đề xuất để triển khai và bảo vệ}, chưa xác nhận tỷ lệ đóng góp đã hoàn thành. Sau thử nghiệm tại lớp, nhóm cần cập nhật theo công việc và commit thực tế của từng người.
+\begin{longtable}{c P{3.9cm} c P{5.8cm} c}
+\toprule STT & Họ và tên & MSSV & Công việc phụ trách & Tỷ lệ \\ \midrule
+1 & \MemberOneName & \MemberOneID & Firmware cảm biến/bridge; ESP-NOW (T06); web trên board (T07); lắp mạch và đo phần cứng; cùng viết Chương 2--4. & 50\% \\
+2 & \MemberTwoName & \MemberTwoID & Gateway (T08), AI (T09), dashboard (T10, N06); cấu hình CoreIOT (T11--T13, T15); tổng hợp báo cáo, cùng đo và quay demo. & 50\% \\
+\bottomrule
+\end{longtable}
+Tổng tỷ lệ đề xuất: 100\%. Cả hai thành viên phải giải thích được luồng dữ liệu và điều khiển; không tạo lịch sử Git giả cho thành viên chưa tự thực hiện commit. Phạm vi trợ giúp AI được khai báo ở phụ lục.
+
+\chapter*{BẢNG TỰ ĐÁNH GIÁ YẾU TỐ CÔNG NGHỆ}
+\addcontentsline{toc}{chapter}{Bảng tự đánh giá yếu tố công nghệ}
+\noindent\textbf{Quy ước:} ``Phần mềm'' là đã chạy/kiểm thử trên PC; ``Build'' là biên dịch đạt, chưa chứng minh chạy trên board; ``Cấu hình'' là đã chuẩn bị file/hướng dẫn, chưa kiểm chứng server; ``Không'' là không triển khai. Không dùng tổng điểm mục tiêu thay cho điểm đã được công nhận.
+\small
+\begin{longtable}{P{.8cm}P{3.5cm}P{.95cm}P{2cm}P{1.2cm}P{4.85cm}}
+\toprule Mã & Yếu tố & Điểm & Trạng thái & Mục & Bằng chứng / việc còn thiếu \\ \midrule
+\endfirsthead
+\toprule Mã & Yếu tố & Điểm & Trạng thái & Mục & Bằng chứng / việc còn thiếu \\ \midrule
+\endhead
+T01 & I2C trên Tasmota & 0,5 & Không & 2.4 & DHT20 chạy Arduino, không nhận T01. \\
+T02 & Modbus RS485 & 1 & Không & 2.4 & Không có thiết bị RS485. \\
+T03 & Cảm biến BLE & 1,5 & Không & 2.4 & Không dùng BLE. \\
+T04 & TinyML trên board & 1 & Không & 3.5 & AI đặt trên PC, không phải TinyML. \\
+T05 & Công cụ TinyML & 1 & Không & 3.5 & Không xuất model cho board. \\
+T06 & ESP-NOW & 1,5 & Build & 3.3 & \code{firmware/src/main.cpp}; log build. Thiếu log hai board thực. \\
+T07 & Web trên thiết bị & 1 & Build & 3.2.2 & WebServer trong firmware bridge. Thiếu ảnh/trình diễn board. \\
+T08 & Gateway PC hai chiều & 1 & Phần mềm; một phần & 3.4 & Test Serial/RPC/outbox. Thiếu USB và cloud thật. \\
+T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_metrics.json}; model chạy PC, dữ liệu sinh. Cần đánh giá thực. \\
+T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Screenshot Chrome, điều khiển với ACK mô phỏng. \\
+T11 & Template CoreIOT & 1 & Cấu hình & 3.6.1 & Dashboard JSON và nguồn template; cần import/export thật. \\
+T12 & RuleChain & 1 & Cấu hình & 3.6.2 & JSON và JS filter; cần alarm chạy thật. \\
+T13 & Gửi thông báo & 0,5 & Hướng dẫn & 3.6.2 & Chưa nhận notification; chưa tự nhận điểm. \\
+T14 & OTA & 2 & Không & 3.6.3 & Không có OTA. \\
+T15 & Đồng bộ gateway & 2 & Phần mềm; một phần & 3.4 & Gateway API adapter/test; cần xác minh CoreIOT. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}{P{.8cm}P{4.6cm}P{.95cm}P{2cm}P{1.2cm}P{3.75cm}}
+\toprule Mã & Tính năng nâng cao & Điểm & Trạng thái & Mục & Bằng chứng \\ \midrule
+N01 & Trợ lý LLM & 1 & Không & 3.7 & Không sử dụng. \\
+N02 & Âm thanh/giọng nói & 1 & Không & 3.7 & Không sử dụng. \\
+N03 & Màn hình LVGL & 1 & Không & 3.7 & Không sử dụng. \\
+N04 & AI trên GPU thiết bị & 1 & Không & 3.7 & AI chạy CPU máy tính. \\
+N05 & Ứng dụng mobile riêng & 1 & Không & 3.7 & Web responsive không tự nhận là mobile app. \\
+N06 & Dashboard riêng ghi sự kiện & 1 & Phần mềm & 3.7 & Dashboard HTML, SQLite journal, CSV, kiểm tra Chrome. \\
+N07 & ThingsBoard tự triển khai & 1 & Không & 3.7 & Dùng CoreIOT của lớp; không dựng server cục bộ. \\
+\bottomrule
+\end{longtable}
+\normalsize
+Tổng công nghệ \textbf{mục tiêu} của T06--T13 (trừ T14) và T15 là 10 điểm trước trần; tối đa được tính 8. N06 có mục tiêu 1 điểm. Báo cáo tối đa 2 điểm. Theo đề bài \cite{assignment}, điểm cuối là
+\[
+\min\!\left(10,\;\min(8,\Sigma T)+R+\min(1,\Sigma N)\right),\quad 0\leq R\leq2.
+\]
+Chưa chốt điểm tự nhận cho các mục phần cứng/cloud. Giảng viên đánh giá dựa trên mức hoàn thành và bằng chứng thực tế.
+
+\tableofcontents
+\listoffigures
+\listoftables
+\chapter*{DANH MỤC TỪ VIẾT TẮT}
+\addcontentsline{toc}{chapter}{Danh mục từ viết tắt}
+\begin{longtable}{P{3cm}P{12cm}}
+\toprule Từ viết tắt & Ý nghĩa \\ \midrule
+IoT & Internet of Things -- Internet vạn vật. \\
+ESP-NOW & Giao thức truyền dữ liệu không cần kết nối Wi-Fi của Espressif. \\
+I2C & Inter-Integrated Circuit -- bus nối cảm biến. \\
+MQTT & Message Queuing Telemetry Transport -- giao thức pub/sub. \\
+RPC & Remote Procedure Call -- lời gọi điều khiển từ xa. \\
+ACK / PUBACK & Xác nhận thiết bị / xác nhận broker MQTT đã nhận bản tin. \\
+TLS & Transport Layer Security -- bảo vệ kênh truyền MQTT. \\
+TTL & Time to Live -- thời gian hiệu lực lệnh. \\
+NVS & Non-Volatile Storage -- lưu trữ bền trên ESP32. \\
+WAL & Write-Ahead Logging -- chế độ ghi nhật ký SQLite. \\
+TinyML & Học máy chạy trên vi điều khiển; không triển khai trong đồ án này. \\
+OTA & Over-The-Air -- cập nhật firmware qua mạng; không triển khai. \\
+\bottomrule
+\end{longtable}
+\clearpage\pagenumbering{arabic}
+\input{chapters/01-introduction.tex}
+\input{chapters/02-analysis.tex}
+\input{chapters/03-implementation.tex}
+\input{chapters/04-testing.tex}
+\input{chapters/05-conclusion.tex}
+\input{chapters/06-guide.tex}
+\input{references.tex}
+\input{appendix.tex}
+\end{document}

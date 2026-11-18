@@ -1,0 +1,37 @@
+\appendix
+\chapter{MINH CHỨNG, DEMO VÀ KHAI BÁO AI}
+\section{Bản đồ minh chứng trong repository}
+\begin{longtable}{P{6.1cm}P{8.7cm}}
+\toprule Đường dẫn & Nội dung và giới hạn \\ \midrule
+\code{evidence/pytest.xml}, \code{pytest.log} & Test đã chạy; không thay cho test radio hoặc tài khoản CoreIOT. \\
+\code{evidence/firmware_build.log} & Biên dịch hai role, RAM/flash; không chứng minh board đã boot. \\
+\code{evidence/software_metrics.json}, \code{software_trials.csv} & 1.100 lần đo xử lý trên PC và kiểm tra outbox. \\
+\code{evidence/ai_metrics.json}, \code{ai_test_predictions.csv} & Dữ liệu sinh có seed; confusion matrix và suy luận CPU. \\
+\code{evidence/browser_check.json}, \code{dashboard_desktop.png}, \code{dashboard_mobile.png} & Chrome chạy ứng dụng local với nguồn simulation; không phải ảnh CoreIOT. \\
+\code{coreiot/templates/PROVENANCE.json} & Nguồn template, commit, hash, giấy phép và phạm vi sửa. \\
+\code{docs/DEMO.md} & Kịch bản và câu hỏi bảo vệ; chưa phải video đã quay. \\
+\code{evidence/hardware/} & Nơi bổ sung dữ liệu/ảnh thực. Hiện chưa có minh chứng thiết bị trong phiên dựng mã. \\
+\bottomrule
+\end{longtable}
+
+\section{Kịch bản video đề xuất}
+Video dự kiến 7--9 phút: giới thiệu mạch; cho thấy sequence ESP-NOW; mở web bridge; điều khiển với ACK; xem score AI và journal; xem gateway-child và dashboard CoreIOT; tạo/clear alarm và nhận notification; ngắt mạng và nối lại; xem stale khi sensor mất; cuối cùng đối chiếu bảng tự đánh giá. Mốc thời gian trong \code{docs/DEMO.md} chỉ là kế hoạch. Khi đã quay, nhóm thay bằng timestamp thật và điền link vào metadata.
+
+Mỗi mục đăng ký điểm cần liên kết trực tiếp với đoạn demo, screenshot hoặc log tương ứng. Mã nhóm và ngày nộp cũng cần cập nhật theo LMS. Commit history phải phản ánh đóng góp thực tế của hai người; không sửa author để tạo cảm giác mỗi thành viên đã tự làm phần chưa thực hiện.
+
+\section{Khai báo phạm vi sử dụng công cụ AI}
+Trong phiên làm việc này, công cụ AI hỗ trợ đọc đề bài/mẫu, chọn đề tài, đề xuất kiến trúc, viết firmware/gateway/dashboard/test, tạo script dữ liệu và soạn LaTeX. Công cụ cũng chạy các kiểm thử và phép đo được ghi log trên máy tính. Những kết quả đó phải được thành viên nhóm đọc, hiểu, thực thi lại và xác minh trước khi nộp.
+
+AI không cung cấp số đo cảm biến thực, ảnh lắp mạch, video demo hay thông báo CoreIOT giả. Tại thời điểm dựng báo cáo, chưa nạp board, chưa đo ESP-NOW và chưa đăng nhập cấu hình CoreIOT. Bảng phân công là đề xuất; không trình bày mã sinh trong phiên này như lịch sử đóng góp thủ công đã hoàn tất của hai thành viên.
+
+Phần tái sử dụng gồm thư viện Arduino/ESP-IDF, DHT20, ArduinoJson, Paho, scikit-learn và widget template ThingsBoard. Phần điều phối packet/ACK/outbox, dashboard HTML local, kịch bản test/đo và văn bản báo cáo được xây dựng cho dự án với trợ giúp AI. Mỗi thành viên chịu trách nhiệm giải thích phần được phân công khi vấn đáp.
+\section{Checklist trước nộp}
+\begin{enumerate}
+\item Xác nhận mã lớp và mã nhóm; đổi tên PDF theo quy định.
+\item Nạp/chạy hai board, xác nhận pin/nguồn/MAC/key/channel; lưu ảnh mạch thật.
+\item Đo các kịch bản còn thiếu với số lần lặp, mean/min/max và dữ liệu gốc.
+\item Kết nối CoreIOT, import/export cấu hình thật và nhận notification thật.
+\item Cập nhật tự đánh giá theo bằng chứng, không tự nhận T01/T04/T05/T14/N07.
+\item Quay video và điền link; cấp quyền GitHub cho giảng viên.
+\item Hai thành viên tự commit phần công việc thực tế, hoàn chỉnh phân công và dựng lại PDF.
+\end{enumerate}

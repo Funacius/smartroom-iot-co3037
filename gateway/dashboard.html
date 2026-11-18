@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="vi">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>SmartRoom · Giám sát phòng học</title>
+  <style>
+    :root {
+      font:
+        16px "Segoe UI",
+        sans-serif;
+      color: #163433;
+      background: #eef3ef;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      max-width: 1180px;
+      margin: 36px auto;
+      padding: 0 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      letter-spacing: -1px;
+      margin: 8px 0;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #477267;
+    }
+    #status {
+      padding: 10px 16px;
+      background: #dce9de;
+      border-radius: 20px;
+    }
+    .notice {
+      color: #596e68;
+      font-size: 14px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 26px 0;
+    }
+    .card,
+    section {
+      background: white;
+      border: 1px solid #dbe5dc;
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .value {
+      font-size: 36px;
+      font-weight: 600;
+      margin: 12px 0;
+    }
+    .label {
+      color: #58756b;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+    }
+    button,
+    .link {
+      cursor: pointer;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      background: #176550;
+      color: white;
+      margin: 5px 5px 5px 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button.secondary {
+      background: #e5eee8;
+      color: #163433;
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: wait;
+    }
+    canvas {
+      width: 100%;
+      height: 220px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    td,
+    th {
+      text-align: left;
+      padding: 11px 7px;
+      border-bottom: 1px solid #edf0eb;
+      word-break: break-word;
+    }
+    #events {
+      margin-top: 18px;
+    }
+    .alarm {
+      color: #b14420;
+    }
+    .small {
+      font-size: 13px;
+      color: #62776f;
+    }
+    @media (max-width: 760px) {
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+  <header>
+    <div>
+      <div class="eyebrow">IOT / YOLOUNO / COREIOT</div>
+      <h1>Không gian học, luôn trong tầm mắt.</h1>
+      <p class="notice">SmartRoom · Nhiệt độ, độ ẩm và nhật ký sự kiện</p>
+    </div>
+    <div id="status">Đang kết nối…</div>
+  </header>
+  <p id="source" class="notice"></p>
+  <div class="metrics">
+    <div class="card">
+      <div class="label">Nhiệt độ</div>
+      <div id="temperature" class="value">—</div>
+      <div class="small">Cảnh báo từ 32 °C · xóa dưới 30 °C</div>
+    </div>
+    <div class="card">
+      <div class="label">Độ ẩm</div>
+      <div id="humidity" class="value">—</div>
+      <div class="small">Cảnh báo từ 80 %RH · xóa dưới 75 %RH</div>
+    </div>
+    <div class="card">
+      <div class="label">Phân tích AI</div>
+      <div id="anomaly" class="value">—</div>
+      <div class="small">Isolation Forest · mô hình thử nghiệm</div>
+    </div>
+    <div class="card">
+      <div class="label">Bản tin chờ gửi cloud</div>
+      <div id="outbox" class="value">0</div>
+      <div class="small">SQLite · giữ dữ liệu khi mất kết nối</div>
+    </div>
+  </div>
+  <div class="grid">
+    <section>
+      <h2>Nhiệt độ gần đây <span class="small">/ °C</span></h2>
+      <canvas id="chart"></canvas>
+      <p class="small">
+        Dữ liệu cũ vẫn được giữ khi node mất kết nối. Trạng thái hiển thị theo
+        tuổi bản tin.
+      </p>
+    </section>
+    <section>
+      <h2>Điều khiển quạt</h2>
+      <p>Trạng thái gần nhất: <strong id="fan">—</strong></p>
+      <button onclick="sendFanCommand(true)">Bật quạt</button
+      ><button class="secondary" onclick="sendFanCommand(false)">
+        Tắt quạt
+      </button>
+      <p id="commandStatus" class="small">
+        Lệnh chỉ hoàn thành khi node xác nhận.
+      </p>
+      <p id="age" class="small"></p>
+      <a class="link" href="/api/events.csv" download="events.csv"
+        >Tải nhật ký CSV</a
+      >
+    </section>
+  </div>
+  <section id="events">
+    <h2>Nhật ký phát hiện & điều khiển</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Thời điểm</th>
+          <th>Thiết bị</th>
+          <th>Sự kiện</th>
+          <th>Chi tiết</th>
+        </tr>
+      </thead>
+      <tbody id="eventRows"></tbody>
+    </table>
+  </section>
+  <p class="small">
+    Bùi Quốc Thái · 2353086 &nbsp; / &nbsp; Nguyễn Vinh Anh Quân · 2353007
+    &nbsp; / &nbsp; GVHD: Nguyễn Hòa Hưng
+  </p>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let lastState;
+    function chart(history) {
+      const c = $("chart"),
+        ctx = c.getContext("2d");
+      c.width = c.clientWidth * 2;
+      c.height = 440;
+      const w = c.width,
+        h = c.height,
+        values = history.map((r) => r.values.temperature);
+      ctx.clearRect(0, 0, w, h);
+      if (!values.length) return;
+      const lo = Math.floor(Math.min(24, ...values) - 1),
+        hi = Math.ceil(Math.max(34, ...values) + 1);
+      ctx.font = "22px Segoe UI";
+      for (let t = lo; t <= hi; t += 2) {
+        const y = h - 35 - ((t - lo) / (hi - lo)) * (h - 65);
+        ctx.strokeStyle = "#e7ede7";
+        ctx.beginPath();
+        ctx.moveTo(55, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+        ctx.fillStyle = "#6c8377";
+        ctx.fillText(t, 0, y + 7);
+      }
+      ctx.strokeStyle = "#1b805e";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      values.forEach((t, i) => {
+        let x = 55 + (i / Math.max(1, values.length - 1)) * (w - 65),
+          y = h - 35 - ((t - lo) / (hi - lo)) * (h - 65);
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      });
+      ctx.stroke();
+    }
+    async function refresh() {
+      try {
+        const r = await fetch("/api/state");
+        if (!r.ok) throw Error("HTTP " + r.status);
+        const s = await r.json();
+        lastState = s;
+        const v = s.latest?.values;
+        $("status").textContent = s.stale
+          ? "Mất kết nối / dữ liệu cũ"
+          : "Node đang hoạt động";
+        $("status").className = s.stale ? "alarm" : "";
+        $("outbox").textContent = s.outbox_count;
+        if (v) {
+          $("temperature").textContent = v.temperature.toFixed(1) + " °C";
+          $("humidity").textContent = v.humidity.toFixed(1) + " %";
+          $("fan").textContent = v.fan ? "Đang bật" : "Đang tắt";
+          $("anomaly").textContent = !v.ai_available
+            ? "Chưa có model"
+            : v.anomaly
+              ? "Bất thường"
+              : "Bình thường";
+          $("anomaly").className = "value" + (v.anomaly ? " alarm" : "");
+          $("source").textContent =
+            v.data_source === "simulation"
+              ? "CHẾ ĐỘ MÔ PHỎNG — dữ liệu sinh tự động, không phải số đo cảm biến."
+              : "CHẾ ĐỘ PHẦN CỨNG — dữ liệu nhận từ USB bridge.";
+          $("age").textContent =
+            "Bản tin gần nhất: " +
+            s.latest.age_seconds.toFixed(1) +
+            " giây trước";
+        }
+        if (s.commands.length) {
+          const c = s.commands[0];
+          $("commandStatus").textContent =
+            "Lệnh #" +
+            c.id +
+            ": " +
+            {
+              pending: "đang chờ node",
+              applied: "node đã xác nhận",
+              failed: "hết hạn, chưa rõ trạng thái vật lý",
+            }[c.status];
+        }
+        document
+          .querySelectorAll("button")
+          .forEach(
+            (b) =>
+              (b.disabled = s.commands.some((c) => c.status === "pending")),
+          );
+        $("eventRows").replaceChildren();
+        for (const e of s.events) {
+          const tr = document.createElement("tr");
+          for (const text of [
+            new Date(e.ts * 1000).toLocaleTimeString("vi-VN"),
+            e.device,
+            e.kind,
+            e.detail.length > 120 ? e.detail.slice(0, 120) + "…" : e.detail,
+          ]) {
+            const td = document.createElement("td");
+            td.textContent = text;
+            tr.appendChild(td);
+          }
+          $("eventRows").appendChild(tr);
+        }
+        chart(s.history);
+      } catch (e) {
+        $("status").textContent = "Không kết nối gateway";
+        $("status").className = "alarm";
+      }
+    }
+    async function sendFanCommand(value) {
+      try {
+        const r = await fetch("/api/command", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ value }),
+        });
+        const body = await r.json();
+        if (!r.ok) throw Error(body.error);
+        $("commandStatus").textContent = "Đã tạo lệnh #" + body.id;
+        await refresh();
+      } catch (e) {
+        $("commandStatus").textContent = e.message;
+      }
+    }
+    setInterval(refresh, 1000);
+    window.addEventListener(
+      "resize",
+      () => lastState && chart(lastState.history),
+    );
+    refresh();
+  </script>
+</html>

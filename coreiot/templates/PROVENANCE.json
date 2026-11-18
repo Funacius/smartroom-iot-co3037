@@ -1,0 +1,9 @@
+{
+  "project": "ThingsBoard",
+  "license": "Apache-2.0",
+  "commit": "e8f86551893a96a12dd150ba77ac8c467d67711a",
+  "source_url": "https://raw.githubusercontent.com/thingsboard/thingsboard/e8f86551893a96a12dd150ba77ac8c467d67711a/application/src/main/data/json/demo/dashboards/thermostats.json",
+  "sha256": "5edbcd45906671f592b4cd175caa2638a9d3954619d64c666c0d24ea92bd04bf",
+  "retrieved_date": "2026-11-18",
+  "changes": "make_dashboard.py retains two time-series widgets and alarm table; rewrites alias and layout; drops maps and administration forms"
+}

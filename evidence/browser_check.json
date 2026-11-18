@@ -1,0 +1,7 @@
+{
+  "scope": "real Chrome + simulated device; no real ESP32/cloud",
+  "desktop": "1440x1160",
+  "mobile": "390x844",
+  "control_on_off": "PASS",
+  "console_errors": []
+}

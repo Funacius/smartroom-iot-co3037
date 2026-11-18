@@ -1,0 +1,132 @@
+{
+  "ruleChain": {
+    "name": "SmartRoom alarms",
+    "root": false,
+    "debugMode": false,
+    "firstRuleNodeId": null,
+    "configuration": null,
+    "additionalInfo": {
+      "description": "SmartRoom threshold/AI alarm with recovery hysteresis. Configure notifications separately."
+    }
+  },
+  "metadata": {
+    "firstNodeIndex": 0,
+    "nodes": [
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "Telemetry only",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        },
+        "additionalInfo": {
+          "layoutX": 100,
+          "layoutY": 150
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save timeseries",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        },
+        "additionalInfo": {
+          "layoutX": 350,
+          "layoutY": 150
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "High or anomaly",
+        "debugMode": false,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// CoreIOT/ThingsBoard Script Filter, JavaScript mode.\n// Outputs: True -> Create Alarm; False -> Clear-condition filter.\nreturn Number(msg.temperature) >= 32 || Number(msg.humidity) >= 80 || msg.anomaly === true;\n"
+        },
+        "additionalInfo": {
+          "layoutX": 600,
+          "layoutY": 150
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create SmartRoom alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "SmartRoom Environment",
+          "scriptLang": "JS",
+          "alarmDetailsBuildJs": "return {temperature: msg.temperature, humidity: msg.humidity, anomaly: msg.anomaly, data_source: msg.data_source};",
+          "severity": "MAJOR",
+          "propagate": false,
+          "propagateToOwner": false,
+          "propagateToOwnerHierarchy": false,
+          "propagateToTenant": false,
+          "useMessageAlarmData": false,
+          "overwriteAlarmDetails": true,
+          "dynamicSeverity": false,
+          "relationTypes": []
+        },
+        "additionalInfo": {
+          "layoutX": 900,
+          "layoutY": 70
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Recovered below clear limits",
+        "debugMode": false,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// Hysteresis: intermediate readings must NOT clear an active alarm.\nreturn Number(msg.temperature) <= 30 && Number(msg.humidity) <= 75 && msg.anomaly !== true;\n"
+        },
+        "additionalInfo": {
+          "layoutX": 900,
+          "layoutY": 240
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.action.TbClearAlarmNode",
+        "name": "Clear SmartRoom alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "SmartRoom Environment",
+          "scriptLang": "JS",
+          "alarmDetailsBuildJs": "return {temperature: msg.temperature, humidity: msg.humidity, anomaly: msg.anomaly, data_source: msg.data_source};"
+        },
+        "additionalInfo": {
+          "layoutX": 1200,
+          "layoutY": 240
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 3,
+        "type": "True"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 4,
+        "type": "False"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 5,
+        "type": "True"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

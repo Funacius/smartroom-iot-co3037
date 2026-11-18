@@ -1,0 +1,2456 @@
+{
+  "device": "room-node-01",
+  "latest": {
+    "id": 603,
+    "device": "room-node-01",
+    "boot": 951723142,
+    "seq": 603,
+    "received": 1795005949.8291388,
+    "values": {
+      "temperature": 26.92550563671289,
+      "humidity": 59.77731006917544,
+      "fan": false,
+      "boot": 951723142,
+      "seq": 603,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": 0.23954186522487264,
+      "anomaly": false,
+      "inference_ms": 4.808899946510792,
+      "threshold_alarm": false
+    },
+    "age_seconds": 1.0903472900390625
+  },
+  "stale": false,
+  "history": [
+    {
+      "received": 1795005710.8891141,
+      "values": {
+        "temperature": 27.30818416133555,
+        "humidity": 58.670404906170006,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 484,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2501239699900816,
+        "anomaly": false,
+        "inference_ms": 47.33680002391338,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005712.9053948,
+      "values": {
+        "temperature": 27.241831494191583,
+        "humidity": 58.637200328300544,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 485,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24946091713478497,
+        "anomaly": false,
+        "inference_ms": 16.652100021019578,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005714.9147632,
+      "values": {
+        "temperature": 27.581983742443775,
+        "humidity": 62.4724989738313,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 486,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23011962379470424,
+        "anomaly": false,
+        "inference_ms": 24.904800055082887,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005716.9269767,
+      "values": {
+        "temperature": 27.747108689966552,
+        "humidity": 59.28912263715161,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 487,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23909377420929379,
+        "anomaly": false,
+        "inference_ms": 11.421100003644824,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005718.9317553,
+      "values": {
+        "temperature": 27.47129939647337,
+        "humidity": 60.478075896134264,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 488,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24508078472439726,
+        "anomaly": false,
+        "inference_ms": 50.58449995703995,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005720.934088,
+      "values": {
+        "temperature": 27.597715960900008,
+        "humidity": 62.33081640286602,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 489,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.230097177534678,
+        "anomaly": false,
+        "inference_ms": 13.963000033982098,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005722.9339564,
+      "values": {
+        "temperature": 35.70701271822854,
+        "humidity": 58.31464628066123,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 490,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03125189617054247,
+        "anomaly": true,
+        "inference_ms": 43.07580000022426,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005724.9428997,
+      "values": {
+        "temperature": 35.49195210391043,
+        "humidity": 61.54722073626053,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 491,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.02750005679116263,
+        "anomaly": true,
+        "inference_ms": 6.8854999844916165,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005726.9632776,
+      "values": {
+        "temperature": 35.376987296979955,
+        "humidity": 58.37644022772349,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 492,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03125189617054247,
+        "anomaly": true,
+        "inference_ms": 14.039000030606985,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005728.9666927,
+      "values": {
+        "temperature": 35.149076191451876,
+        "humidity": 60.46285346845497,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 493,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.020379000866915464,
+        "anomaly": true,
+        "inference_ms": 13.961600023321807,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005730.9801483,
+      "values": {
+        "temperature": 34.9547492634465,
+        "humidity": 60.63469641432584,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 494,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.02302434641579154,
+        "anomaly": true,
+        "inference_ms": 5.193999968469143,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005732.9957619,
+      "values": {
+        "temperature": 34.998983500458536,
+        "humidity": 60.16093645540586,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 495,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.025136632254260105,
+        "anomaly": true,
+        "inference_ms": 5.474100005812943,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005735.0165033,
+      "values": {
+        "temperature": 34.54859770234883,
+        "humidity": 61.291250501527585,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 496,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.025223951143104828,
+        "anomaly": true,
+        "inference_ms": 5.449499993119389,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005737.0038776,
+      "values": {
+        "temperature": 34.716953860234206,
+        "humidity": 61.09821758206254,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 497,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.023091523484883858,
+        "anomaly": true,
+        "inference_ms": 5.255899974144995,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005739.0262563,
+      "values": {
+        "temperature": 34.50271582578532,
+        "humidity": 60.57611729273318,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 498,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.01992797991569384,
+        "anomaly": true,
+        "inference_ms": 22.03749999171123,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005741.0371172,
+      "values": {
+        "temperature": 34.09858720242944,
+        "humidity": 60.05991074890387,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 499,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.023321519546896097,
+        "anomaly": true,
+        "inference_ms": 6.185000005643815,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005743.0596251,
+      "values": {
+        "temperature": 26.3572655973046,
+        "humidity": 58.84356197900666,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 500,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23991420020281112,
+        "anomaly": false,
+        "inference_ms": 11.840499995741993,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005745.053629,
+      "values": {
+        "temperature": 26.573082686532597,
+        "humidity": 60.21013948435624,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 501,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.22878898797694353,
+        "anomaly": false,
+        "inference_ms": 6.624200032092631,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005747.0731468,
+      "values": {
+        "temperature": 26.603687096138266,
+        "humidity": 59.53352355708703,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 502,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23309942030662767,
+        "anomaly": false,
+        "inference_ms": 7.177299994509667,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005749.0852048,
+      "values": {
+        "temperature": 26.67043516090935,
+        "humidity": 60.317212115900496,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 503,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23489378174980535,
+        "anomaly": false,
+        "inference_ms": 10.438399971462786,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005751.0904977,
+      "values": {
+        "temperature": 26.743485375061024,
+        "humidity": 60.382205669549045,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 504,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2344491559570705,
+        "anomaly": false,
+        "inference_ms": 33.79110002424568,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005753.104697,
+      "values": {
+        "temperature": 27.028996175132228,
+        "humidity": 60.05045885778333,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 505,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23932137295741657,
+        "anomaly": false,
+        "inference_ms": 12.231800006702542,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005755.1181715,
+      "values": {
+        "temperature": 27.10757638489442,
+        "humidity": 60.234809530947096,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 506,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24376705458568482,
+        "anomaly": false,
+        "inference_ms": 5.719500011764467,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005757.1424234,
+      "values": {
+        "temperature": 27.468323504037947,
+        "humidity": 58.48151214459554,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 507,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24263504496767152,
+        "anomaly": false,
+        "inference_ms": 23.05349998641759,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005759.1365778,
+      "values": {
+        "temperature": 27.448794256952368,
+        "humidity": 61.31055235696069,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 508,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24083252443563402,
+        "anomaly": false,
+        "inference_ms": 12.545500008855015,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005761.1480987,
+      "values": {
+        "temperature": 27.602731505871844,
+        "humidity": 61.145373525793026,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 509,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2409659460524352,
+        "anomaly": false,
+        "inference_ms": 10.82750002387911,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005763.1585884,
+      "values": {
+        "temperature": 27.5868204410492,
+        "humidity": 57.800633884301675,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 510,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23789187361370345,
+        "anomaly": false,
+        "inference_ms": 8.878400025423616,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005765.160523,
+      "values": {
+        "temperature": 27.627499652973317,
+        "humidity": 60.78658295419911,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 511,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23965433531047464,
+        "anomaly": false,
+        "inference_ms": 49.286099965684116,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005767.1687162,
+      "values": {
+        "temperature": 27.64361952285794,
+        "humidity": 60.0242390246791,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 512,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2459400693613018,
+        "anomaly": false,
+        "inference_ms": 5.8435999671928585,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005769.1598876,
+      "values": {
+        "temperature": 27.411946158453524,
+        "humidity": 59.79584879184685,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 513,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2500175822722267,
+        "anomaly": false,
+        "inference_ms": 55.50489999586716,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005771.1847131,
+      "values": {
+        "temperature": 27.169381971243062,
+        "humidity": 61.7617235534988,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 514,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23823131780661977,
+        "anomaly": false,
+        "inference_ms": 7.809999980963767,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005773.1842058,
+      "values": {
+        "temperature": 27.265808174448157,
+        "humidity": 59.05265489870737,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 515,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24641105066146507,
+        "anomaly": false,
+        "inference_ms": 5.1929999608546495,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005775.1751795,
+      "values": {
+        "temperature": 26.917443058058893,
+        "humidity": 60.97901784943658,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 516,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23600502431182202,
+        "anomaly": false,
+        "inference_ms": 6.881300010718405,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005777.1805074,
+      "values": {
+        "temperature": 26.947091207721456,
+        "humidity": 59.696045980112125,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 517,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23734445457601439,
+        "anomaly": false,
+        "inference_ms": 9.569999994710088,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005779.17504,
+      "values": {
+        "temperature": 26.6841494599078,
+        "humidity": 60.210989476758726,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 518,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23521395397652267,
+        "anomaly": false,
+        "inference_ms": 7.379899965599179,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005781.1978252,
+      "values": {
+        "temperature": 26.323791360083295,
+        "humidity": 58.98793259347889,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 519,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23776465938846952,
+        "anomaly": false,
+        "inference_ms": 17.048200010322034,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005783.2058809,
+      "values": {
+        "temperature": 34.379775010852924,
+        "humidity": 57.54360615244366,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 520,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.032121865222152546,
+        "anomaly": true,
+        "inference_ms": 57.6537000015378,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005785.223756,
+      "values": {
+        "temperature": 34.44607468674284,
+        "humidity": 58.147280027330495,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 521,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.030413811056687612,
+        "anomaly": true,
+        "inference_ms": 17.379899974912405,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005787.221552,
+      "values": {
+        "temperature": 34.452427483644875,
+        "humidity": 58.52913499020622,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 522,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.030996228027727724,
+        "anomaly": true,
+        "inference_ms": 9.701700008008629,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005789.2491014,
+      "values": {
+        "temperature": 34.386703416772605,
+        "humidity": 60.547644672198935,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 523,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.020830327075995636,
+        "anomaly": true,
+        "inference_ms": 19.128399959299713,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005791.2500668,
+      "values": {
+        "temperature": 34.30191873256355,
+        "humidity": 58.34234363921103,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 524,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03125189617054247,
+        "anomaly": true,
+        "inference_ms": 13.21290002670139,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005793.2508469,
+      "values": {
+        "temperature": 34.57373202379314,
+        "humidity": 59.35463896722906,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 525,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.031166178000766487,
+        "anomaly": true,
+        "inference_ms": 5.9652000200003386,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005795.2539725,
+      "values": {
+        "temperature": 34.92781071907256,
+        "humidity": 60.4202705818231,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 526,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.022096744649006905,
+        "anomaly": true,
+        "inference_ms": 8.310899953357875,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005797.261582,
+      "values": {
+        "temperature": 34.94663954068964,
+        "humidity": 59.12332336705468,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 527,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.033632016033025014,
+        "anomaly": true,
+        "inference_ms": 30.587299959734082,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005799.2826047,
+      "values": {
+        "temperature": 35.21942672205425,
+        "humidity": 60.29170633005967,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 528,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.02504505725188333,
+        "anomaly": true,
+        "inference_ms": 37.50549996038899,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005801.2923229,
+      "values": {
+        "temperature": 35.241652400128544,
+        "humidity": 59.42987874282873,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 529,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.029334769322058585,
+        "anomaly": true,
+        "inference_ms": 11.50040002539754,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005803.2969785,
+      "values": {
+        "temperature": 27.559809848024067,
+        "humidity": 59.73697763560695,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 530,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2421538475475844,
+        "anomaly": false,
+        "inference_ms": 5.401299975346774,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005805.296962,
+      "values": {
+        "temperature": 27.412831338940148,
+        "humidity": 59.59489691503001,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 531,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24312308312723668,
+        "anomaly": false,
+        "inference_ms": 9.97710000956431,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005807.297192,
+      "values": {
+        "temperature": 27.589179810667485,
+        "humidity": 60.36574776303045,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 532,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24121162333436508,
+        "anomaly": false,
+        "inference_ms": 8.743800048250705,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005809.2984674,
+      "values": {
+        "temperature": 27.693746664892,
+        "humidity": 60.697626905513886,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 533,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24105264664916715,
+        "anomaly": false,
+        "inference_ms": 9.540300001390278,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005811.3082538,
+      "values": {
+        "temperature": 27.42005388740318,
+        "humidity": 60.778729903329925,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 534,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24266957666265115,
+        "anomaly": false,
+        "inference_ms": 45.9952000528574,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005813.314128,
+      "values": {
+        "temperature": 27.250528782478263,
+        "humidity": 62.16135308030535,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 535,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23924342903195273,
+        "anomaly": false,
+        "inference_ms": 55.006599985063076,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005815.301947,
+      "values": {
+        "temperature": 27.207129013549714,
+        "humidity": 58.79239031103113,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 536,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2469417241247544,
+        "anomaly": false,
+        "inference_ms": 26.935000030789524,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005817.31611,
+      "values": {
+        "temperature": 27.22423162563598,
+        "humidity": 60.48915527796903,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 537,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2490803550072977,
+        "anomaly": false,
+        "inference_ms": 12.001800001598895,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005819.3199723,
+      "values": {
+        "temperature": 27.08653851900058,
+        "humidity": 58.82466552818,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 538,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24281197198168708,
+        "anomaly": false,
+        "inference_ms": 9.268100024200976,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005821.3425202,
+      "values": {
+        "temperature": 27.03518265906638,
+        "humidity": 60.12366982331734,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 539,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2386407017837709,
+        "anomaly": false,
+        "inference_ms": 5.431199970189482,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005823.3546202,
+      "values": {
+        "temperature": 26.77484153906828,
+        "humidity": 59.122062879982884,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 540,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24382093051841242,
+        "anomaly": false,
+        "inference_ms": 5.2829000051133335,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005825.372201,
+      "values": {
+        "temperature": 26.56788331055604,
+        "humidity": 61.814755550642914,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 541,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2282552070763753,
+        "anomaly": false,
+        "inference_ms": 15.55090001784265,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005827.3760827,
+      "values": {
+        "temperature": 26.440630459217413,
+        "humidity": 59.99736125911785,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 542,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23547162747672878,
+        "anomaly": false,
+        "inference_ms": 7.382100040558726,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005829.3979776,
+      "values": {
+        "temperature": 26.29944808067417,
+        "humidity": 60.66546769267764,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 543,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23285705237072207,
+        "anomaly": false,
+        "inference_ms": 8.944099943619221,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005831.4066868,
+      "values": {
+        "temperature": 26.472948239755237,
+        "humidity": 59.10672307258842,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 544,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24073325603210094,
+        "anomaly": false,
+        "inference_ms": 19.273800018709153,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005833.4151318,
+      "values": {
+        "temperature": 26.56456772298407,
+        "humidity": 59.321233074713156,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 545,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23377937685640637,
+        "anomaly": false,
+        "inference_ms": 28.244699991773814,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005835.4367495,
+      "values": {
+        "temperature": 26.638018989350833,
+        "humidity": 61.48928431366417,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 546,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23507322159919775,
+        "anomaly": false,
+        "inference_ms": 18.73950002482161,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005837.4355457,
+      "values": {
+        "temperature": 26.64206161050278,
+        "humidity": 60.81930992063665,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 547,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23280103190121787,
+        "anomaly": false,
+        "inference_ms": 5.00940001802519,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005839.45311,
+      "values": {
+        "temperature": 26.832723442599164,
+        "humidity": 60.70019161665851,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 548,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23758390587960482,
+        "anomaly": false,
+        "inference_ms": 29.856699984520674,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005841.4674416,
+      "values": {
+        "temperature": 27.024039760228202,
+        "humidity": 60.59954941210312,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 549,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23470970795700902,
+        "anomaly": false,
+        "inference_ms": 9.499099978711456,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005843.465868,
+      "values": {
+        "temperature": 35.219886081421706,
+        "humidity": 60.73135145808526,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 550,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.022044234990178047,
+        "anomaly": true,
+        "inference_ms": 30.487500014714897,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005845.480684,
+      "values": {
+        "temperature": 35.30854555454964,
+        "humidity": 61.86797566194522,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 551,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.028721477904276482,
+        "anomaly": true,
+        "inference_ms": 9.930900007020682,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005847.4828587,
+      "values": {
+        "temperature": 35.39774775798783,
+        "humidity": 60.253442615002314,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 552,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.0280403547155208,
+        "anomaly": true,
+        "inference_ms": 16.043299983721226,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005849.4792948,
+      "values": {
+        "temperature": 35.480021910766624,
+        "humidity": 60.81999071550786,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 553,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.021733875395943403,
+        "anomaly": true,
+        "inference_ms": 4.883600049652159,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005851.4794803,
+      "values": {
+        "temperature": 35.73294984256483,
+        "humidity": 58.328275943801536,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 554,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03125189617054247,
+        "anomaly": true,
+        "inference_ms": 13.841400039382279,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005853.4780905,
+      "values": {
+        "temperature": 35.55250948170097,
+        "humidity": 59.42492633741251,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 555,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.029334769322058585,
+        "anomaly": true,
+        "inference_ms": 39.68520002672449,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005855.4790506,
+      "values": {
+        "temperature": 35.616629306166956,
+        "humidity": 60.703763317596646,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 556,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.021567484802409997,
+        "anomaly": true,
+        "inference_ms": 46.13669996615499,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005857.4750743,
+      "values": {
+        "temperature": 35.39198669920217,
+        "humidity": 60.79512504533311,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 557,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.022630787060253676,
+        "anomaly": true,
+        "inference_ms": 55.705200007651,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005859.4947386,
+      "values": {
+        "temperature": 35.26035959215504,
+        "humidity": 60.399472580388434,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 558,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.022096744649006905,
+        "anomaly": true,
+        "inference_ms": 6.203299970366061,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005861.487439,
+      "values": {
+        "temperature": 35.21885341350147,
+        "humidity": 60.688526957059956,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 559,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.021567484802409997,
+        "anomaly": true,
+        "inference_ms": 11.839200044050813,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005863.4903376,
+      "values": {
+        "temperature": 26.943345188251204,
+        "humidity": 60.56761696897049,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 560,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23902662141300796,
+        "anomaly": false,
+        "inference_ms": 8.37260001571849,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005865.5083477,
+      "values": {
+        "temperature": 26.89762325934699,
+        "humidity": 60.10061501018155,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 561,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23864467469318384,
+        "anomaly": false,
+        "inference_ms": 7.709900033660233,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005867.5115728,
+      "values": {
+        "temperature": 26.907988685605446,
+        "humidity": 59.86463930745207,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 562,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24222477916306373,
+        "anomaly": false,
+        "inference_ms": 12.864399992395192,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005869.5142858,
+      "values": {
+        "temperature": 26.436623844719158,
+        "humidity": 60.57810780910657,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 563,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23575956479330734,
+        "anomaly": false,
+        "inference_ms": 11.747100041247904,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005871.5215235,
+      "values": {
+        "temperature": 26.522571777305064,
+        "humidity": 62.7753870910971,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 564,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23311604872049768,
+        "anomaly": false,
+        "inference_ms": 5.186799971852452,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005873.5427768,
+      "values": {
+        "temperature": 26.463989812825886,
+        "humidity": 59.61531846031532,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 565,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23396636192168185,
+        "anomaly": false,
+        "inference_ms": 37.396600004285574,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005875.546163,
+      "values": {
+        "temperature": 26.41978956191723,
+        "humidity": 58.85486887082974,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 566,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23925001033185062,
+        "anomaly": false,
+        "inference_ms": 5.501299980096519,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005877.532995,
+      "values": {
+        "temperature": 26.385496587593504,
+        "humidity": 61.36239925998908,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 567,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2352778045355367,
+        "anomaly": false,
+        "inference_ms": 15.995000023394823,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005879.542319,
+      "values": {
+        "temperature": 26.59459730808101,
+        "humidity": 60.17530682406703,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 568,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23174506337477174,
+        "anomaly": false,
+        "inference_ms": 22.578499978408217,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005881.5407984,
+      "values": {
+        "temperature": 26.75689156229017,
+        "humidity": 57.75175867238901,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 569,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.22999138177588696,
+        "anomaly": false,
+        "inference_ms": 20.522399980109185,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005883.5497086,
+      "values": {
+        "temperature": 26.771706161775395,
+        "humidity": 59.54644347195974,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 570,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23925660225004047,
+        "anomaly": false,
+        "inference_ms": 6.17240002611652,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005885.5712,
+      "values": {
+        "temperature": 27.21695957638586,
+        "humidity": 58.79915849251216,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 571,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2478484286992213,
+        "anomaly": false,
+        "inference_ms": 29.99629999976605,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005887.5932527,
+      "values": {
+        "temperature": 27.2899400546546,
+        "humidity": 61.22786454030365,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 572,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24389071968138898,
+        "anomaly": false,
+        "inference_ms": 16.27399999415502,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005889.5959759,
+      "values": {
+        "temperature": 27.517726204025227,
+        "humidity": 60.60141681056914,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 573,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24234408589770662,
+        "anomaly": false,
+        "inference_ms": 7.879899989347905,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005891.597696,
+      "values": {
+        "temperature": 27.67047160190606,
+        "humidity": 61.65330235171413,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 574,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2329149538611019,
+        "anomaly": false,
+        "inference_ms": 6.91759999608621,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005893.6244214,
+      "values": {
+        "temperature": 27.615531997677426,
+        "humidity": 60.48352688859501,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 575,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24523571918968828,
+        "anomaly": false,
+        "inference_ms": 5.020899989176542,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005895.6401017,
+      "values": {
+        "temperature": 27.538548156640207,
+        "humidity": 62.1683784790462,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 576,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23108923524066416,
+        "anomaly": false,
+        "inference_ms": 8.26719996985048,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005897.6478243,
+      "values": {
+        "temperature": 27.359139074349297,
+        "humidity": 59.88819916578997,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 577,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2538392947071541,
+        "anomaly": false,
+        "inference_ms": 7.209400006104261,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005899.6631427,
+      "values": {
+        "temperature": 27.55876822069677,
+        "humidity": 60.34474359582188,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 578,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2403436973858823,
+        "anomaly": false,
+        "inference_ms": 8.95050005055964,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005901.674256,
+      "values": {
+        "temperature": 35.34147634157752,
+        "humidity": 60.958893034743475,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 579,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.023091523484883858,
+        "anomaly": true,
+        "inference_ms": 41.26599995652214,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005903.6754124,
+      "values": {
+        "temperature": 35.23823140245216,
+        "humidity": 58.19428303113631,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 580,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.030413811056687612,
+        "anomaly": true,
+        "inference_ms": 26.887399959377944,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005905.6986434,
+      "values": {
+        "temperature": 35.15312170672248,
+        "humidity": 61.99114097739325,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 581,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.0312367862155426,
+        "anomaly": true,
+        "inference_ms": 7.8310000244528055,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005907.7038302,
+      "values": {
+        "temperature": 34.952236807724006,
+        "humidity": 58.69680008623348,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 582,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03150499710323851,
+        "anomaly": true,
+        "inference_ms": 5.6303999735973775,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005909.6947126,
+      "values": {
+        "temperature": 34.88296021491129,
+        "humidity": 59.13668581799169,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 583,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.033632016033025014,
+        "anomaly": true,
+        "inference_ms": 52.99860000377521,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005911.7162228,
+      "values": {
+        "temperature": 34.64725221033751,
+        "humidity": 59.88145992331475,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 584,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.0209678518986407,
+        "anomaly": true,
+        "inference_ms": 10.65140002174303,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005913.7149253,
+      "values": {
+        "temperature": 34.63243580134332,
+        "humidity": 61.16145254433291,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 585,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.023091523484883858,
+        "anomaly": true,
+        "inference_ms": 5.094899970572442,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005915.729768,
+      "values": {
+        "temperature": 34.185731948896866,
+        "humidity": 59.93988631377486,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 586,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.02141957665107974,
+        "anomaly": true,
+        "inference_ms": 13.243500026874244,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005917.729781,
+      "values": {
+        "temperature": 34.58113741101977,
+        "humidity": 58.94686389554199,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 587,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.03460579076269921,
+        "anomaly": true,
+        "inference_ms": 5.079700029455125,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005919.7224007,
+      "values": {
+        "temperature": 34.363614755485735,
+        "humidity": 61.58675963906215,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 588,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": -0.02750005679116263,
+        "anomaly": true,
+        "inference_ms": 5.35160000436008,
+        "threshold_alarm": true
+      }
+    },
+    {
+      "received": 1795005921.740501,
+      "values": {
+        "temperature": 26.58188725596016,
+        "humidity": 60.323941743958386,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 589,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23071768864157605,
+        "anomaly": false,
+        "inference_ms": 58.13179997494444,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005923.7472544,
+      "values": {
+        "temperature": 26.576193879285672,
+        "humidity": 59.211054184441515,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 590,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2348942718228884,
+        "anomaly": false,
+        "inference_ms": 6.620800006203353,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005925.7385027,
+      "values": {
+        "temperature": 26.68389954353886,
+        "humidity": 60.11535023793142,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 591,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2364188711149668,
+        "anomaly": false,
+        "inference_ms": 29.98469996964559,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005927.7527366,
+      "values": {
+        "temperature": 26.934826528063,
+        "humidity": 59.32714207116589,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 592,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2406396583612916,
+        "anomaly": false,
+        "inference_ms": 7.784000015817583,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005929.7606118,
+      "values": {
+        "temperature": 27.11197255129426,
+        "humidity": 60.89394469901266,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 593,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2421922488705689,
+        "anomaly": false,
+        "inference_ms": 5.090000049676746,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005931.7536395,
+      "values": {
+        "temperature": 27.000033321100453,
+        "humidity": 58.89264867205494,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 594,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23960549058321623,
+        "anomaly": false,
+        "inference_ms": 8.803899982012808,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005933.752752,
+      "values": {
+        "temperature": 27.234641648922803,
+        "humidity": 59.29325109358487,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 595,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2494643351308362,
+        "anomaly": false,
+        "inference_ms": 6.2346000340767205,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005935.7713528,
+      "values": {
+        "temperature": 27.544536181405082,
+        "humidity": 60.65484763349843,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 596,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23912221724327742,
+        "anomaly": false,
+        "inference_ms": 6.06119999429211,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005937.7956111,
+      "values": {
+        "temperature": 27.45413553112753,
+        "humidity": 60.291110886862846,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 597,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24277817482165648,
+        "anomaly": false,
+        "inference_ms": 5.308299965690821,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005939.7865448,
+      "values": {
+        "temperature": 27.50084292465228,
+        "humidity": 62.57646823576071,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 598,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.22865145333512377,
+        "anomaly": false,
+        "inference_ms": 8.238100039307028,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005941.8106186,
+      "values": {
+        "temperature": 27.57569399102443,
+        "humidity": 59.65882818024092,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 599,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24139219404129703,
+        "anomaly": false,
+        "inference_ms": 6.552000006195158,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005943.8282166,
+      "values": {
+        "temperature": 27.54249623413973,
+        "humidity": 59.87065742234704,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 600,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.24664467492940345,
+        "anomaly": false,
+        "inference_ms": 8.317400002852082,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005945.8249233,
+      "values": {
+        "temperature": 27.144131329938215,
+        "humidity": 60.46870687065886,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 601,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2443667411087831,
+        "anomaly": false,
+        "inference_ms": 4.968799999915063,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005947.8344467,
+      "values": {
+        "temperature": 27.404282136154535,
+        "humidity": 59.28731140173844,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 602,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.2441970801084022,
+        "anomaly": false,
+        "inference_ms": 9.098300011828542,
+        "threshold_alarm": false
+      }
+    },
+    {
+      "received": 1795005949.8291388,
+      "values": {
+        "temperature": 26.92550563671289,
+        "humidity": 59.77731006917544,
+        "fan": false,
+        "boot": 951723142,
+        "seq": 603,
+        "data_source": "simulation",
+        "ai_available": true,
+        "anomaly_score": 0.23954186522487264,
+        "anomaly": false,
+        "inference_ms": 4.808899946510792,
+        "threshold_alarm": false
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 94,
+      "ts": 1795005950.6656709,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "7"
+    },
+    {
+      "id": 93,
+      "ts": 1795005950.581031,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "7"
+    },
+    {
+      "id": 92,
+      "ts": 1795005921.7999995,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.58188725596016, \"humidity\": 60.323941743958386, \"fan\": false, \"boot\": 951723142, \"seq\": 589, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23071768864157605, \"anomaly\": false, \"inference_ms\": 58.13179997494444, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 91,
+      "ts": 1795005921.7999995,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.58188725596016, \"humidity\": 60.323941743958386, \"fan\": false, \"boot\": 951723142, \"seq\": 589, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23071768864157605, \"anomaly\": false, \"inference_ms\": 58.13179997494444, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 90,
+      "ts": 1795005901.7170672,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.34147634157752, \"humidity\": 60.958893034743475, \"fan\": false, \"boot\": 951723142, \"seq\": 579, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 41.26599995652214, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 89,
+      "ts": 1795005901.7170672,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.34147634157752, \"humidity\": 60.958893034743475, \"fan\": false, \"boot\": 951723142, \"seq\": 579, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 41.26599995652214, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 88,
+      "ts": 1795005863.4980016,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.943345188251204, \"humidity\": 60.56761696897049, \"fan\": false, \"boot\": 951723142, \"seq\": 560, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23902662141300796, \"anomaly\": false, \"inference_ms\": 8.37260001571849, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 87,
+      "ts": 1795005863.4980016,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.943345188251204, \"humidity\": 60.56761696897049, \"fan\": false, \"boot\": 951723142, \"seq\": 560, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23902662141300796, \"anomaly\": false, \"inference_ms\": 8.37260001571849, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 86,
+      "ts": 1795005843.4967542,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.219886081421706, \"humidity\": 60.73135145808526, \"fan\": false, \"boot\": 951723142, \"seq\": 550, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.022044234990178047, \"anomaly\": true, \"inference_ms\": 30.487500014714897, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 85,
+      "ts": 1795005843.4967542,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.219886081421706, \"humidity\": 60.73135145808526, \"fan\": false, \"boot\": 951723142, \"seq\": 550, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.022044234990178047, \"anomaly\": true, \"inference_ms\": 30.487500014714897, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 84,
+      "ts": 1795005803.3027728,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 27.559809848024067, \"humidity\": 59.73697763560695, \"fan\": false, \"boot\": 951723142, \"seq\": 530, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.2421538475475844, \"anomaly\": false, \"inference_ms\": 5.401299975346774, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 83,
+      "ts": 1795005803.3027728,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 27.559809848024067, \"humidity\": 59.73697763560695, \"fan\": false, \"boot\": 951723142, \"seq\": 530, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.2421538475475844, \"anomaly\": false, \"inference_ms\": 5.401299975346774, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 82,
+      "ts": 1795005783.2641983,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 34.379775010852924, \"humidity\": 57.54360615244366, \"fan\": false, \"boot\": 951723142, \"seq\": 520, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.032121865222152546, \"anomaly\": true, \"inference_ms\": 57.6537000015378, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 81,
+      "ts": 1795005783.2641983,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 34.379775010852924, \"humidity\": 57.54360615244366, \"fan\": false, \"boot\": 951723142, \"seq\": 520, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.032121865222152546, \"anomaly\": true, \"inference_ms\": 57.6537000015378, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 80,
+      "ts": 1795005743.0721443,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.3572655973046, \"humidity\": 58.84356197900666, \"fan\": false, \"boot\": 951723142, \"seq\": 500, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23991420020281112, \"anomaly\": false, \"inference_ms\": 11.840499995741993, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 79,
+      "ts": 1795005743.0721443,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.3572655973046, \"humidity\": 58.84356197900666, \"fan\": false, \"boot\": 951723142, \"seq\": 500, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23991420020281112, \"anomaly\": false, \"inference_ms\": 11.840499995741993, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 78,
+      "ts": 1795005722.9774535,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.70701271822854, \"humidity\": 58.31464628066123, \"fan\": false, \"boot\": 951723142, \"seq\": 490, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03125189617054247, \"anomaly\": true, \"inference_ms\": 43.07580000022426, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 77,
+      "ts": 1795005722.9774535,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.70701271822854, \"humidity\": 58.31464628066123, \"fan\": false, \"boot\": 951723142, \"seq\": 490, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03125189617054247, \"anomaly\": true, \"inference_ms\": 43.07580000022426, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 76,
+      "ts": 1795005682.7411325,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 27.310219863730666, \"humidity\": 60.31194091968088, \"fan\": false, \"boot\": 951723142, \"seq\": 470, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24882772993242336, \"anomaly\": false, \"inference_ms\": 5.288599990308285, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 75,
+      "ts": 1795005682.7411325,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 27.310219863730666, \"humidity\": 60.31194091968088, \"fan\": false, \"boot\": 951723142, \"seq\": 470, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24882772993242336, \"anomaly\": false, \"inference_ms\": 5.288599990308285, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 74,
+      "ts": 1795005662.702427,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 34.804808223861016, \"humidity\": 58.20020635627869, \"fan\": false, \"boot\": 951723142, \"seq\": 460, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.030413811056687612, \"anomaly\": true, \"inference_ms\": 14.240400050766766, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 73,
+      "ts": 1795005662.702427,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 34.804808223861016, \"humidity\": 58.20020635627869, \"fan\": false, \"boot\": 951723142, \"seq\": 460, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.030413811056687612, \"anomaly\": true, \"inference_ms\": 14.240400050766766, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 72,
+      "ts": 1795005655.7804282,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "6"
+    },
+    {
+      "id": 71,
+      "ts": 1795005655.709544,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "6"
+    },
+    {
+      "id": 70,
+      "ts": 1795005655.2244499,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "5"
+    },
+    {
+      "id": 69,
+      "ts": 1795005655.1469207,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "5"
+    },
+    {
+      "id": 68,
+      "ts": 1795005622.493551,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 27.224113720039167, \"humidity\": 60.84041855093791, \"fan\": false, \"boot\": 951723142, \"seq\": 440, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24359239743334016, \"anomaly\": false, \"inference_ms\": 5.829299974720925, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 67,
+      "ts": 1795005622.493551,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 27.224113720039167, \"humidity\": 60.84041855093791, \"fan\": false, \"boot\": 951723142, \"seq\": 440, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24359239743334016, \"anomaly\": false, \"inference_ms\": 5.829299974720925, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 66,
+      "ts": 1795005613.4159625,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "4"
+    },
+    {
+      "id": 65,
+      "ts": 1795005613.3270748,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "4"
+    },
+    {
+      "id": 64,
+      "ts": 1795005612.673506,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "3"
+    },
+    {
+      "id": 63,
+      "ts": 1795005612.5794368,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "3"
+    },
+    {
+      "id": 62,
+      "ts": 1795005602.4558144,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 34.73036322034429, \"humidity\": 61.58356500301931, \"fan\": true, \"boot\": 951723142, \"seq\": 430, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.02750005679116263, \"anomaly\": true, \"inference_ms\": 21.47890004562214, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 61,
+      "ts": 1795005602.4558144,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 34.73036322034429, \"humidity\": 61.58356500301931, \"fan\": true, \"boot\": 951723142, \"seq\": 430, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.02750005679116263, \"anomaly\": true, \"inference_ms\": 21.47890004562214, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 60,
+      "ts": 1795005583.6343236,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "2"
+    },
+    {
+      "id": 59,
+      "ts": 1795005583.5493994,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "2"
+    },
+    {
+      "id": 58,
+      "ts": 1795005569.1412785,
+      "device": "room-node-01",
+      "kind": "command_applied",
+      "detail": "1"
+    },
+    {
+      "id": 57,
+      "ts": 1795005569.0692537,
+      "device": "room-node-01",
+      "kind": "command_pending",
+      "detail": "1"
+    },
+    {
+      "id": 56,
+      "ts": 1795005562.2879384,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.501656589340147, \"humidity\": 60.859606690471104, \"fan\": false, \"boot\": 951723142, \"seq\": 410, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23014857061393978, \"anomaly\": false, \"inference_ms\": 6.09380000969395, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 55,
+      "ts": 1795005562.2879384,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.501656589340147, \"humidity\": 60.859606690471104, \"fan\": false, \"boot\": 951723142, \"seq\": 410, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23014857061393978, \"anomaly\": false, \"inference_ms\": 6.09380000969395, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 54,
+      "ts": 1795005542.2371473,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.67116301820141, \"humidity\": 59.39399337867456, \"fan\": false, \"boot\": 951723142, \"seq\": 400, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.029334769322058585, \"anomaly\": true, \"inference_ms\": 5.347600032109767, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 53,
+      "ts": 1795005542.2371473,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.67116301820141, \"humidity\": 59.39399337867456, \"fan\": false, \"boot\": 951723142, \"seq\": 400, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.029334769322058585, \"anomaly\": true, \"inference_ms\": 5.347600032109767, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 52,
+      "ts": 1795005502.1355588,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 27.62877264435261, \"humidity\": 60.10534159630897, \"fan\": false, \"boot\": 951723142, \"seq\": 380, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24514141061851424, \"anomaly\": false, \"inference_ms\": 16.49200002430007, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 51,
+      "ts": 1795005502.1355588,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 27.62877264435261, \"humidity\": 60.10534159630897, \"fan\": false, \"boot\": 951723142, \"seq\": 380, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.24514141061851424, \"anomaly\": false, \"inference_ms\": 16.49200002430007, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 50,
+      "ts": 1795005482.0967638,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 34.31366591559187, \"humidity\": 61.10787851890244, \"fan\": false, \"boot\": 951723142, \"seq\": 370, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 40.63449997920543, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 49,
+      "ts": 1795005482.0967638,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 34.31366591559187, \"humidity\": 61.10787851890244, \"fan\": false, \"boot\": 951723142, \"seq\": 370, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 40.63449997920543, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 48,
+      "ts": 1795005441.9007509,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.735026842555623, \"humidity\": 60.619776567371254, \"fan\": false, \"boot\": 951723142, \"seq\": 350, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23092733717767522, \"anomaly\": false, \"inference_ms\": 11.721900023985654, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 47,
+      "ts": 1795005441.8997433,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.735026842555623, \"humidity\": 60.619776567371254, \"fan\": false, \"boot\": 951723142, \"seq\": 350, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23092733717767522, \"anomaly\": false, \"inference_ms\": 11.721900023985654, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 46,
+      "ts": 1795005421.8403027,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.10516755734782, \"humidity\": 62.19368102486126, \"fan\": false, \"boot\": 951723142, \"seq\": 340, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03481107650346249, \"anomaly\": true, \"inference_ms\": 6.730100023560226, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 45,
+      "ts": 1795005421.8403027,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.10516755734782, \"humidity\": 62.19368102486126, \"fan\": false, \"boot\": 951723142, \"seq\": 340, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03481107650346249, \"anomaly\": true, \"inference_ms\": 6.730100023560226, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 44,
+      "ts": 1795005381.6866033,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.481305929065424, \"humidity\": 61.01433386002173, \"fan\": false, \"boot\": 951723142, \"seq\": 320, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.2347725726048382, \"anomaly\": false, \"inference_ms\": 12.776300020050257, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 43,
+      "ts": 1795005381.6866033,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.481305929065424, \"humidity\": 61.01433386002173, \"fan\": false, \"boot\": 951723142, \"seq\": 320, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.2347725726048382, \"anomaly\": false, \"inference_ms\": 12.776300020050257, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 42,
+      "ts": 1795005361.633207,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 35.35682885808877, \"humidity\": 61.07853166726915, \"fan\": false, \"boot\": 951723142, \"seq\": 310, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 29.26340000703931, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 41,
+      "ts": 1795005361.633207,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 35.35682885808877, \"humidity\": 61.07853166726915, \"fan\": false, \"boot\": 951723142, \"seq\": 310, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.023091523484883858, \"anomaly\": true, \"inference_ms\": 29.26340000703931, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 40,
+      "ts": 1795005323.5041842,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 27.550681130284, \"humidity\": 60.61694096387106, \"fan\": false, \"boot\": 951723142, \"seq\": 291, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23888071293708174, \"anomaly\": false, \"inference_ms\": 9.416599990800023, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 39,
+      "ts": 1795005323.5041842,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 27.550681130284, \"humidity\": 60.61694096387106, \"fan\": false, \"boot\": 951723142, \"seq\": 291, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23888071293708174, \"anomaly\": false, \"inference_ms\": 9.416599990800023, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 38,
+      "ts": 1795005303.4914925,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_raised",
+      "detail": "{\"temperature\": 34.32242106041079, \"humidity\": 59.06353474637672, \"fan\": false, \"boot\": 951723142, \"seq\": 281, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03460579076269921, \"anomaly\": true, \"inference_ms\": 10.603400005493313, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 37,
+      "ts": 1795005303.4914925,
+      "device": "room-node-01",
+      "kind": "threshold_raised",
+      "detail": "{\"temperature\": 34.32242106041079, \"humidity\": 59.06353474637672, \"fan\": false, \"boot\": 951723142, \"seq\": 281, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": -0.03460579076269921, \"anomaly\": true, \"inference_ms\": 10.603400005493313, \"threshold_alarm\": true}"
+    },
+    {
+      "id": 36,
+      "ts": 1795005263.40078,
+      "device": "room-node-01",
+      "kind": "ai_anomaly_cleared",
+      "detail": "{\"temperature\": 26.381232656568937, \"humidity\": 59.20328898055049, \"fan\": false, \"boot\": 951723142, \"seq\": 261, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23890007637989807, \"anomaly\": false, \"inference_ms\": 16.226599982474, \"threshold_alarm\": false}"
+    },
+    {
+      "id": 35,
+      "ts": 1795005263.40078,
+      "device": "room-node-01",
+      "kind": "threshold_cleared",
+      "detail": "{\"temperature\": 26.381232656568937, \"humidity\": 59.20328898055049, \"fan\": false, \"boot\": 951723142, \"seq\": 261, \"data_source\": \"simulation\", \"ai_available\": true, \"anomaly_score\": 0.23890007637989807, \"anomaly\": false, \"inference_ms\": 16.226599982474, \"threshold_alarm\": false}"
+    }
+  ],
+  "commands": [
+    {
+      "id": 7,
+      "created": 1795005950.5799234,
+      "expires": 1795005955.5799234,
+      "device": "room-node-01",
+      "value": 1,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005950.6053836,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 6,
+      "created": 1795005655.709544,
+      "expires": 1795005660.709544,
+      "device": "room-node-01",
+      "value": 0,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005655.7190866,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 5,
+      "created": 1795005655.1469207,
+      "expires": 1795005660.1469207,
+      "device": "room-node-01",
+      "value": 1,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005655.1633348,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 4,
+      "created": 1795005613.3270748,
+      "expires": 1795005618.3270748,
+      "device": "room-node-01",
+      "value": 0,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005613.3542187,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 3,
+      "created": 1795005612.5794368,
+      "expires": 1795005617.5794368,
+      "device": "room-node-01",
+      "value": 1,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005612.6045434,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 2,
+      "created": 1795005583.5493994,
+      "expires": 1795005588.5493994,
+      "device": "room-node-01",
+      "value": 1,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005583.57196,
+      "detail": "Device ACK"
+    },
+    {
+      "id": 1,
+      "created": 1795005569.0692537,
+      "expires": 1795005574.0692537,
+      "device": "room-node-01",
+      "value": 1,
+      "status": "applied",
+      "rpc_key": null,
+      "rpc_id": null,
+      "sent": 1795005569.0793648,
+      "detail": "Device ACK"
+    }
+  ],
+  "outbox_count": 603
+}

@@ -1,0 +1,21 @@
+{
+  "database": "runtime/smartroom.sqlite3",
+  "serial_port": "COM5",
+  "serial_baud": 115200,
+  "http_host": "127.0.0.1",
+  "http_port": 8080,
+  "mqtt_host": "",
+  "mqtt_port": 8883,
+  "mqtt_tls": true,
+  "device": "room-node-01",
+  "temperature_high": 32.0,
+  "temperature_clear": 30.0,
+  "humidity_high": 80.0,
+  "humidity_clear": 75.0,
+  "stale_seconds": 15,
+  "command_ttl_seconds": 5,
+  "command_retry_seconds": 0.5,
+  "sample_seconds": 2,
+  "max_outbox": 100000,
+  "model": "ai/model.joblib"
+}

@@ -1,0 +1,12 @@
+{
+  "numpy": "2.4.4",
+  "scikit-learn": "1.8.0",
+  "joblib": "1.5.3",
+  "paho-mqtt": "2.1.0",
+  "pyserial": "3.5",
+  "matplotlib": "3.10.8",
+  "pytest": "8.4.2",
+  "PyMuPDF": "2.1",
+  "playwright": "1.65.2",
+  "sqlite": "3.45.3"
+}

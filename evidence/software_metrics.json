@@ -1,0 +1,28 @@
+{
+  "scope": "SOFTWARE ONLY; SQLite durability and local processing; no ESP32/radio/cloud measurements",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.7",
+  "metrics": {
+    "ingest_sqlite_ms": {
+      "n": 1000,
+      "mean": 0.9931478993385099,
+      "min": 0.6971000111661851,
+      "max": 5.445999966468662,
+      "p95": 1.4019000227563083
+    },
+    "snapshot_ms": {
+      "n": 100,
+      "mean": 0.5038299999432638,
+      "min": 0.4120999947190285,
+      "max": 0.8418000070378184,
+      "p95": 0.7569000008516014
+    }
+  },
+  "recovery": {
+    "before": 1000,
+    "after_failed_publish": 1000,
+    "after_restart": 1000,
+    "flushed_mock_puback": 1000,
+    "remaining": 0
+  }
+}

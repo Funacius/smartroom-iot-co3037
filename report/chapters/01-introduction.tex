@@ -1,0 +1,59 @@
+\chapter{GIỚI THIỆU}
+\section{Đặt vấn đề}
+Một phòng học có thể cần quan sát nhiệt độ, độ ẩm và trạng thái thiết bị từ một vị trí tập trung. Nếu chỉ xem số trên cảm biến, người quản lý khó biết thời điểm bất thường đã xảy ra, kéo dài bao lâu và lệnh điều khiển có tới thiết bị hay chưa. Đồ án chọn một mô hình phòng học có một điểm đo và một quạt DC thấp áp để giải quyết ba yêu cầu: quan sát hiện tại, lưu lại sự kiện và kiểm chứng đường điều khiển.
+
+Đây là bài toán thiết kế kỹ thuật trong phạm vi môn học; nhóm chưa khảo sát định lượng mức độ phổ biến tại trường và không đưa ra số liệu tiết kiệm điện hay cải thiện sức khỏe chưa đo. Hai đại lượng nhiệt độ/độ ẩm không đủ kết luận chất lượng không khí, nồng độ CO$_2$ hoặc hiệu quả thông gió. Ngưỡng 32~°C và 80~\%RH là tham số trình diễn có thể cấu hình, không phải giới hạn sức khỏe do dự án xác lập.
+
+YoloUNO tích hợp ESP32-S3 và các cổng kết nối phục vụ mô hình cảm biến/điều khiển; tài liệu OhStem hướng dẫn DHT20 gắn vào cổng I2C của board \cite{ohstem}. ESP-NOW hỗ trợ trao đổi dữ liệu trực tiếp giữa ESP32 \cite{espnow}. Hai đặc điểm này phù hợp với yêu cầu nhiều thiết bị của đề bài \cite{assignment}, trong đó một board đo/điều khiển và board còn lại làm cầu nối đến PC.
+
+\section{Các giải pháp liên quan}
+Nhóm đối chiếu ba hướng triển khai từ tài liệu chính thức. Mẫu DHT20 của OhStem là cơ sở xác định vai trò và cách nối cảm biến \cite{ohstem}; thư viện DHT20 cung cấp API đọc và mã lỗi \cite{dht20}. Dashboard Thermostats của ThingsBoard cung cấp widget giám sát có sẵn, được tái sử dụng có ghi nguồn \cite{tbtemplate}. Gateway API mô tả cách đại diện nhiều thiết bị con bằng một kết nối MQTT \cite{gatewayapi}. Isolation Forest là lựa chọn thuật toán phát hiện điểm dữ liệu khác biệt với phân bố huấn luyện \cite{isolation}.
+
+\begin{table}[H]\centering\small
+\caption{So sánh các hướng triển khai trong phạm vi đồ án}
+\begin{tabular}{P{3cm}P{4.2cm}P{3.8cm}P{3.6cm}}
+\toprule Hướng & Điểm phù hợp & Hạn chế trong phạm vi chọn & Cách dùng trong SmartRoom \\ \midrule
+Hiển thị DHT20 tại chỗ & Dễ lắp, dễ kiểm tra số đo & Cần bổ sung lưu sự kiện và điều khiển xa & Kế thừa nguyên lý đọc cảm biến \\
+Node kết nối cloud trực tiếp & Ít tầng trung gian & Mỗi node cần kết nối/token; thiếu PC phân tích cục bộ & Không chọn cho luồng chính \\
+Gateway + dashboard template & Gom dữ liệu và RPC của child; có widget có sẵn & Phải xử lý mất mạng và đồng bộ & Chọn, bổ sung SQLite/ACK/AI \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Khoảng trống nhóm tập trung là làm rõ sự khác nhau giữa ``đã gửi lệnh'', ``broker đã nhận'' và ``node đã áp dụng'', đồng thời cung cấp minh chứng lặp lại được. SmartRoom không tuyên bố vượt trội sản phẩm thương mại; phần đóng góp nằm ở cách tích hợp các khối và cơ chế đánh giá minh bạch.
+
+\section{Mục tiêu dự án}
+Mục tiêu tổng quát là xây dựng mô hình IoT hai board có đường thu thập và điều khiển hai chiều, kết nối CoreIOT, dễ đọc mã nguồn và dễ trình bày khi bảo vệ. Các mục tiêu kiểm chứng được chia theo điều kiện đo:
+\begin{enumerate}
+\item Cứ 2 giây lấy mẫu DHT20; dữ liệu lỗi không được thay bằng giá trị giả. Cần kiểm tra trên board thật.
+\item Dữ liệu được lưu bền và hiển thị ở PC; sau hơn 15 giây không có mẫu mới phải báo stale, giữ số liệu cuối để truy vết.
+\item Lệnh có TTL 5 giây, retry 0,5 giây; chỉ xác nhận áp dụng khi nhận ACK đúng ID và giá trị. Khi mất xác nhận phải ghi thất bại và trạng thái vật lý chưa rõ.
+\item Giữ nguyên 1.000 bản tin đã lưu khi publish thất bại và khởi động lại; xóa outbox sau xác nhận từ transport. Đây là kiểm thử phần mềm, không phải phép đo Internet.
+\item Xây quy trình AI không dùng tập test để huấn luyện; xuất confusion matrix và thời gian suy luận trên CPU. Chỉ đánh giá khả năng triển khai thực sau khi có dữ liệu thật.
+\item Trên hệ thống thực, đặt mục tiêu sensor tới dashboard dưới 5 giây và lệnh tới ACK dưới 2 giây trong điều kiện phòng lab; hiện chưa có phép đo để xác nhận hai mục tiêu này.
+\end{enumerate}
+
+\section{Các tính năng đề xuất}
+\begin{longtable}{P{1cm}P{8.2cm}P{3.1cm}P{2cm}}
+\caption{Danh sách tính năng có thể kiểm chứng}\label{tab:features}\\
+\toprule Mã & Mô tả & Thiết bị thực hiện & Ưu tiên \\ \midrule
+F01 & Đo nhiệt độ/độ ẩm mỗi 2 giây; gửi gói có boot ID và sequence qua ESP-NOW. & Node A, node B & Bắt buộc \\
+F02 & Lưu SQLite, hiển thị giá trị/biểu đồ; phát hiện dữ liệu cũ sau 15 giây. & PC gateway & Bắt buộc \\
+F03 & Phát hiện vượt ngưỡng với hysteresis và ghi sự kiện raised/cleared. & PC, CoreIOT & Bắt buộc \\
+F04 & Suy luận bất thường từ hai đại lượng; ghi score và thời gian suy luận. & PC gateway & Nâng cao \\
+F05 & Bật/tắt quạt từ dashboard PC hoặc web bridge; theo dõi pending/applied/failed bằng ACK node. & PC, hai board & Bắt buộc \\
+F06 & Đồng bộ child, gửi telemetry, nhận/trả RPC CoreIOT; phát lại dữ liệu lưu khi nối lại. & PC, CoreIOT & Bắt buộc \\
+F07 & Xem dashboard từ template, tạo/xóa alarm bằng RuleChain và gửi notification khi tạo alarm. & CoreIOT & Bắt buộc \\
+F08 & Xuất CSV sự kiện và tái hiện kiểm thử theo kịch bản có log/biểu đồ. & PC gateway & Bắt buộc \\
+\bottomrule
+\end{longtable}
+
+F03 và F04 là hai cơ chế tách biệt: luật ngưỡng dễ giải thích, còn AI nhận diện độ khác biệt với dữ liệu huấn luyện. Đầu ra AI không trực tiếp tự bật quạt trong phiên bản này. Điều khiển bằng tay giúp tách việc đánh giá mô hình khỏi việc đánh giá cơ cấu chấp hành.
+
+\section{Phạm vi và giới hạn}
+Mô hình triển khai dự kiến gồm hai YoloUNO, một DHT20, một bộ driver/quạt và một PC. Chưa xét cấp nguồn pin, công suất tiêu thụ, độ bền 24 giờ, mạng nhiều phòng hoặc chứng nhận an toàn. Không dùng RS485, BLE, Tasmota, TinyML, OTA hay ứng dụng di động native.
+
+Tại ngày dựng báo cáo, các kết quả đã thực hiện là build firmware, chạy gateway mô phỏng, huấn luyện trên dữ liệu sinh và đo phần mềm. Hình wiring là bản đề xuất; ảnh dashboard là ảnh chụp ứng dụng thực chạy với nguồn mô phỏng. Tương thích CoreIOT phải xác nhận bằng tài khoản và cấu hình server của lớp. Cách giới hạn này giúp bảng tự đánh giá bám đúng yêu cầu minh chứng của đề bài.
+
+\section{Cấu trúc báo cáo}
+Chương 2 ánh xạ tính năng vào kiến trúc, phần cứng và mã chấm điểm. Chương 3 mô tả firmware, gateway, AI và cấu hình cloud. Chương 4 nêu cách đo, kết quả đã chạy và các phép đo cần bổ sung. Chương 5 tổng kết mức hoàn thành và hướng phát triển. Chương 6 hướng dẫn cài, cấu hình, build, nạp và vận hành mã nguồn. Phụ lục ghi nguồn minh chứng, kịch bản demo và phạm vi dùng AI.

@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label": "SmartRoom: simulation", "type": "shell", "command": "python -m gateway.main --simulate", "problemMatcher": []},
+    {"label": "SmartRoom: test", "type": "shell", "command": "python -m pytest -q --junitxml=evidence/pytest.xml", "problemMatcher": []},
+    {"label": "SmartRoom: report PDF", "type": "shell", "command": "python scripts/build_report.py", "problemMatcher": []},
+    {"label": "SmartRoom: build both firmware", "type": "shell", "command": "pio run -d firmware", "problemMatcher": []}
+  ]
+}
