@@ -87,7 +87,11 @@ Chương 1.
 Chương 2.
 [5] [6] [7] [8]) (chapters/03-implementation.tex [9]
 Chương 3.
-[10] [11] [12] [13] [14] [15]) (chapters/04-testing.tex [16]
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 1675) in paragraph at lines 116--117
+\TU/TimesNewRoman(0)/m/n/12 Nhóm sử dụng cổng web [][]$[][][][][] [] [] [] [][]
+[] [] [][][][][][][] [] [][] [] [][][][]$[][]. Người dùng xác nhận Latest
+[15]) (chapters/04-testing.tex [16]
 Chương 4.
 [17] [18] [19] [20]) (chapters/05-conclusion.tex [21]
 Chương 5.

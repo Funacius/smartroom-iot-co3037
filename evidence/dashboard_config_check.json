@@ -1,0 +1,15 @@
+{
+  "scope": "Static generated dashboard configuration only; no authenticated CoreIOT RPC test",
+  "checks": [
+    {
+      "file": "smartroom_dashboard.json",
+      "status": "PASS",
+      "widgets": 3
+    },
+    {
+      "file": "smartroom_dashboard_rpc.json",
+      "status": "PASS",
+      "widgets": 5
+    }
+  ]
+}

@@ -160,7 +160,8 @@
               "showLine": true,
               "lineColor": "rgba(0, 0, 0, 0.54)",
               "showSplitLines": true,
-              "splitLinesColor": "rgba(0, 0, 0, 0.12)"
+              "splitLinesColor": "rgba(0, 0, 0, 0.12)",
+              "units": "°C"
             },
             "xAxis": {
               "show": true,
@@ -314,7 +315,7 @@
           "showTitleIcon": false,
           "titleIcon": "thermostat",
           "iconColor": "#1F6BDD",
-          "useDashboardTimewindow": false,
+          "useDashboardTimewindow": true,
           "displayTimewindow": true,
           "titleFont": {
             "size": 16,
@@ -329,7 +330,7 @@
           "widgetStyle": {},
           "widgetCss": "",
           "pageSize": 1024,
-          "units": "",
+          "units": "°C",
           "decimals": null,
           "noDataDisplayMessage": "",
           "timewindowStyle": {
@@ -514,7 +515,8 @@
               "showLine": true,
               "lineColor": "rgba(0, 0, 0, 0.54)",
               "showSplitLines": true,
-              "splitLinesColor": "rgba(0, 0, 0, 0.12)"
+              "splitLinesColor": "rgba(0, 0, 0, 0.12)",
+              "units": "%"
             },
             "xAxis": {
               "show": true,
@@ -598,7 +600,7 @@
             },
             "yAxes": {
               "default": {
-                "units": "°C",
+                "units": "%",
                 "decimals": 0,
                 "show": true,
                 "label": "",
@@ -668,7 +670,7 @@
           "showTitleIcon": false,
           "titleIcon": "thermostat",
           "iconColor": "#1F6BDD",
-          "useDashboardTimewindow": false,
+          "useDashboardTimewindow": true,
           "displayTimewindow": true,
           "titleFont": {
             "size": 16,
@@ -683,7 +685,7 @@
           "widgetStyle": {},
           "widgetCss": "",
           "pageSize": 1024,
-          "units": "",
+          "units": "%",
           "decimals": null,
           "noDataDisplayMessage": "",
           "timewindowStyle": {
@@ -897,7 +899,8 @@
       "hideAggInterval": false,
       "realtime": {
         "interval": 1000,
-        "timewindowMs": 60000
+        "timewindowMs": 600000,
+        "realtimeType": 0
       },
       "history": {
         "historyType": 0,
@@ -909,8 +912,8 @@
         }
       },
       "aggregation": {
-        "type": "AVG",
-        "limit": 25000
+        "type": "NONE",
+        "limit": 1000
       }
     },
     "settings": {

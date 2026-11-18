@@ -12,7 +12,7 @@ F03 & Hysteresis và journal PC; RuleChain JSON & Alarm, clear và notification 
 F04 & Model và metrics dữ liệu sinh & Thu nhãn thực, train và đánh giá ngoài phiên \\
 F05 & Cơ chế ID/ACK/TTL; kiểm thử local & Nạp board, quan sát driver/quạt và web bridge \\
 F06 & Adapter, test payload; telemetry CoreIOT được người dùng xác nhận & Kiểm chứng RPC từ cloud, ảnh/export gateway-child \\
-F07 & Template dashboard và hướng dẫn & Import, tương thích widget, export và ảnh thật \\
+F07 & Ảnh dashboard CoreIOT có hai biểu đồ; JSON sửa đơn vị và thêm RPC & Import bản mới, thử RPC, RuleChain và export \\
 F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã nhóm \\
 \bottomrule
 \end{tabular}
@@ -21,7 +21,7 @@ F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã
 Những đóng góp kỹ thuật dễ kiểm tra là lưu bền trước khi upload, không xác nhận lệnh chỉ vì đã gửi, chống lặp theo ID, hysteresis giảm dao động cảnh báo và phân biệt rõ dữ liệu sinh với dữ liệu cảm biến. Nhóm chưa dùng bảng này để quy đổi thành điểm đã đạt vì còn thiếu các bằng chứng bắt buộc trên thiết bị và server.
 
 \section{Hạn chế}
-Chưa có nạp/chạy board trong phiên dựng mã, chưa có số đo truyền ESP-NOW và chưa có ảnh mạch thật. Cấu hình GPIO/flash cần đối chiếu board lấy tại lớp. Người dùng đã xác nhận đường nhận telemetry trên CoreIOT, nhưng RPC từ cloud và tương thích dashboard JSON chưa kiểm chứng. Phần T13 chưa tạo thông báo thực nhận.
+Chưa có nạp/chạy board trong phiên dựng mã, chưa có số đo truyền ESP-NOW và chưa có ảnh mạch thật. Cấu hình GPIO/flash cần đối chiếu board lấy tại lớp. Dashboard CoreIOT cơ bản đã được quan sát qua ảnh người dùng; sửa đơn vị và RPC trong bản bổ sung chưa kiểm chứng trên cloud. Phần T13 chưa tạo thông báo thực nhận.
 
 Mô hình AI học dữ liệu sinh và chỉ dùng hai biến tức thời; chưa có xu hướng theo thời gian hay thích nghi theo mùa/phòng. Ngưỡng mặc định để demo, chưa tối ưu theo nhu cầu người dùng. Hệ thống chưa kiểm tra công suất quạt, tốc độ thực hay điều khiển tự động kín vòng.
 

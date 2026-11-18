@@ -9,7 +9,7 @@
 \code{evidence/ai_metrics.json}, \code{ai_test_predictions.csv} & Dữ liệu sinh có seed; confusion matrix và suy luận CPU. \\
 \code{evidence/browser_check.json}, \code{dashboard_desktop.png}, \code{dashboard_mobile.png} & Chrome chạy ứng dụng local với nguồn simulation; không phải ảnh CoreIOT. \\
 \code{coreiot/templates/PROVENANCE.json} & Nguồn template, commit, hash, giấy phép và phạm vi sửa. \\
-\code{evidence/coreiot_progress.json} & Xác nhận của người dùng về Latest telemetry và snapshot trạng thái gateway local; chưa có ảnh cloud hoặc kiểm chứng RPC. \\
+\code{evidence/coreiot_progress.json} & Xác nhận Latest telemetry và mô tả ảnh dashboard người dùng gửi; ảnh chưa lưu thành tệp trong repo, RPC chưa kiểm chứng. \\
 \code{docs/DEMO.md} & Kịch bản và câu hỏi bảo vệ; chưa phải video đã quay. \\
 \code{evidence/hardware/} & Nơi bổ sung dữ liệu/ảnh thực. Hiện chưa có minh chứng thiết bị trong phiên dựng mã. \\
 \bottomrule
@@ -23,7 +23,7 @@ Mỗi mục đăng ký điểm cần liên kết trực tiếp với đoạn dem
 \section{Khai báo phạm vi sử dụng công cụ AI}
 Trong phiên làm việc này, công cụ AI hỗ trợ đọc đề bài/mẫu, chọn đề tài, đề xuất kiến trúc, viết firmware/gateway/dashboard/test, tạo script dữ liệu và soạn LaTeX. Công cụ cũng chạy các kiểm thử và phép đo được ghi log trên máy tính. Những kết quả đó phải được thành viên nhóm đọc, hiểu, thực thi lại và xác minh trước khi nộp.
 
-AI không cung cấp số đo cảm biến thực, ảnh lắp mạch, video demo hay thông báo CoreIOT giả. Tại thời điểm dựng báo cáo, chưa nạp board hoặc đo ESP-NOW; người dùng tự cấu hình tài khoản CoreIOT và xác nhận đã thấy telemetry mô phỏng. AI đọc trạng thái gateway local nhưng chưa trực tiếp quan sát tài khoản cloud hoặc thử RPC từ cloud. Bảng phân công là đề xuất; không trình bày mã sinh trong phiên này như lịch sử đóng góp thủ công đã hoàn tất của hai thành viên.
+AI không cung cấp số đo cảm biến thực, ảnh lắp mạch, video demo hay thông báo CoreIOT giả. Tại thời điểm dựng báo cáo, chưa nạp board hoặc đo ESP-NOW; người dùng tự cấu hình CoreIOT và gửi ảnh dashboard nhận dữ liệu mô phỏng. AI đọc API local và ảnh người dùng, chưa trực tiếp thao tác phiên đăng nhập hoặc thử RPC từ cloud. Bảng phân công là đề xuất; không trình bày mã sinh trong phiên này như lịch sử đóng góp thủ công đã hoàn tất của hai thành viên.
 
 Phần tái sử dụng gồm thư viện Arduino/ESP-IDF, DHT20, ArduinoJson, Paho, scikit-learn và widget template ThingsBoard. Phần điều phối packet/ACK/outbox, dashboard HTML local, kịch bản test/đo và văn bản báo cáo được xây dựng cho dự án với trợ giúp AI. Mỗi thành viên chịu trách nhiệm giải thích phần được phân công khi vấn đáp.
 \section{Checklist trước nộp}

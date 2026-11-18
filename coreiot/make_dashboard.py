@@ -38,12 +38,25 @@ for wid in keep:
         ds["entityAliasId"] = alias
         ds["latestDataKeys"] = []
     if widget["type"] == "timeseries":
-        widget["config"]["settings"]["thresholds"] = []
+        cfg = widget["config"]
+        cfg["useDashboardTimewindow"] = True
+        cfg["settings"]["thresholds"] = []
+        key = cfg["datasources"][0]["dataKeys"][0]
+        units = "%" if key["name"] == "humidity" else "°C"
+        # The upstream humidity axis incorrectly inherits Celsius independently
+        # of the data key's percent unit. Set both axis and data-key units.
+        cfg["units"] = units
+        key["units"] = units
+        cfg["settings"]["yAxis"]["units"] = units
+        for axis in cfg["settings"].get("yAxes", {}).values():
+            axis["units"] = units
     if widget["type"] == "alarm":
         widget["config"]["title"] = "SmartRoom alarms"
         if "alarmSource" in widget["config"]:
             widget["config"]["alarmSource"]["entityAliasId"] = alias
 config["widgets"] = widgets
+config["timewindow"]["realtime"].update(realtimeType=0, timewindowMs=600000, interval=1000)
+config["timewindow"]["aggregation"] = {"type": "NONE", "limit": 1000}
 layout = copy.deepcopy(config["states"]["default"]["layouts"]["main"])
 layout["widgets"] = {
     keep[0]: {"sizeX": 12, "sizeY": 6, "row": 0, "col": 0},
@@ -56,3 +69,48 @@ dashboard = {"title": "SmartRoom CO3037", "configuration": config, "image": None
     json.dumps(dashboard, indent=2, ensure_ascii=False), encoding="utf-8"
 )
 print(root / "smartroom_dashboard.json")
+
+# An additional dashboard leaves an already imported dashboard intact. These
+# widgets reference the built-in RPC Button; no widget controller is copied.
+# Schema: ThingsBoard widget.models.ts and system/widget_types/rpc_button.json.
+rpc_dashboard = copy.deepcopy(dashboard)
+rpc_dashboard["title"] = "SmartRoom CO3037 RPC"
+rpc_config = rpc_dashboard["configuration"]
+rpc_layout = rpc_config["states"]["default"]["layouts"]["main"]["widgets"]
+rpc_layout[keep[2]]["row"] = 8
+for suffix, value, column in [("01", True, 0), ("02", False, 12)]:
+    wid = "9abff001-2353-4300-b001-0000000000" + suffix
+    label = "Bật quạt" if value else "Tắt quạt"
+    rpc_config["widgets"][wid] = {
+        "typeFullFqn": "system.control_widgets.rpcbutton",
+        "type": "rpc",
+        "sizeX": 12,
+        "sizeY": 2,
+        "row": 6,
+        "col": column,
+        "config": {
+            "title": label,
+            "showTitle": False,
+            "backgroundColor": "#ffffff",
+            "color": "#163433",
+            "padding": "8px",
+            "dropShadow": True,
+            "targetDevice": {"type": "entity", "entityAliasId": alias},
+            "settings": {
+                "methodName": "setFan",
+                "methodParams": json.dumps(value),
+                "requestTimeout": 10000,
+                "oneWayElseTwoWay": False,
+                "requestPersistent": False,
+                "showError": True,
+                "buttonText": label,
+                "styleButton": {"isRaised": True, "isPrimary": True},
+            },
+            "actions": {},
+        },
+    }
+    rpc_layout[wid] = {"sizeX": 12, "sizeY": 2, "row": 6, "col": column}
+(root / "smartroom_dashboard_rpc.json").write_text(
+    json.dumps(rpc_dashboard, indent=2, ensure_ascii=False), encoding="utf-8"
+)
+print(root / "smartroom_dashboard_rpc.json")

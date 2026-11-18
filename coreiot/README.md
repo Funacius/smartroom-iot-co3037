@@ -6,7 +6,17 @@ Ngày 18/11/2026, người dùng xác nhận đã kết nối và thấy dữ li
 
 Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
 
-Dashboard hiện có hai biểu đồ và bảng alarm. Bảng alarm trống là bình thường khi chưa gắn RuleChain. Khi thấy hai biểu đồ cập nhật, lưu ảnh và export dashboard từ tài khoản thực. Sau đó mới thử RPC theo mục 2 và RuleChain theo mục 3. File ghi nhận tiến độ: `evidence/coreiot_progress.json`; chưa có ảnh hoặc export từ trình duyệt CoreIOT.
+Người dùng đã gửi ảnh dashboard CoreIOT: hai biểu đồ nhận dữ liệu từ `room-node-01`; bảng alarm trống. Ảnh cho thấy trục độ ẩm ghi nhầm °C dù legend ghi %. Đã sửa generator và JSON cục bộ; cần áp dụng bản mới trên tài khoản. Ảnh nằm trong cuộc trò chuyện, chưa có file ảnh/export trong repository.
+
+### Bước hiện tại: import bản có RPC
+
+1. Giữ terminal gateway cổng 8081 đang chạy. Từ trang Dashboards, import `coreiot/smartroom_dashboard_rpc.json`. File này có tên **SmartRoom CO3037 RPC**, giữ dashboard bạn đã tạo để đối chiếu.
+2. Mở dashboard mới, kiểm tra alias **SmartRoom sensor** trỏ đúng `room-node-01`. Có hai biểu đồ, hai nút **Bật quạt / Tắt quạt** và bảng alarm. Đơn vị độ ẩm đã sửa thành %, hai biểu đồ dùng chung cửa sổ 10 phút, không lấy trung bình để che đỉnh nóng ngắn.
+3. Nhấn **Bật quạt** một lần; đợi phản hồi rồi mở Latest telemetry của child và kiểm tra `fan=true`. Trong dashboard local <http://127.0.0.1:8081>, lệnh mới phải chuyển `pending → applied`.
+4. Nhấn **Tắt quạt**, kiểm tra `fan=false` và một lệnh applied mới. Lần thử này là RPC CoreIOT ↔ gateway ↔ node mô phỏng; chưa phải điều khiển quạt phần cứng.
+5. Nếu báo thiếu widget **RPC Button**, dùng **Edit mode → Add widget → Control widgets → RPC Button**. Target là `room-node-01`, method `setFan`, params `true`/`false` (boolean), tắt **Is one way command**, timeout 10000 ms, bật hiển thị lỗi. Hướng dẫn RPC Button: <https://thingsboard.io/iot-hub/widgets/rpc-button/>.
+
+Bản RPC được chuẩn bị theo schema chính thức và đã kiểm tra JSON cục bộ, chưa được xác minh import/điều khiển trên tài khoản. Khi có kết quả, lưu ảnh và export dashboard thực. `evidence/coreiot_progress.json` ghi rõ các phần đã quan sát và còn chờ kiểm chứng. Bảng alarm chưa có dòng là bình thường trước khi gắn RuleChain.
 
 ## Bắt đầu ngay trên tài khoản của bạn
 
@@ -24,7 +34,7 @@ Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket
 
 Sau khi child có telemetry, mới làm các mục dashboard, RPC và RuleChain bên dưới. Khi có board, sửa `serial_port` trong runtime config rồi chạy `python scripts/start_coreiot.py --hardware`.
 
-Các JSON ở đây đã được chuẩn bị cục bộ; **chưa import hoặc xác minh trên tài khoản CoreIOT**.
+Dashboard cơ bản đã được người dùng import và gửi ảnh hiển thị dữ liệu. Bản có RPC, bản sửa đơn vị và RuleChain vẫn cần xác minh trên tài khoản.
 Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; đường gửi telemetry đã được người dùng xác nhận, còn RPC và phiên bản widget cần kiểm chứng.
 Không cần gửi mật khẩu đăng nhập hay token cho người khác. Bạn tự nhập token vào terminal trên máy mình.
 

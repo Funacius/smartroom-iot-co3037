@@ -15,7 +15,7 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - Firmware `sensor` và `bridge` đã build trên PlatformIO; chưa nạp lên board trong phiên làm việc này.
 - Gateway, HTTP dashboard, journal, xử lý lệnh/ACK, outbox và adapter CoreIOT đã kiểm thử tự động. Xem `evidence/pytest.xml` và `evidence/verification.json`.
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
-- Người dùng đã xác nhận kết nối CoreIOT và thấy Latest telemetry. Gateway local cổng 8081 đang nhận dữ liệu `simulation`, outbox bằng 0. Dashboard CoreIOT, RPC từ cloud, RuleChain/notification và đường truyền vô tuyến thật vẫn cần kiểm chứng; xem `evidence/coreiot_progress.json`.
+- Người dùng đã xác nhận Latest telemetry và gửi ảnh dashboard CoreIOT hiển thị hai biểu đồ. Nguồn cảm biến vẫn là `simulation`. File cục bộ đã sửa nhãn trục độ ẩm từ °C thành % và chuẩn bị bản có hai nút RPC; bản này, RuleChain/notification và phần cứng còn cần kiểm chứng. Xem `evidence/coreiot_progress.json`.
 - PDF bám mẫu Word, đủ sáu chương; phần chưa kiểm chứng được ghi rõ. Cần mã nhóm, video và ảnh/đo thực tế trước khi nộp.
 
 ## Chạy thử nhanh trên Windows
@@ -106,7 +106,7 @@ Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 | T08 | 1 | Gateway hai chiều, lưu bền, ACK | Telemetry cloud được xác nhận; cần USB thật và RPC từ cloud |
 | T09 | 1 | Isolation Forest trên gateway | Đã chạy với dữ liệu sinh; cần train/đánh giá thực |
 | T10 | 1 | Giao diện giám sát/điều khiển PC | Đã chạy local |
-| T11 | 1 | Template dashboard CoreIOT | Có JSON và nguồn; cần import/demo |
+| T11 | 1 | Template dashboard CoreIOT | Đã thấy hai biểu đồ qua ảnh; cần thử bản sửa đơn vị, RPC và export |
 | T12 | 1 | RuleChain cảnh báo với hysteresis | Có JSON/script; cần chạy CoreIOT |
 | T13 | 0,5 | Notification khi tạo alarm | Có hướng dẫn; chưa gửi thông báo thật |
 | T15 | 2 | Child synchronization qua Gateway API | Latest telemetry đã được xác nhận; cần ảnh gateway-child và thử RPC |
