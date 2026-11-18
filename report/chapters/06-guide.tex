@@ -38,7 +38,11 @@ Copy \code{firmware/include/config.example.h} thành \code{config.local.h}. Ki�
 Không dùng MAC mẫu cho demo. Flash 4~MB/no PSRAM là cấu hình build bảo thủ của dự án, cần đối chiếu revision thật. Nếu board yêu cầu bootloader mode, dùng BOOT/RESET theo hướng dẫn của thiết bị. Không tự động nạp vào COM3/COM4 Bluetooth chỉ vì các cổng đó xuất hiện.
 
 \subsection{Cấu hình gateway và CoreIOT}
-Copy \code{gateway/config.example.json} sang \code{runtime/config.json}; thư mục runtime có thể tạo thủ công trước lần chạy phần cứng. Điền cổng Serial của bridge, hostname MQTT, cổng và TLS theo server lớp. Token là của thiết bị được bật Is gateway, không phải token child. Đọc đầy đủ \code{coreiot/README.md} để tạo gateway, import dashboard, gắn chain và tạo recipient/template thông báo.
+Server lớp là \url{https://app.coreiot.io/home}. Sau đăng nhập, mở Entities $\rightarrow$ Devices, nhấn dấu cộng, tạo \code{smartroom-pc-gateway}, giữ profile mặc định cho lần thử đầu và bật Is gateway. Mở Manage credentials/Copy access token của thiết bị đó. Token là của gateway, không phải token child. Không gửi token trong cuộc trò chuyện.
+
+Chạy \code{python scripts/start_coreiot.py} tại gốc dự án. Chương trình hỏi token kín, tạo \code{runtime/coreiot_config.json} từ profile CoreIOT riêng và mở dashboard mô phỏng tại \code{127.0.0.1:8081}. Profile dùng \code{app.coreiot.io:1883}, không TLS, theo tài liệu CoreIOT; database mô phỏng cloud riêng tránh phát lại lịch sử demo local. Token chỉ truyền qua môi trường tiến trình con, không lưu cấu hình. Sau khi kết nối, tìm child \code{room-node-01} và kiểm tra Latest telemetry với \code{data_source=simulation} trước khi import dashboard. Đây là bước người dùng cần thực hiện; hiện chưa có token hoặc thiết bị trên tài khoản để xác minh.
+
+Khi chạy phần cứng, sửa cổng Serial trong runtime config rồi thêm \code{--hardware} cho script. Với endpoint khác có TLS, dùng profile chung \code{gateway/config.example.json} và cổng/chứng chỉ do quản trị cung cấp. Đọc đầy đủ \code{coreiot/README.md} để import dashboard, gắn chain và tạo recipient/template thông báo.
 
 Để nhập token kín trong PowerShell:
 \begin{verbatim}

@@ -41,7 +41,7 @@ def main():
         config["http_port"] = args.port
     if args.simulate:
         # Keep synthetic evidence out of the real hardware database.
-        config["database"] = "runtime/simulation.sqlite3"
+        config["database"] = config.get("simulation_database", "runtime/simulation.sqlite3")
     gateway = Gateway(config, load_predictor(config.get("model", "ai/model.joblib")))
     adapter = Simulator(gateway) if args.simulate else SerialBridge(gateway)
     gateway.send_command = adapter.send

@@ -1,0 +1,15 @@
+{
+  "host": "app.coreiot.io",
+  "web_url": "https://app.coreiot.io/home",
+  "scope": "public endpoint and TCP checks only; no account login, token, telemetry or device creation",
+  "1883": {
+    "tcp": "reachable"
+  },
+  "8883": {
+    "tcp": "not_reachable",
+    "detail": "[WinError 10061] No connection could be made because the target machine actively refused it"
+  },
+  "checked_on": "2026-11-18",
+  "mqtt_authentication_tested": false,
+  "documentation": "https://coreiot.io/docs/ket-noi-va-gui-du-lieu/"
+}

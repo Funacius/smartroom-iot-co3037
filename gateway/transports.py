@@ -147,6 +147,9 @@ class CoreIOT:
         if reason == 0:
             client.subscribe("v1/gateway/rpc", qos=1)
             self.connect_needed.set()
+            LOG.info("CoreIOT MQTT connected; registering child device")
+        else:
+            LOG.error("CoreIOT MQTT rejected the connection: %s; check the gateway access token", reason)
 
     def _on_message(self, client, userdata, message):
         try:

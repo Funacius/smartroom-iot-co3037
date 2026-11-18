@@ -93,12 +93,16 @@ Chương 4.
 Chương 5.
 [22]) (chapters/06-guide.tex [23]
 Chương 6.
-[24] [25]
-Underfull \hbox (badness 2443) in paragraph at lines 69--70
+[24]
+Underfull \hbox (badness 1789) in paragraph at lines 43--44
+[][][][][][][] [] [][][][][][][] [] [][][][][][] [] [][][][]$ \TU/TimesNewRoman
+(0)/m/n/12 từ profile CoreIOT riêng và mở dashboard mô phỏng tại
+[25]
+Underfull \hbox (badness 2443) in paragraph at lines 73--74
 \TU/TimesNewRoman(0)/m/n/12 Để thêm cloud, sau khi nhập token và hostname đúng,
  thêm $[][][][][][][][][]$. Có thể dùng
 
-Underfull \hbox (badness 1337) in paragraph at lines 69--70
+Underfull \hbox (badness 1337) in paragraph at lines 73--74
 [][][][][][][][][][][][][][][][][][][][][]$ \TU/TimesNewRoman(0)/m/n/12 để thử 
 API trước; dữ liệu phải giữ nhãn simulation và không dùng
 [26]) (references.tex [27]
@@ -138,7 +142,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 ][][][][][][] [] [][][][][][][] [] [][][][][][][][] [] [][][][][][][][][][][][]
 [][][] []
 
-Underfull \hbox (badness 2626) in paragraph at lines 11--12
+Underfull \hbox (badness 2626) in paragraph at lines 12--13
 []\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Rule Engine.” [Trực tuyến].
  [][]$[][][][][] [] [] [] [][][][][][][][][][][] [] [][] [] [][][][] []
 ) (appendix.tex [28]

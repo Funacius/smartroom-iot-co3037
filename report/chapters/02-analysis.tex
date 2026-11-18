@@ -25,7 +25,7 @@ ESP-NOW phục vụ liên kết node A--B, ánh xạ T06. Theo Espressif, peer c
 
 Gói có magic, version, type, boot, seq, command ID, nhiệt độ, độ ẩm và trạng thái fan. MAC nguồn được lọc; header và kích thước được kiểm tra. Telemetry không có retry ở tầng ứng dụng; mất gói cần đo bằng khoảng sequence theo từng boot. Lệnh được PC retry cùng ID để node không thực hiện lặp tác động.
 
-USB dùng JSON một dòng một bản tin (JSONL). MQTT dùng QoS 1; token là của gateway, TLS bật mặc định và dùng kiểm chứng CA hệ thống. Paho cung cấp vòng lặp mạng và thông tin xác nhận publish \cite{paho}. Xác nhận broker không chứng minh cơ cấu vật lý đã chạy.
+USB dùng JSON một dòng một bản tin (JSONL). MQTT dùng QoS 1; token là của gateway. Mã hỗ trợ TLS với kiểm chứng CA hệ thống khi server cung cấp endpoint phù hợp. Với server lớp \code{app.coreiot.io}, profile riêng dùng cổng 1883 không TLS theo tài liệu chính thức \cite{coreiotconnect}. Paho cung cấp vòng lặp mạng và thông tin xác nhận publish \cite{paho}. Xác nhận broker không chứng minh cơ cấu vật lý đã chạy.
 
 \subsection{Lớp IoT Gateway}
 PC được chọn thay vì Raspberry Pi để tận dụng máy học tập sẵn có. Module xử lý không phụ thuộc Serial/MQTT nên có thể kiểm tra bằng clock và transport giả. SQLite lưu readings, events, commands và outbox. Một giao dịch lưu reading cùng bản tin chờ gửi tránh trường hợp có dữ liệu hiển thị nhưng không có bản tin để phát lại sau khởi động.

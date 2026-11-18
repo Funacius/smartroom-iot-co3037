@@ -113,6 +113,8 @@ Khi thay dữ liệu hoặc phiên bản scikit-learn, nên train lại và kh�
 
 \section{Nền tảng CoreIOT}
 \subsection{Device Profile, template và dashboard (T11)}
+Nhóm đã cung cấp cổng web \url{https://app.coreiot.io/home}; chưa tạo thiết bị hoặc dashboard trong tài khoản. Kiểm tra endpoint từ máy phát triển cho thấy TCP 1883 truy cập được và TCP 8883 bị từ chối. Tài liệu CoreIOT dùng MQTT \code{app.coreiot.io:1883} \cite{coreiotconnect}. Kết quả này chưa xác nhận token, quyền gateway hoặc luồng telemetry/RPC thực. Profile và script khởi động đã được chuẩn bị để người dùng nhập token kín trên máy mình.
+
 \code{coreiot/smartroom_dashboard.json} giữ hai time-series widget và alarm table từ template Thermostats chính thức. File nguồn, commit SHA, SHA-256 và giấy phép Apache-2.0 được lưu trong \code{coreiot/templates/}. Dự án thay alias thành \code{room-node-01}, bố cục và nhãn; bỏ map và form quản trị không phục vụ đề tài. Phần giao diện widget kế thừa không được trình bày như mã hoàn toàn do nhóm viết.
 
 Sau import, cần kiểm tra alias, thêm RPC button/switch method \code{setFan} với boolean params và chọn child. Nếu phiên bản CoreIOT không có widget ID/filter tương ứng, cấu hình lại bằng widget có sẵn rồi export từ tài khoản thực. File JSON chuẩn bị cục bộ chưa phải bằng chứng dashboard đã chạy trên CoreIOT.

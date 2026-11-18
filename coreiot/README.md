@@ -1,15 +1,31 @@
 # Thiết lập CoreIOT theo thứ tự (T11, T12, T13, T15)
 
+## Bắt đầu ngay trên tài khoản của bạn
+
+Trang của lớp: <https://app.coreiot.io/home>. Bạn chưa cần tạo cảm biến, dashboard hay RuleChain trước.
+
+1. Đăng nhập, chọn **Entities → Devices** ở menu trái.
+2. Nhấn **+ → Add new device** (hoặc **Add device**). Điền **Name** là `smartroom-pc-gateway`. Giữ Device profile mặc định cho lần thử đầu, bật **Is gateway**, rồi nhấn **Add**. Nếu không thấy ô gateway trong hộp tạo, mở thiết bị vừa thêm → chỉnh sửa chi tiết để bật **Is gateway** và Save.
+3. Mở `smartroom-pc-gateway` → **Manage credentials**; chọn loại **Access token** nếu cần và copy token. Có phiên bản đặt nút **Copy access token** ngay trong chi tiết thiết bị. Giữ token trên máy bạn; không gửi trong cuộc trò chuyện.
+4. Mở terminal VS Code ở gốc dự án và chạy `python scripts/start_coreiot.py`. Nếu bạn dùng môi trường ảo của README, chạy `.venv\Scripts\python scripts/start_coreiot.py`. Dán token khi chương trình hỏi; ký tự sẽ không hiện. Script dùng cổng dashboard **8081** để không trùng demo local 8080.
+5. Mở <http://127.0.0.1:8081>. Quay lại **Entities → Devices**, tìm child **`room-node-01`**, mở tab **Latest telemetry**. Sau khoảng vài giây phải có `temperature`, `humidity`, `fan`, `seq` và `data_source=simulation`. Khi chưa thấy, đợi tải lại danh sách và kiểm tra gateway đã bật Is gateway.
+
+Script tự tạo `runtime/coreiot_config.json`, không lưu token. Mặc định chạy mô phỏng và gửi dữ liệu sinh lên tài khoản của bạn; dùng database riêng `runtime/coreiot_simulation.sqlite3` để không phát lại lịch sử demo local trước đó. **Không cần tạo child bằng tay trong lần thử đầu**: gateway gửi connect để CoreIOT tạo/đăng ký child. Nếu server báo không đủ quyền, ghi lại thông báo để xử lý quyền hoặc tạo child theo chính sách của lớp.
+
+Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket-noi-va-gui-du-lieu/), MQTT dùng hostname **`app.coreiot.io`**, cổng **1883**. Profile riêng `gateway/config.coreiot.example.json` đặt `mqtt_tls=false`; kênh MQTT này không mã hóa. Kiểm tra tại máy ngày 18/11/2026: TCP 1883 truy cập được, TCP 8883 bị từ chối. Đây mới là kiểm tra endpoint, **chưa đăng nhập hoặc xác minh token, Gateway API hay quyền tài khoản**. Nếu quản trị lớp cấp endpoint TLS, cập nhật hostname/cổng/TLS trong cấu hình runtime tương ứng.
+
+Sau khi child có telemetry, mới làm các mục dashboard, RPC và RuleChain bên dưới. Khi có board, sửa `serial_port` trong runtime config rồi chạy `python scripts/start_coreiot.py --hardware`.
+
 Các JSON ở đây đã được chuẩn bị cục bộ; **chưa import hoặc xác minh trên tài khoản CoreIOT**.
 Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; cần xác nhận CoreIOT của lớp hỗ trợ cùng API và phiên bản widget.
 Không cần gửi mật khẩu đăng nhập hay token cho người khác. Bạn tự nhập token vào terminal trên máy mình.
 
 ## 1. Tạo gateway và child device — T08, T15
 
-1. Đăng nhập CoreIOT do lớp cung cấp. Mở **Entities → Devices** (tên menu có thể khác theo phiên bản).
+1. Đăng nhập <https://app.coreiot.io/home>. Mở **Entities → Devices** (tên menu có thể khác theo phiên bản).
 2. Tạo thiết bị `smartroom-pc-gateway`, bật **Is gateway**. Nếu có lựa chọn **Overwrite activity time**, giữ thiết lập mặc định của lớp.
 3. Lấy **Access token của gateway**, không phải token child device.
-4. Copy `gateway/config.example.json` thành `runtime/config.json`. Điền `mqtt_host` là **hostname MQTT của CoreIOT**, không kèm `https://` hoặc đường dẫn. Điền cổng MQTT/TLS theo server lớp; mặc định 8883 và `mqtt_tls: true`.
+4. Với `app.coreiot.io`, dùng profile `gateway/config.coreiot.example.json` hoặc script bắt đầu ở trên. Nếu tự cấu hình, copy profile này thành `runtime/config.json`: `mqtt_host=app.coreiot.io`, `mqtt_port=1883`, `mqtt_tls=false`. Hostname không có `https://` hoặc `/home`. `gateway/config.example.json` là profile chung cho endpoint TLS, không phải cấu hình đã xác minh của server này.
 5. Trong PowerShell tại gốc dự án, nhập kín token rồi chạy:
 
 ```powershell

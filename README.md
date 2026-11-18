@@ -67,6 +67,14 @@ Giữ DB gateway để ID lệnh không quay về đầu trong khi node lưu ID 
 
 ## CoreIOT
 
+Server của lớp: <https://app.coreiot.io/home>. Nếu chưa tạo gì, mở [hướng dẫn bắt đầu từ đầu](coreiot/README.md#bắt-đầu-ngay-trên-tài-khoản-của-bạn): tạo `smartroom-pc-gateway`, bật **Is gateway**, lấy token rồi chạy:
+
+```powershell
+python scripts/start_coreiot.py
+```
+
+Chương trình hỏi token kín, không lưu token; dùng profile `app.coreiot.io:1883` không TLS theo tài liệu CoreIOT và chạy dashboard mô phỏng tại <http://127.0.0.1:8081>. Child `room-node-01` được đăng ký khi kết nối; kiểm tra Latest telemetry trước khi import dashboard. Khi có board và đã sửa cổng Serial trong `runtime/coreiot_config.json`, chạy `python scripts/start_coreiot.py --hardware`.
+
 Làm theo [coreiot/README.md](coreiot/README.md): tạo gateway, nhập token kín bằng `Read-Host`, đặt hostname/cổng, chạy `--cloud`, import dashboard, gắn RuleChain, tạo Notification rule và chụp bằng chứng.
 
 RPC method `setFan`, params boolean `true` hoặc `false`. Không dùng chuỗi. TTL lệnh 5 giây; chỉ trả thành công sau ACK node. Khi timeout, trạng thái vật lý **chưa rõ**, không được kết luận chắc chắn quạt chưa bật.

@@ -85,20 +85,33 @@ unter.sty))) (generated.tex) (C:\Study\IOT\BTL\report\build\main.aux)
 Chương 1.
 [1] [2]) (chapters/02-analysis.tex [3] [4]
 Chương 2.
-[5] [6] [7] [8]) (chapters/03-implementation.tex [9]
+[5]
+
+LaTeX Warning: Citation `coreiotconnect' on page 6 undefined on input line 28.
+
+[6] [7] [8]) (chapters/03-implementation.tex [9]
 Chương 3.
-[10] [11] [12] [13] [14] [15]) (chapters/04-testing.tex [16]
+[10] [11] [12] [13] [14]
+
+LaTeX Warning: Citation `coreiotconnect' on page 15 undefined on input line 116
+.
+
+[15]) (chapters/04-testing.tex [16]
 Chương 4.
 [17] [18] [19] [20]) (chapters/05-conclusion.tex [21]
 Chương 5.
 [22]) (chapters/06-guide.tex [23]
 Chương 6.
-[24] [25]
-Underfull \hbox (badness 2443) in paragraph at lines 69--70
+[24]
+Underfull \hbox (badness 1789) in paragraph at lines 43--44
+[][][][][][][] [] [][][][][][][] [] [][][][][][] [] [][][][]$ \TU/TimesNewRoman
+(0)/m/n/12 từ profile CoreIOT riêng và mở dashboard mô phỏng tại
+[25]
+Underfull \hbox (badness 2443) in paragraph at lines 73--74
 \TU/TimesNewRoman(0)/m/n/12 Để thêm cloud, sau khi nhập token và hostname đúng,
  thêm $[][][][][][][][][]$. Có thể dùng
 
-Underfull \hbox (badness 1337) in paragraph at lines 69--70
+Underfull \hbox (badness 1337) in paragraph at lines 73--74
 [][][][][][][][][][][][][][][][][][][][][]$ \TU/TimesNewRoman(0)/m/n/12 để thử 
 API trước; dữ liệu phải giữ nhãn simulation và không dùng
 [26]) (references.tex [27]
@@ -138,12 +151,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 ][][][][][][] [] [][][][][][][] [] [][][][][][][][] [] [][][][][][][][][][][][]
 [][][] []
 
-Underfull \hbox (badness 2626) in paragraph at lines 11--12
+Underfull \hbox (badness 2626) in paragraph at lines 12--13
 []\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Rule Engine.” [Trực tuyến].
  [][]$[][][][][] [] [] [] [][][][][][][][][][][] [] [][] [] [][][][] []
 ) (appendix.tex [28]
 Appendix A.
-[29]) [30] (C:\Study\IOT\BTL\report\build\main.aux) )
+[29]) [30] (C:\Study\IOT\BTL\report\build\main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
 Output written on C:\Study\IOT\BTL\report\build\main.pdf (41 pages).
 Transcript written on C:\Study\IOT\BTL\report\build\main.log.
