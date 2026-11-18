@@ -17,7 +17,7 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - Firmware `sensor` và `bridge` đã build trên PlatformIO; chưa nạp lên board trong phiên làm việc này.
 - Gateway, HTTP dashboard, journal, xử lý lệnh/ACK, outbox và adapter CoreIOT đã kiểm thử tự động. Xem `evidence/pytest.xml` và `evidence/verification.json`.
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
-- Người dùng đã gửi ảnh dashboard CoreIOT có hai biểu đồ và xác nhận các nút RPC chạy; gateway local ghi RPC ID cùng trạng thái `applied` cho cả bật/tắt, với nguồn `simulation`. Đã chuẩn bị cập nhật hai nút thành switch ngay trên dashboard hiện tại; lần lưu switch thật cần đăng nhập user một lần tại terminal. RuleChain/notification và phần cứng còn cần kiểm chứng. Xem `evidence/coreiot_progress.json`.
+- Người dùng đã cấu hình dashboard/switch thủ công, gửi ảnh hai biểu đồ, alarm `SmartRoom Environment` mức Major và thông báo Web cho cả tạo/xóa alarm. Gateway local đã ghi RPC ID `applied` cho bật/tắt, nguồn `simulation`. T12/T13 đã có minh chứng chức năng qua ảnh; còn cần lưu tệp ảnh, export cấu hình và kiểm thử phần cứng. Xem `evidence/coreiot_progress.json`.
 - PDF bám mẫu Word, đủ sáu chương; phần chưa kiểm chứng được ghi rõ. Cần mã nhóm, video và ảnh/đo thực tế trước khi nộp.
 
 ## Chạy thử nhanh trên Windows
@@ -109,8 +109,8 @@ Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 | T09 | 1 | Isolation Forest trên gateway | Đã chạy với dữ liệu sinh; cần train/đánh giá thực |
 | T10 | 1 | Giao diện giám sát/điều khiển PC | Đã chạy local |
 | T11 | 1 | Template dashboard CoreIOT | Đã thấy hai biểu đồ qua ảnh; cần thử bản sửa đơn vị, RPC và export |
-| T12 | 1 | RuleChain cảnh báo với hysteresis | Có JSON/script; cần chạy CoreIOT |
-| T13 | 0,5 | Notification khi tạo alarm | Có hướng dẫn; chưa gửi thông báo thật |
+| T12 | 1 | RuleChain cảnh báo với hysteresis | Ảnh alarm Major và thông báo tạo/xóa đã nhận trên CoreIOT |
+| T13 | 0,5 | Notification khi tạo alarm | Đã thấy thông báo Web tạo/xóa cho room-node-01; cần lưu ảnh/export |
 | T15 | 2 | Child synchronization qua Gateway API | Latest telemetry đã được xác nhận; cần ảnh gateway-child và thử RPC |
 | N06 | 1 | Dashboard riêng phát hiện/ghi sự kiện, CSV | Đã chạy local |
 

@@ -85,14 +85,14 @@
 GitHub & \href{\RepoURL}{github.com/Funacius/smartroom-iot-co3037} \\
 Quyền truy cập & Repository riêng tư; cần cấp quyền cho giảng viên trước khi nộp. \\
 Video demo & \VideoLink. Kịch bản dự kiến tại \code{docs/DEMO.md}. \\
-Dashboard CoreIOT & \href{\DashboardLink}{Mở dashboard hiện tại trên app.coreiot.io}. \\
+Dashboard CoreIOT & \href{\DashboardLink}{Liên kết dashboard đã cung cấp}; cần đối chiếu với export bản đang dùng. \\
 Ngày dựng báo cáo & \ReportDate; chưa xác nhận ngày nộp LMS. \\
 Mã môn/lớp & \ClassCode\ (theo thông tin nhóm cung cấp). \\
 Mã nhóm & \GroupCode. Tên PDF hiện dùng CHUA\_CAP\_MA\_NHOM. \\
 Tài liệu gốc & \code{Project_Annoucement_IoT.pdf} và \code{IoTReport_Template.docx}. \\
 \bottomrule
 \end{longtable}
-\notice{Báo cáo ghi nhận mã nguồn đã tạo và những phép đo đã thực thi trên máy tính. Hai firmware đã biên dịch; chưa có board USB để nạp. Người dùng gửi ảnh dashboard CoreIOT và xác nhận RPC chạy; gateway ghi các RPC ID có trạng thái applied, với nguồn cảm biến mô phỏng. Ảnh đang ở cuộc trò chuyện, chưa có tệp để nhúng PDF hoặc export cấu hình thực. Cập nhật switch tại chỗ còn chờ đăng nhập user; mạch thật, vô tuyến, RuleChain/notification và video cần bổ sung bằng chứng.}
+\notice{Hai firmware đã biên dịch; chưa nạp board. Với nguồn cảm biến mô phỏng, người dùng gửi ảnh dashboard/switch, Root Rule Chain, alarm Major và Web notification cho cả tạo/xóa alarm; gateway ghi RPC ID applied. Ảnh đang ở cuộc trò chuyện, chưa có tệp để nhúng PDF hoặc export cấu hình thực. Người dùng chọn sửa dashboard thủ công; không cần chạy script đăng nhập. Cần bổ sung tệp minh chứng, phần cứng, đo vô tuyến và video.}
 
 \chapter*{BẢNG PHÂN CÔNG CÔNG VIỆC}
 \addcontentsline{toc}{chapter}{Bảng phân công công việc}
@@ -125,8 +125,8 @@ T08 & Gateway PC hai chiều & 1 & Phần mềm & 3.4 & Telemetry và RPC cloud 
 T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_metrics.json}; model chạy PC, dữ liệu sinh. Cần đánh giá thực. \\
 T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Screenshot Chrome, điều khiển với ACK mô phỏng. \\
 T11 & Template CoreIOT & 1 & Phần mềm; ảnh & 3.6.1 & Hai biểu đồ có dữ liệu và nút RPC đã chạy; cần export cấu hình thực. \\
-T12 & RuleChain & 1 & Cấu hình & 3.6.2 & JSON và JS filter; cần alarm chạy thật. \\
-T13 & Gửi thông báo & 0,5 & Hướng dẫn & 3.6.2 & Chưa nhận notification; chưa tự nhận điểm. \\
+T12 & RuleChain & 1 & Phần mềm; ảnh & 3.6.2 & Ảnh Root, chain, alarm Major và sự kiện tạo/xóa trên CoreIOT. \\
+T13 & Gửi thông báo & 0,5 & Phần mềm; ảnh & 3.6.2 & Web notification New alarm/cleared cho room-node-01; cần lưu tệp ảnh. \\
 T14 & OTA & 2 & Không & 3.6.3 & Không có OTA. \\
 T15 & Đồng bộ gateway & 2 & Một phần & 3.4 & Uplink và RPC mô phỏng đã chạy; cần ảnh gateway-child và export. \\
 \bottomrule

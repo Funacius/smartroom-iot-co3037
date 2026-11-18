@@ -9,7 +9,7 @@
 \code{evidence/ai_metrics.json}, \code{ai_test_predictions.csv} & Dữ liệu sinh có seed; confusion matrix và suy luận CPU. \\
 \code{evidence/browser_check.json}, \code{dashboard_desktop.png}, \code{dashboard_mobile.png} & Chrome chạy ứng dụng local với nguồn simulation; không phải ảnh CoreIOT. \\
 \code{coreiot/templates/PROVENANCE.json} & Nguồn template, commit, hash, giấy phép và phạm vi sửa. \\
-\code{evidence/coreiot_progress.json} & Latest telemetry, mô tả ảnh dashboard và snapshot các RPC ID applied; ảnh chưa thành tệp trong repo, switch mới chờ lưu. \\
+\code{evidence/coreiot_progress.json} & Ảnh dashboard, Root/child chain, alarm Major, Web notification tạo/xóa và RPC ID applied; ảnh chưa thành tệp trong repo. \\
 \code{docs/DEMO.md} & Kịch bản và câu hỏi bảo vệ; chưa phải video đã quay. \\
 \code{evidence/hardware/} & Nơi bổ sung dữ liệu/ảnh thực. Hiện chưa có minh chứng thiết bị trong phiên dựng mã. \\
 \bottomrule
@@ -31,7 +31,7 @@ Phần tái sử dụng gồm thư viện Arduino/ESP-IDF, DHT20, ArduinoJson, P
 \item Xác nhận mã lớp và mã nhóm; đổi tên PDF theo quy định.
 \item Nạp/chạy hai board, xác nhận pin/nguồn/MAC/key/channel; lưu ảnh mạch thật.
 \item Đo các kịch bản còn thiếu với số lần lặp, mean/min/max và dữ liệu gốc.
-\item Kết nối CoreIOT, import/export cấu hình thật và nhận notification thật.
+\item Lưu ảnh/export cấu hình CoreIOT đang dùng và minh chứng Web notification đã nhận.
 \item Cập nhật tự đánh giá theo bằng chứng, không tự nhận T01/T04/T05/T14/N07.
 \item Quay video và điền link; cấp quyền GitHub cho giảng viên.
 \item Hai thành viên tự commit phần công việc thực tế, hoàn chỉnh phân công và dựng lại PDF.

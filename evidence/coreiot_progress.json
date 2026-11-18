@@ -10,10 +10,10 @@
   "physical_sensor_verified": false,
   "cloud_rpc_verified": true,
   "cloud_dashboard_verified": true,
-  "rulechain_verified": false,
-  "notification_verified": false,
+  "rulechain_verified": true,
+  "notification_verified": true,
   "cloud_screenshots_or_exports_available": true,
-  "next_step": "User runs update_coreiot_dashboard.py --apply --remember-session locally to sign in once and update the same dashboard ID",
+  "next_step": "Save screenshots and export the current dashboard and root/child rule chains to evidence/coreiot/, then run hardware and offline recovery tests.",
   "local_gateway_observation": {
     "checked_at": "2026-11-18T20:03:13.162403+07:00",
     "url": "http://127.0.0.1:8081/api/state",
@@ -24,15 +24,19 @@
     "outbox_count": 0,
     "scope": "Local gateway status; outbox drained means transport acknowledgement, not proof of cloud dashboard or RPC behavior"
   },
-  "cloud_dashboard_verification_scope": "User-provided screenshot shows SmartRoom CO3037, room-node-01, live Temperature/Humidity charts and an empty alarm table. Does not verify RPC, RuleChain or notifications.",
+  "cloud_dashboard_verification_scope": "User screenshots show Temperature/Humidity charts and a manually added Fan switch. User also supplied alarm and notification screenshots. Not a physical sensor test.",
   "screenshot_storage": "Screenshot attached in conversation; image file not available in the workspace or embedded in the PDF.",
   "cloud_dashboard_export_available": false,
   "screenshot_observations": {
     "temperature_chart_present": true,
     "humidity_chart_present": true,
-    "alarm_table": "No alarms found",
+    "alarm_table": "SmartRoom Environment, Major, originator room-node-01",
     "humidity_axis_issue": "Axis tick labels show Celsius although humidity legend uses percent",
-    "timewindow_issue": "Dashboard last minute and charts last hour differ"
+    "timewindow_issue": "Dashboard last minute and charts last hour differ",
+    "notifications": [
+      "New alarm SmartRoom Environment",
+      "Alarm SmartRoom Environment cleared"
+    ]
   },
   "local_fixes_pending_cloud_check": [
     "Humidity axis unit changed to percent",
@@ -80,5 +84,11 @@
   ],
   "dashboard_url": "https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29",
   "switch_update_prepared": true,
-  "switch_live_verified": false
+  "switch_live_verified": false,
+  "notification_channel": "Web",
+  "notification_verification_scope": "User screenshot shows New alarm and Alarm cleared for SmartRoom Environment, severity major, originator room-node-01. Sensor source remains simulation. No notification latency was measured.",
+  "rulechain_verification_scope": "User screenshots show root telemetry routing through device-name filter to SmartRoom alarms, the child create/clear chain, and a Major alarm for room-node-01.",
+  "notification_configuration_provenance": "Existing notification mechanism on the user account is functioning; exact recipient/template/rule names have not been exported. No additional notification rule was created by the agent.",
+  "switch_edit_method": "User manually configured a Fan switch in the dashboard UI; no authenticated REST update was performed.",
+  "dashboard_url_status": "Previously supplied URL; user subsequently changed dashboard. Current active ID awaits verified dashboard export."
 }

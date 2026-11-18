@@ -8,11 +8,11 @@ SmartRoom đã có bộ mã nguồn thống nhất cho hai role ESP32-S3, gatewa
 \toprule Mã & Đã có & Còn cần thực hiện \\ \midrule
 F01 & Firmware đọc/gửi; build hai role & Lắp DHT20, pin/MAC thật, đo radio \\
 F02 & SQLite/dashboard/stale và kiểm thử & Chạy từ dữ liệu USB board thật \\
-F03 & Hysteresis và journal PC; RuleChain JSON & Alarm, clear và notification trên CoreIOT \\
+F03 & Journal PC; ảnh CoreIOT alarm Major, tạo/xóa và Web notification & Lưu tệp ảnh/export và đo độ trễ lặp \\
 F04 & Model và metrics dữ liệu sinh & Thu nhãn thực, train và đánh giá ngoài phiên \\
 F05 & Cơ chế ID/ACK/TTL; kiểm thử local & Nạp board, quan sát driver/quạt và web bridge \\
 F06 & Telemetry và RPC cloud mô phỏng; local ghi command applied & Ảnh/export gateway-child và thử phần cứng \\
-F07 & Ảnh dashboard, nút RPC đã chạy; script cập nhật switch cùng ID & Đăng nhập để lưu switch, RuleChain và export \\
+F07 & Dashboard/switch sửa thủ công; ảnh alarm và Web notification & Export cấu hình đang dùng, lưu ảnh và kiểm thử thực \\
 F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã nhóm \\
 \bottomrule
 \end{tabular}
@@ -21,13 +21,13 @@ F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã
 Những đóng góp kỹ thuật dễ kiểm tra là lưu bền trước khi upload, không xác nhận lệnh chỉ vì đã gửi, chống lặp theo ID, hysteresis giảm dao động cảnh báo và phân biệt rõ dữ liệu sinh với dữ liệu cảm biến. Nhóm chưa dùng bảng này để quy đổi thành điểm đã đạt vì còn thiếu các bằng chứng bắt buộc trên thiết bị và server.
 
 \section{Hạn chế}
-Chưa có nạp/chạy board trong phiên dựng mã, chưa có số đo truyền ESP-NOW và chưa có ảnh mạch thật. Cấu hình GPIO/flash cần đối chiếu board lấy tại lớp. Dashboard và nút RPC mô phỏng đã chạy; bước đổi sang switch trên cùng dashboard còn chờ đăng nhập user để lưu. Phần T13 chưa tạo thông báo thực nhận.
+Chưa nạp/chạy board, đo ESP-NOW hoặc có ảnh mạch thật. GPIO/flash cần đối chiếu board lớp. Dashboard, RPC, alarm tạo/xóa và Web notification đã được quan sát với dữ liệu mô phỏng. Còn thiếu file ảnh gốc trong repository, export cấu hình thực và phép đo độ trễ lặp; chưa kiểm chứng email/SMTP hoặc sự ổn định dài hạn.
 
 Mô hình AI học dữ liệu sinh và chỉ dùng hai biến tức thời; chưa có xu hướng theo thời gian hay thích nghi theo mùa/phòng. Ngưỡng mặc định để demo, chưa tối ưu theo nhu cầu người dùng. Hệ thống chưa kiểm tra công suất quạt, tốc độ thực hay điều khiển tự động kín vòng.
 
 ID lệnh được lưu bền ở gateway và node; nếu xóa DB mà giữ NVS, ID mới có thể nhỏ hơn ID node nhớ và bị từ chối. Lệnh cũng chỉ có ACK trạng thái firmware, chưa có clock đồng bộ để loại trừ mọi lệnh trễ trong đường truyền. Outbox có giới hạn bản tin nhưng readings/events chưa có retention. Dashboard local chưa có phân quyền đa người dùng; không mở ra Internet.
 
 \section{Hướng phát triển}
-Ưu tiên đầu tiên là hoàn tất thực nghiệm có kiểm soát: xác nhận pin, chạy hai board, log seq và ACK, xác minh CoreIOT, nhận thông báo, đo độ trễ 30 lần và quay video. Sau đó nhóm thu dữ liệu nhiều phiên/phòng, mô tả cách gán nhãn và đánh giá AI trên tập test tách theo ngày thay vì chỉ thay seed.
+Ưu tiên đầu tiên là hoàn tất thực nghiệm có kiểm soát: xác nhận pin, chạy hai board, log seq/ACK, lưu file ảnh/export CoreIOT đã chạy, đo độ trễ 30 lần và quay video. Sau đó nhóm thu dữ liệu nhiều phiên/phòng, mô tả cách gán nhãn và đánh giá AI trên tập test tách theo ngày thay vì chỉ thay seed.
 
 Phiên bản tiếp theo có thể bổ sung quản lý session/command epoch để khôi phục sau thay máy, đồng bộ thời gian phục vụ đo end-to-end, retention/sao lưu DB và kiểm thử 24 giờ. Khi cần tự động điều khiển, nên thêm cảm biến phản hồi quạt và chính sách an toàn độc lập AI. OTA chỉ nên đăng ký khi đã có quy trình đóng gói, kiểm tra chữ ký/phiên bản, rollback và minh chứng cập nhật thật; chưa đưa vào điểm hiện tại.

@@ -107,16 +107,16 @@ ed và outbox bằng 0. Thông tin ghi tại
 Underfull \hbox (badness 1577) in paragraph at lines 116--117
 [][][][][][][][] [] [][][][][][][] [] [][][][][][][][] [] [][][][]$\TU/TimesNew
 Roman(0)/m/n/12 ; ảnh nằm trong cuộc trò chuyện, chưa có tệp ảnh để
-[15]) (chapters/04-testing.tex [16] [17]
+[15] [16]) (chapters/04-testing.tex [17]
 Chương 4.
 [18] [19] [20] [21]) (chapters/05-conclusion.tex [22]
 Chương 5.
 [23]) (chapters/06-guide.tex [24]
 Chương 6.
 [25]
-Underfull \hbox (badness 1867) in paragraph at lines 43--44
-[]\TU/TimesNewRoman(0)/m/n/12 Chạy $[][][][][][][][][][][][][] [] [][][][][] []
- [][][][][][][] [] [][]$ tại gốc dự án. Chương trình hỏi token kín,
+Underfull \hbox (badness 1789) in paragraph at lines 43--44
+[][][][][][][] [] [][][][][][][] [] [][][][][][] [] [][][][]$ \TU/TimesNewRoman
+(0)/m/n/12 từ profile CoreIOT riêng và mở dashboard mô phỏng tại
 [26]
 Underfull \hbox (badness 2443) in paragraph at lines 73--74
 \TU/TimesNewRoman(0)/m/n/12 Để thêm cloud, sau khi nhập token và hostname đúng,

@@ -1,8 +1,14 @@
 # Thiết lập CoreIOT theo thứ tự (T11, T12, T13, T15)
 
-## Dashboard đang dùng: cập nhật tại chỗ
+## Tiến độ đã xác nhận bằng ảnh
 
-Dashboard cố định của nhóm: <https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29>. Người dùng xác nhận bản RPC đã chạy; API local cũng ghi các lệnh có RPC ID ở trạng thái `applied`. Tiếp theo đổi hai nút thành một switch trên **chính dashboard này**, giữ nguyên ID.
+Người dùng đã chọn sửa switch thủ công trên dashboard đang mở. Ảnh mới cho thấy alarm **SmartRoom Environment**, mức **Major**, originator **room-node-01**; danh sách Notification có cả **New alarm** và **Alarm cleared**, lặp qua nhiều đợt dữ liệu mô phỏng. T12 và T13 đã có minh chứng chức năng qua ảnh. Cơ chế thông báo sẵn có trên tài khoản đang hoạt động; không tạo thêm notification rule trùng lặp. Chưa xác định chính xác tên rule/template vì chưa có export.
+
+Bước tiếp theo: lưu ảnh dashboard, Root Rule Chain, SmartRoom alarms và Notification vào `evidence/coreiot/`, rồi export dashboard đang dùng và hai rule chain. Những ảnh hiện tại được gửi trong cuộc trò chuyện, chưa có tệp trong workspace để nhúng PDF. Sau đó thực hiện kiểm thử mất mạng và hai board thật. Các script cập nhật trực tiếp bên dưới là công cụ tùy chọn, không cần đăng nhập hoặc chạy lại khi bạn đang sửa thủ công.
+
+## Công cụ tùy chọn: cập nhật tại chỗ qua REST
+
+URL người dùng đã cung cấp trước đây: <https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29>. Sau đó người dùng chọn dashboard khác và tự cấu hình switch. Cần đối chiếu ID với export bản đang dùng nếu muốn dùng công cụ REST; không cần chạy công cụ này trong luồng sửa thủ công hiện tại.
 
 Chạy `python scripts/update_coreiot_dashboard.py --apply --remember-session` trong terminal khác, nhập kín tài khoản CoreIOT, rồi refresh tab hiện tại. Script sao lưu trước khi ghi; tùy chọn remember lưu phiên được Windows mã hóa để các lần cập nhật sau có thể thực hiện trực tiếp, không import lại. Xem [hướng dẫn cập nhật tại chỗ](UPDATE_EXISTING.md). Hiện script đã được kiểm thử cục bộ; chưa lưu switch lên cloud vì cần đăng nhập người dùng một lần.
 
@@ -81,8 +87,7 @@ Nguồn tái sử dụng: template **Thermostats** chính thức của ThingsBoa
 ## 3. RuleChain — T12
 
 Import `coreiot/smartroom_rulechain.json` vào Rule chains. Đặt `root=false`; giữ nguyên root chain của tài khoản.
-Từ nhánh **Post telemetry** của root (hoặc chain của Device Profile), thêm node **Rule Chain** gọi `SmartRoom alarms`.
-Chỉ gắn với Device Profile/thiết bị của dự án để không tác động dữ liệu thiết bị khác.
+Trong Root Rule Chain, thêm Script Filter JavaScript `return metadata.deviceName === "room-node-01";`. Chuyển đường **Post telemetry** của Message Type Switch vào filter: **True → Rule Chain gọi SmartRoom alarms**, **False → Save Timeseries hiện có**. Child chain đã lưu timeseries nên không cần đồng thời nối Post telemetry trực tiếp vào Save Timeseries. Giữ nguyên các nhánh Post attributes và RPC. Đây là sơ đồ đã được người dùng cấu hình và gửi ảnh.
 
 Nếu JSON khác schema của phiên bản CoreIOT, dựng bằng giao diện với cùng các node sau:
 
@@ -97,7 +102,7 @@ Thử giá trị nóng → vùng trung gian → bình thường; alarm phải t�
 
 ## 4. Notification — T13
 
-Alarm xuất hiện trong bảng **chưa đồng nghĩa** đã gửi notification.
+Alarm xuất hiện trong bảng **chưa đồng nghĩa** đã gửi notification. Với tài khoản hiện tại, ảnh Notification đã chứng minh nhận Web notification cho cả tạo/xóa `SmartRoom Environment`, nên không cần cấu hình thêm. Chỉ làm các bước dưới đây nếu triển khai tài khoản khác chưa có thông báo phù hợp.
 
 1. Mở Notification Center (nếu tài khoản có), tạo Recipient là user của nhóm.
 2. Tạo template `SmartRoom environment warning`, nội dung chứa thiết bị, mức cảnh báo và thời gian. Chọn In-app; thêm email nếu server lớp đã cấu hình SMTP.
