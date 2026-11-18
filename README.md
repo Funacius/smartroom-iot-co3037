@@ -4,6 +4,8 @@ Giám sát nhiệt độ/độ ẩm phòng học, phát hiện bất thường t
 
 [Báo cáo PDF](report/CO3037_CHUA_CAP_MA_NHOM_IoTReport.pdf) · [Nguồn LaTeX](report/main.tex) · [Hướng dẫn CoreIOT](coreiot/README.md) · [Kịch bản demo](docs/DEMO.md)
 
+Dashboard đã có: [mở dashboard hiện tại](https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29). Để thay hai nút bằng switch và giữ nguyên dashboard, xem [cập nhật tại chỗ](coreiot/UPDATE_EXISTING.md); không cần import thêm dashboard.
+
 **Nhóm:** Bùi Quốc Thái — 2353086 — thai.bui1569@hcmut.edu.vn; Nguyễn Vinh Anh Quân — 2353007 — quan.nguyenvinhanh@hcmut.edu.vn.
 **Giảng viên:** TS. Nguyễn Hòa Hưng. **Mã nhóm:** chưa được cấp.
 
@@ -15,7 +17,7 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - Firmware `sensor` và `bridge` đã build trên PlatformIO; chưa nạp lên board trong phiên làm việc này.
 - Gateway, HTTP dashboard, journal, xử lý lệnh/ACK, outbox và adapter CoreIOT đã kiểm thử tự động. Xem `evidence/pytest.xml` và `evidence/verification.json`.
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
-- Người dùng đã xác nhận Latest telemetry và gửi ảnh dashboard CoreIOT hiển thị hai biểu đồ. Nguồn cảm biến vẫn là `simulation`. File cục bộ đã sửa nhãn trục độ ẩm từ °C thành % và chuẩn bị bản có hai nút RPC; bản này, RuleChain/notification và phần cứng còn cần kiểm chứng. Xem `evidence/coreiot_progress.json`.
+- Người dùng đã gửi ảnh dashboard CoreIOT có hai biểu đồ và xác nhận các nút RPC chạy; gateway local ghi RPC ID cùng trạng thái `applied` cho cả bật/tắt, với nguồn `simulation`. Đã chuẩn bị cập nhật hai nút thành switch ngay trên dashboard hiện tại; lần lưu switch thật cần đăng nhập user một lần tại terminal. RuleChain/notification và phần cứng còn cần kiểm chứng. Xem `evidence/coreiot_progress.json`.
 - PDF bám mẫu Word, đủ sáu chương; phần chưa kiểm chứng được ghi rõ. Cần mã nhóm, video và ảnh/đo thực tế trước khi nộp.
 
 ## Chạy thử nhanh trên Windows

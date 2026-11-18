@@ -8,12 +8,12 @@
   ],
   "sensor_data_source": "simulation",
   "physical_sensor_verified": false,
-  "cloud_rpc_verified": false,
+  "cloud_rpc_verified": true,
   "cloud_dashboard_verified": true,
   "rulechain_verified": false,
   "notification_verified": false,
   "cloud_screenshots_or_exports_available": true,
-  "next_step": "Import coreiot/smartroom_dashboard_rpc.json and test both fan commands against Latest telemetry and local applied status",
+  "next_step": "User runs update_coreiot_dashboard.py --apply --remember-session locally to sign in once and update the same dashboard ID",
   "local_gateway_observation": {
     "checked_at": "2026-11-18T20:03:13.162403+07:00",
     "url": "http://127.0.0.1:8081/api/state",
@@ -38,5 +38,47 @@
     "Humidity axis unit changed to percent",
     "Shared ten-minute chart timewindow without averaging",
     "Additional dashboard with two-way setFan true/false buttons"
-  ]
+  ],
+  "cloud_rpc_scope": "User reports buttons work; local gateway has MQTT RPC request ids and applied commands. Sensor is simulated.",
+  "recent_rpc_commands": [
+    {
+      "id": 8,
+      "rpc_id": "7",
+      "status": "applied",
+      "value": true
+    },
+    {
+      "id": 7,
+      "rpc_id": "6",
+      "status": "applied",
+      "value": false
+    },
+    {
+      "id": 6,
+      "rpc_id": "5",
+      "status": "applied",
+      "value": false
+    },
+    {
+      "id": 5,
+      "rpc_id": "4",
+      "status": "applied",
+      "value": false
+    },
+    {
+      "id": 4,
+      "rpc_id": "3",
+      "status": "applied",
+      "value": true
+    },
+    {
+      "id": 3,
+      "rpc_id": "2",
+      "status": "applied",
+      "value": true
+    }
+  ],
+  "dashboard_url": "https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29",
+  "switch_update_prepared": true,
+  "switch_live_verified": false
 }

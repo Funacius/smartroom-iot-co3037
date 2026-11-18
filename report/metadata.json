@@ -8,7 +8,7 @@
   ],
   "repository": "https://github.com/Funacius/smartroom-iot-co3037",
   "video": "Chưa cung cấp",
-  "dashboard": "Đã import SmartRoom CO3037 và gửi ảnh; chưa cung cấp URL dashboard",
+  "dashboard": "https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29",
   "coreiot_portal": "https://app.coreiot.io/home",
   "report_date": "18/11/2026"
 }

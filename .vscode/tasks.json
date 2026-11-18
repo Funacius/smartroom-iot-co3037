@@ -1,6 +1,7 @@
 {
   "version": "2.0.0",
   "tasks": [
+    {"label": "SmartRoom: update existing CoreIOT dashboard", "type": "shell", "command": "python scripts/update_coreiot_dashboard.py --apply --remember-session", "problemMatcher": []},
     {"label": "SmartRoom: simulation", "type": "shell", "command": "python -m gateway.main --simulate", "problemMatcher": []},
     {"label": "SmartRoom: test", "type": "shell", "command": "python -m pytest -q --junitxml=evidence/pytest.xml", "problemMatcher": []},
     {"label": "SmartRoom: report PDF", "type": "shell", "command": "python scripts/build_report.py", "problemMatcher": []},

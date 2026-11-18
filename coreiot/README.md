@@ -1,14 +1,20 @@
 # Thiết lập CoreIOT theo thứ tự (T11, T12, T13, T15)
 
+## Dashboard đang dùng: cập nhật tại chỗ
+
+Dashboard cố định của nhóm: <https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29>. Người dùng xác nhận bản RPC đã chạy; API local cũng ghi các lệnh có RPC ID ở trạng thái `applied`. Tiếp theo đổi hai nút thành một switch trên **chính dashboard này**, giữ nguyên ID.
+
+Chạy `python scripts/update_coreiot_dashboard.py --apply --remember-session` trong terminal khác, nhập kín tài khoản CoreIOT, rồi refresh tab hiện tại. Script sao lưu trước khi ghi; tùy chọn remember lưu phiên được Windows mã hóa để các lần cập nhật sau có thể thực hiện trực tiếp, không import lại. Xem [hướng dẫn cập nhật tại chỗ](UPDATE_EXISTING.md). Hiện script đã được kiểm thử cục bộ; chưa lưu switch lên cloud vì cần đăng nhập người dùng một lần.
+
 ## Trạng thái và bước tiếp theo
 
-Ngày 18/11/2026, người dùng xác nhận đã kết nối và thấy dữ liệu trong Latest telemetry. Kiểm tra API gateway local cổng 8081 cũng cho thấy nguồn `simulation`, dữ liệu mới và outbox bằng 0. Đây là kết quả thử đường gửi lên cloud; chưa chứng minh đường RPC từ CoreIOT về thiết bị.
+Ngày 18/11/2026, người dùng xác nhận Latest telemetry và các nút RPC chạy. API gateway local cổng 8081 ghi nguồn `simulation`, dữ liệu mới, outbox bằng 0 và các lệnh có RPC ID ở trạng thái applied. Đây là kiểm chứng với node mô phỏng, chưa phải quạt phần cứng.
 
 Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
 
 Người dùng đã gửi ảnh dashboard CoreIOT: hai biểu đồ nhận dữ liệu từ `room-node-01`; bảng alarm trống. Ảnh cho thấy trục độ ẩm ghi nhầm °C dù legend ghi %. Đã sửa generator và JSON cục bộ; cần áp dụng bản mới trên tài khoản. Ảnh nằm trong cuộc trò chuyện, chưa có file ảnh/export trong repository.
 
-### Bước hiện tại: import bản có RPC
+### Hướng dẫn khởi tạo bản RPC trước đây
 
 1. Giữ terminal gateway cổng 8081 đang chạy. Từ trang Dashboards, import `coreiot/smartroom_dashboard_rpc.json`. File này có tên **SmartRoom CO3037 RPC**, giữ dashboard bạn đã tạo để đối chiếu.
 2. Mở dashboard mới, kiểm tra alias **SmartRoom sensor** trỏ đúng `room-node-01`. Có hai biểu đồ, hai nút **Bật quạt / Tắt quạt** và bảng alarm. Đơn vị độ ẩm đã sửa thành %, hai biểu đồ dùng chung cửa sổ 10 phút, không lấy trung bình để che đỉnh nóng ngắn.
@@ -16,7 +22,7 @@ Người dùng đã gửi ảnh dashboard CoreIOT: hai biểu đồ nhận dữ 
 4. Nhấn **Tắt quạt**, kiểm tra `fan=false` và một lệnh applied mới. Lần thử này là RPC CoreIOT ↔ gateway ↔ node mô phỏng; chưa phải điều khiển quạt phần cứng.
 5. Nếu báo thiếu widget **RPC Button**, dùng **Edit mode → Add widget → Control widgets → RPC Button**. Target là `room-node-01`, method `setFan`, params `true`/`false` (boolean), tắt **Is one way command**, timeout 10000 ms, bật hiển thị lỗi. Hướng dẫn RPC Button: <https://thingsboard.io/iot-hub/widgets/rpc-button/>.
 
-Bản RPC được chuẩn bị theo schema chính thức và đã kiểm tra JSON cục bộ, chưa được xác minh import/điều khiển trên tài khoản. Khi có kết quả, lưu ảnh và export dashboard thực. `evidence/coreiot_progress.json` ghi rõ các phần đã quan sát và còn chờ kiểm chứng. Bảng alarm chưa có dòng là bình thường trước khi gắn RuleChain.
+Bản RPC đã được người dùng xác nhận chạy; các lệnh có RPC ID đã xuất hiện ở trạng thái applied trong gateway. Các bước import ở phần này chỉ dành cho khởi tạo, không cần lặp lại với dashboard hiện tại. Dùng luồng cập nhật tại chỗ ở đầu tài liệu. Bảng alarm chưa có dòng là bình thường trước khi gắn RuleChain.
 
 ## Bắt đầu ngay trên tài khoản của bạn
 
@@ -34,8 +40,8 @@ Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket
 
 Sau khi child có telemetry, mới làm các mục dashboard, RPC và RuleChain bên dưới. Khi có board, sửa `serial_port` trong runtime config rồi chạy `python scripts/start_coreiot.py --hardware`.
 
-Dashboard cơ bản đã được người dùng import và gửi ảnh hiển thị dữ liệu. Bản có RPC, bản sửa đơn vị và RuleChain vẫn cần xác minh trên tài khoản.
-Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; đường gửi telemetry đã được người dùng xác nhận, còn RPC và phiên bản widget cần kiểm chứng.
+Dashboard và các nút RPC đã được người dùng xác nhận chạy. Switch cập nhật tại chỗ và RuleChain còn cần xác minh trên tài khoản.
+Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; telemetry và RPC mô phỏng đã chạy trên CoreIOT.
 Không cần gửi mật khẩu đăng nhập hay token cho người khác. Bạn tự nhập token vào terminal trên máy mình.
 
 ## 1. Tạo gateway và child device — T08, T15
@@ -68,7 +74,7 @@ Nguồn tái sử dụng: template **Thermostats** chính thức của ThingsBoa
 2. Mở Entity aliases, kiểm tra alias `SmartRoom sensor` tìm được **room-node-01**. File dùng filter `entityName` cho loại `DEVICE` theo schema ThingsBoard. Nếu phiên bản CoreIOT không tự resolve, chọn **Single entity → Device → room-node-01** rồi Save.
 3. Kiểm tra hai biểu đồ và alarm table. Nếu thiếu widget `system.time_series_chart` ở phiên bản cũ, thêm widget Time series chart có sẵn và gắn hai key tương ứng. Đây là bước tương thích cần xác minh trên CoreIOT thực tế.
 4. Thêm widget **Control → RPC button/switch**. Chọn child `room-node-01`, method `setFan`, params **boolean** `true`/`false`, two-way RPC, timeout 10000 ms. Không truyền chuỗi `"true"` hay object `{value:true}`.
-5. Với switch có hàm chuyển đổi params, dùng `return value;`. Nếu switch cần get-state method chưa có, dùng hai RPC button Bật/Tắt và widget hiển thị telemetry `fan` để xem trạng thái.
+5. Với Switch Control, chọn lấy trạng thái **Time series → fan**, method gửi `setFan`, convert `return value === true;`. Không chọn lấy trạng thái bằng RPC `getValue`. Luồng cập nhật tại chỗ cấu hình sẵn các trường này.
 6. Thử quạt thật. Gateway chỉ trả `success:true` sau ACK node; không có ACK sẽ hết hạn sau 5 giây. Firmware tự tắt đầu ra sau lease 30 giây và telemetry cập nhật lại.
 7. Export dashboard **từ tài khoản thực** vào `evidence/hardware/coreiot_dashboard.verified.json`, chụp ảnh và ghi timestamp demo.
 
