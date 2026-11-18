@@ -85,18 +85,9 @@ unter.sty))) (generated.tex) (C:\Study\IOT\BTL\report\build\main.aux)
 Chương 1.
 [1] [2]) (chapters/02-analysis.tex [3] [4]
 Chương 2.
-[5]
-
-LaTeX Warning: Citation `coreiotconnect' on page 6 undefined on input line 28.
-
-[6] [7] [8]) (chapters/03-implementation.tex [9]
+[5] [6] [7] [8]) (chapters/03-implementation.tex [9]
 Chương 3.
-[10] [11] [12] [13] [14]
-
-LaTeX Warning: Citation `coreiotconnect' on page 15 undefined on input line 116
-.
-
-[15]) (chapters/04-testing.tex [16]
+[10] [11] [12] [13] [14] [15]) (chapters/04-testing.tex [16]
 Chương 4.
 [17] [18] [19] [20]) (chapters/05-conclusion.tex [21]
 Chương 5.
@@ -156,14 +147,7 @@ Underfull \hbox (badness 2626) in paragraph at lines 12--13
  [][]$[][][][][] [] [] [] [][][][][][][][][][][] [] [][] [] [][][][] []
 ) (appendix.tex [28]
 Appendix A.
-[29]) [30] (C:\Study\IOT\BTL\report\build\main.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+[29]) [30] (C:\Study\IOT\BTL\report\build\main.aux) )
 (see the transcript file for additional information)
 Output written on C:\Study\IOT\BTL\report\build\main.pdf (41 pages).
 Transcript written on C:\Study\IOT\BTL\report\build\main.log.

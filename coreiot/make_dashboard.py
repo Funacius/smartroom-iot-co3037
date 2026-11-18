@@ -16,7 +16,13 @@ config["entityAliases"] = {
     alias: {
         "id": alias,
         "alias": "SmartRoom sensor",
-        "filter": {"type": "deviceName", "resolveMultiple": False, "deviceNameFilter": "room-node-01"},
+        # ThingsBoard EntityNameFilter; deviceName is not a valid filter type.
+        "filter": {
+            "type": "entityName",
+            "entityType": "DEVICE",
+            "resolveMultiple": False,
+            "entityNameFilter": "room-node-01",
+        },
     }
 }
 keep = [

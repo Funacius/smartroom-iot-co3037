@@ -883,9 +883,10 @@
         "id": "12ae98c7-1ea2-52cf-64d5-763e9d993547",
         "alias": "SmartRoom sensor",
         "filter": {
-          "type": "deviceName",
+          "type": "entityName",
+          "entityType": "DEVICE",
           "resolveMultiple": false,
-          "deviceNameFilter": "room-node-01"
+          "entityNameFilter": "room-node-01"
         }
       }
     },

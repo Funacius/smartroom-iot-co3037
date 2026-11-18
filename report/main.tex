@@ -92,7 +92,7 @@ Mã nhóm & \GroupCode. Tên PDF hiện dùng CHUA\_CAP\_MA\_NHOM. \\
 Tài liệu gốc & \code{Project_Annoucement_IoT.pdf} và \code{IoTReport_Template.docx}. \\
 \bottomrule
 \end{longtable}
-\notice{Báo cáo ghi nhận mã nguồn đã tạo và những phép đo đã thực thi trên máy tính. Hai firmware đã biên dịch; chưa có board USB để nạp và chưa có quyền phiên đăng nhập CoreIOT. Không có ảnh mạch, số đo vô tuyến, thông báo cloud hay video thực tế được giả lập thành minh chứng thật. Cần hoàn tất các bước này trước khi tự đánh giá đầy đủ.}
+\notice{Báo cáo ghi nhận mã nguồn đã tạo và những phép đo đã thực thi trên máy tính. Hai firmware đã biên dịch; chưa có board USB để nạp. Người dùng đã xác nhận kết nối CoreIOT và thấy Latest telemetry với dữ liệu mô phỏng; API gateway local cho thấy dữ liệu mới và outbox bằng 0. Chưa có ảnh/export tài khoản, kiểm chứng RPC từ cloud, mạch thật, số đo vô tuyến hoặc video. Cần bổ sung các bằng chứng này trước khi tự đánh giá đầy đủ.}
 
 \chapter*{BẢNG PHÂN CÔNG CÔNG VIỆC}
 \addcontentsline{toc}{chapter}{Bảng phân công công việc}
@@ -121,14 +121,14 @@ T04 & TinyML trên board & 1 & Không & 3.5 & AI đặt trên PC, không phải 
 T05 & Công cụ TinyML & 1 & Không & 3.5 & Không xuất model cho board. \\
 T06 & ESP-NOW & 1,5 & Build & 3.3 & \code{firmware/src/main.cpp}; log build. Thiếu log hai board thực. \\
 T07 & Web trên thiết bị & 1 & Build & 3.2.2 & WebServer trong firmware bridge. Thiếu ảnh/trình diễn board. \\
-T08 & Gateway PC hai chiều & 1 & Phần mềm; một phần & 3.4 & Test Serial/RPC/outbox. Thiếu USB và cloud thật. \\
+T08 & Gateway PC hai chiều & 1 & Một phần & 3.4 & Telemetry cloud mô phỏng được xác nhận; thiếu USB thật và RPC từ cloud. \\
 T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_metrics.json}; model chạy PC, dữ liệu sinh. Cần đánh giá thực. \\
 T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Screenshot Chrome, điều khiển với ACK mô phỏng. \\
 T11 & Template CoreIOT & 1 & Cấu hình & 3.6.1 & Dashboard JSON và nguồn template; cần import/export thật. \\
 T12 & RuleChain & 1 & Cấu hình & 3.6.2 & JSON và JS filter; cần alarm chạy thật. \\
 T13 & Gửi thông báo & 0,5 & Hướng dẫn & 3.6.2 & Chưa nhận notification; chưa tự nhận điểm. \\
 T14 & OTA & 2 & Không & 3.6.3 & Không có OTA. \\
-T15 & Đồng bộ gateway & 2 & Phần mềm; một phần & 3.4 & Gateway API adapter/test; cần xác minh CoreIOT. \\
+T15 & Đồng bộ gateway & 2 & Một phần & 3.4 & Người dùng xác nhận Latest telemetry; cần ảnh gateway-child và thử RPC. \\
 \bottomrule
 \end{longtable}
 

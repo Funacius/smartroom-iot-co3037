@@ -52,7 +52,7 @@ Gateway chấp nhận một dòng bị chia nhiều lần đọc Serial, bỏ lo
 
 Bảng readings lưu mẫu; events lưu chuyển trạng thái; commands lưu yêu cầu điều khiển; outbox lưu topic/payload cần gửi. Ngưỡng và AI được tính trước khi lưu reading + event + outbox trong cùng giao dịch. Khi outbox đủ 100.000 bản tin, mẫu mới bị từ chối và báo lỗi thay vì âm thầm xóa dữ liệu chưa gửi. Đây là giới hạn theo số bản tin, chưa phải hạn mức tổng dung lượng đĩa.
 
-Khi cloud nối lại, adapter đăng ký child bằng \code{v1/gateway/connect} trước khi flush telemetry. Topic, cấu trúc và tên child được triển khai theo Gateway API chuẩn \cite{gatewayapi}. CoreIOT thực tế cần xác nhận tương thích. Bản tin telemetry có dạng:
+Khi cloud nối lại, adapter đăng ký child bằng \code{v1/gateway/connect} trước khi flush telemetry. Topic, cấu trúc và tên child được triển khai theo Gateway API chuẩn \cite{gatewayapi}. Người dùng đã xác nhận dữ liệu hiển thị trong Latest telemetry của CoreIOT; tương thích RPC còn cần thử. Bản tin telemetry có dạng:
 \begin{verbatim}
 Topic: v1/gateway/telemetry
 {"room-node-01":[{"ts":1795000000000,"values":{
@@ -113,7 +113,7 @@ Khi thay dữ liệu hoặc phiên bản scikit-learn, nên train lại và kh�
 
 \section{Nền tảng CoreIOT}
 \subsection{Device Profile, template và dashboard (T11)}
-Nhóm đã cung cấp cổng web \url{https://app.coreiot.io/home}; chưa tạo thiết bị hoặc dashboard trong tài khoản. Kiểm tra endpoint từ máy phát triển cho thấy TCP 1883 truy cập được và TCP 8883 bị từ chối. Tài liệu CoreIOT dùng MQTT \code{app.coreiot.io:1883} \cite{coreiotconnect}. Kết quả này chưa xác nhận token, quyền gateway hoặc luồng telemetry/RPC thực. Profile và script khởi động đã được chuẩn bị để người dùng nhập token kín trên máy mình.
+Nhóm sử dụng cổng web \url{https://app.coreiot.io/home}. Sau khi làm theo hướng dẫn tạo gateway và chạy script nhập token kín, người dùng xác nhận đã kết nối và thấy Latest telemetry. Kiểm tra API gateway tại cổng 8081 cho thấy dữ liệu mới, nguồn \code{simulation} và outbox bằng 0. Thông tin này được ghi tại \code{evidence/coreiot_progress.json}; chưa có ảnh hoặc export trực tiếp từ tài khoản, chưa thử RPC từ cloud. MQTT dùng \code{app.coreiot.io:1883} theo tài liệu CoreIOT \cite{coreiotconnect}; kết quả endpoint trước đó ghi TCP 1883 truy cập được và TCP 8883 bị từ chối.
 
 \code{coreiot/smartroom_dashboard.json} giữ hai time-series widget và alarm table từ template Thermostats chính thức. File nguồn, commit SHA, SHA-256 và giấy phép Apache-2.0 được lưu trong \code{coreiot/templates/}. Dự án thay alias thành \code{room-node-01}, bố cục và nhãn; bỏ map và form quản trị không phục vụ đề tài. Phần giao diện widget kế thừa không được trình bày như mã hoàn toàn do nhóm viết.
 

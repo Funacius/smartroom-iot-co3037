@@ -1,0 +1,27 @@
+{
+  "reported_on": "2026-11-18",
+  "user_confirmation": "Đã thấy kết nối, latest telemetry cũng hiện các thông tin",
+  "cloud_observation_source": "User report in conversation; no direct authenticated browser observation by the agent",
+  "verified_by_user": [
+    "CoreIOT connection",
+    "Latest telemetry is visible"
+  ],
+  "sensor_data_source": "simulation",
+  "physical_sensor_verified": false,
+  "cloud_rpc_verified": false,
+  "cloud_dashboard_verified": false,
+  "rulechain_verified": false,
+  "notification_verified": false,
+  "cloud_screenshots_or_exports_available": false,
+  "next_step": "Import coreiot/smartroom_dashboard.json and verify entity alias and live charts",
+  "local_gateway_observation": {
+    "checked_at": "2026-11-18T20:03:13.162403+07:00",
+    "url": "http://127.0.0.1:8081/api/state",
+    "device": "room-node-01",
+    "data_source": "simulation",
+    "sequence": 94,
+    "stale": false,
+    "outbox_count": 0,
+    "scope": "Local gateway status; outbox drained means transport acknowledgement, not proof of cloud dashboard or RPC behavior"
+  }
+}

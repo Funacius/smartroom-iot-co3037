@@ -1,5 +1,13 @@
 # Thiết lập CoreIOT theo thứ tự (T11, T12, T13, T15)
 
+## Trạng thái và bước tiếp theo
+
+Ngày 18/11/2026, người dùng xác nhận đã kết nối và thấy dữ liệu trong Latest telemetry. Kiểm tra API gateway local cổng 8081 cũng cho thấy nguồn `simulation`, dữ liệu mới và outbox bằng 0. Đây là kết quả thử đường gửi lên cloud; chưa chứng minh đường RPC từ CoreIOT về thiết bị.
+
+Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
+
+Dashboard hiện có hai biểu đồ và bảng alarm. Bảng alarm trống là bình thường khi chưa gắn RuleChain. Khi thấy hai biểu đồ cập nhật, lưu ảnh và export dashboard từ tài khoản thực. Sau đó mới thử RPC theo mục 2 và RuleChain theo mục 3. File ghi nhận tiến độ: `evidence/coreiot_progress.json`; chưa có ảnh hoặc export từ trình duyệt CoreIOT.
+
 ## Bắt đầu ngay trên tài khoản của bạn
 
 Trang của lớp: <https://app.coreiot.io/home>. Bạn chưa cần tạo cảm biến, dashboard hay RuleChain trước.
@@ -12,12 +20,12 @@ Trang của lớp: <https://app.coreiot.io/home>. Bạn chưa cần tạo cảm 
 
 Script tự tạo `runtime/coreiot_config.json`, không lưu token. Mặc định chạy mô phỏng và gửi dữ liệu sinh lên tài khoản của bạn; dùng database riêng `runtime/coreiot_simulation.sqlite3` để không phát lại lịch sử demo local trước đó. **Không cần tạo child bằng tay trong lần thử đầu**: gateway gửi connect để CoreIOT tạo/đăng ký child. Nếu server báo không đủ quyền, ghi lại thông báo để xử lý quyền hoặc tạo child theo chính sách của lớp.
 
-Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket-noi-va-gui-du-lieu/), MQTT dùng hostname **`app.coreiot.io`**, cổng **1883**. Profile riêng `gateway/config.coreiot.example.json` đặt `mqtt_tls=false`; kênh MQTT này không mã hóa. Kiểm tra tại máy ngày 18/11/2026: TCP 1883 truy cập được, TCP 8883 bị từ chối. Đây mới là kiểm tra endpoint, **chưa đăng nhập hoặc xác minh token, Gateway API hay quyền tài khoản**. Nếu quản trị lớp cấp endpoint TLS, cập nhật hostname/cổng/TLS trong cấu hình runtime tương ứng.
+Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket-noi-va-gui-du-lieu/), MQTT dùng hostname **`app.coreiot.io`**, cổng **1883**. Profile riêng `gateway/config.coreiot.example.json` đặt `mqtt_tls=false`; kênh MQTT này không mã hóa. Kiểm tra endpoint tại máy ngày 18/11/2026: TCP 1883 truy cập được, TCP 8883 bị từ chối. Sau đó người dùng đã xác nhận nhận telemetry trên CoreIOT; chưa xác minh RPC và các tính năng cloud còn lại. Nếu quản trị lớp cấp endpoint TLS, cập nhật hostname/cổng/TLS trong cấu hình runtime tương ứng.
 
 Sau khi child có telemetry, mới làm các mục dashboard, RPC và RuleChain bên dưới. Khi có board, sửa `serial_port` trong runtime config rồi chạy `python scripts/start_coreiot.py --hardware`.
 
 Các JSON ở đây đã được chuẩn bị cục bộ; **chưa import hoặc xác minh trên tài khoản CoreIOT**.
-Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; cần xác nhận CoreIOT của lớp hỗ trợ cùng API và phiên bản widget.
+Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; đường gửi telemetry đã được người dùng xác nhận, còn RPC và phiên bản widget cần kiểm chứng.
 Không cần gửi mật khẩu đăng nhập hay token cho người khác. Bạn tự nhập token vào terminal trên máy mình.
 
 ## 1. Tạo gateway và child device — T08, T15
@@ -47,7 +55,7 @@ Nguồn tái sử dụng: template **Thermostats** chính thức của ThingsBoa
 `make_dashboard.py` giữ widget nhiệt độ, độ ẩm và alarm; thay alias, bỏ map/form quản trị không dùng.
 
 1. Mở Dashboards → Import → `coreiot/smartroom_dashboard.json`.
-2. Mở Entity aliases, kiểm tra alias `SmartRoom sensor` tìm được **room-node-01**. Nếu phiên bản không hỗ trợ filter `deviceName`, chọn **Single entity → Device → room-node-01** rồi Save.
+2. Mở Entity aliases, kiểm tra alias `SmartRoom sensor` tìm được **room-node-01**. File dùng filter `entityName` cho loại `DEVICE` theo schema ThingsBoard. Nếu phiên bản CoreIOT không tự resolve, chọn **Single entity → Device → room-node-01** rồi Save.
 3. Kiểm tra hai biểu đồ và alarm table. Nếu thiếu widget `system.time_series_chart` ở phiên bản cũ, thêm widget Time series chart có sẵn và gắn hai key tương ứng. Đây là bước tương thích cần xác minh trên CoreIOT thực tế.
 4. Thêm widget **Control → RPC button/switch**. Chọn child `room-node-01`, method `setFan`, params **boolean** `true`/`false`, two-way RPC, timeout 10000 ms. Không truyền chuỗi `"true"` hay object `{value:true}`.
 5. Với switch có hàm chuyển đổi params, dùng `return value;`. Nếu switch cần get-state method chưa có, dùng hai RPC button Bật/Tắt và widget hiển thị telemetry `fan` để xem trạng thái.

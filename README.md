@@ -15,7 +15,7 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - Firmware `sensor` và `bridge` đã build trên PlatformIO; chưa nạp lên board trong phiên làm việc này.
 - Gateway, HTTP dashboard, journal, xử lý lệnh/ACK, outbox và adapter CoreIOT đã kiểm thử tự động. Xem `evidence/pytest.xml` và `evidence/verification.json`.
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
-- Có dashboard JSON dựa trên template Thermostats chính thức, RuleChain JSON và hướng dẫn notification. **Chưa xác minh tài khoản CoreIOT hoặc đường truyền vô tuyến thật.**
+- Người dùng đã xác nhận kết nối CoreIOT và thấy Latest telemetry. Gateway local cổng 8081 đang nhận dữ liệu `simulation`, outbox bằng 0. Dashboard CoreIOT, RPC từ cloud, RuleChain/notification và đường truyền vô tuyến thật vẫn cần kiểm chứng; xem `evidence/coreiot_progress.json`.
 - PDF bám mẫu Word, đủ sáu chương; phần chưa kiểm chứng được ghi rõ. Cần mã nhóm, video và ảnh/đo thực tế trước khi nộp.
 
 ## Chạy thử nhanh trên Windows
@@ -103,13 +103,13 @@ Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 |---|---:|---|---|
 | T06 | 1,5 | ESP-NOW unicast mã hóa, packet và ACK | Build đạt; cần thử hai board |
 | T07 | 1 | Web server trên bridge | Build đạt; cần ảnh web/điều khiển board |
-| T08 | 1 | Gateway hai chiều, lưu bền, ACK | Kiểm thử phần mềm; cần USB/cloud thật |
+| T08 | 1 | Gateway hai chiều, lưu bền, ACK | Telemetry cloud được xác nhận; cần USB thật và RPC từ cloud |
 | T09 | 1 | Isolation Forest trên gateway | Đã chạy với dữ liệu sinh; cần train/đánh giá thực |
 | T10 | 1 | Giao diện giám sát/điều khiển PC | Đã chạy local |
 | T11 | 1 | Template dashboard CoreIOT | Có JSON và nguồn; cần import/demo |
 | T12 | 1 | RuleChain cảnh báo với hysteresis | Có JSON/script; cần chạy CoreIOT |
 | T13 | 0,5 | Notification khi tạo alarm | Có hướng dẫn; chưa gửi thông báo thật |
-| T15 | 2 | Child synchronization qua Gateway API | Có adapter/test; cần kiểm chứng CoreIOT |
+| T15 | 2 | Child synchronization qua Gateway API | Latest telemetry đã được xác nhận; cần ảnh gateway-child và thử RPC |
 | N06 | 1 | Dashboard riêng phát hiện/ghi sự kiện, CSV | Đã chạy local |
 
 Tổng công nghệ **mục tiêu** 10 điểm trước trần → tối đa 8; báo cáo tối đa 2; bonus tối đa 1; tổng cuối vẫn tối đa 10. **Không phải điểm đã đạt**.
