@@ -127,6 +127,21 @@ issues = [
         word in line for word in ("Overfull", "Missing character", "undefined", "ignored error", "Warning:")
     )
 ]
+coreiot_image_files = [
+    "SmartRoom_Dashboard.png",
+    "Rule_chains_root.png",
+    "Rule_chains_SmartRoom_alarms.png",
+    "Notification.png",
+]
+embedded_sizes = {(item[2], item[3]) for page in document for item in page.get_images()}
+coreiot_images = {}
+for name in coreiot_image_files:
+    path = ROOT / "evidence/coreiot" / name
+    if path.exists():
+        pixmap = pymupdf.Pixmap(str(path))
+        coreiot_images[name] = (pixmap.width, pixmap.height) in embedded_sizes
+if not all(coreiot_images.values()):
+    raise SystemExit("A supplied CoreIOT screenshot is missing from the compiled PDF")
 (ROOT / "evidence/report_check.json").write_text(
     json.dumps(
         {
@@ -134,6 +149,7 @@ issues = [
             "latex_issues": issues,
             "metadata_checked": True,
             "source": "report/main.tex",
+            "coreiot_images_embedded": coreiot_images,
         },
         indent=2,
     ),

@@ -2,9 +2,11 @@
 
 ## Tiến độ đã xác nhận bằng ảnh
 
-Người dùng đã chọn sửa switch thủ công trên dashboard đang mở. Ảnh mới cho thấy alarm **SmartRoom Environment**, mức **Major**, originator **room-node-01**; danh sách Notification có cả **New alarm** và **Alarm cleared**, lặp qua nhiều đợt dữ liệu mô phỏng. T12 và T13 đã có minh chứng chức năng qua ảnh. Cơ chế thông báo sẵn có trên tài khoản đang hoạt động; không tạo thêm notification rule trùng lặp. Chưa xác định chính xác tên rule/template vì chưa có export.
+Người dùng đã chọn sửa switch thủ công trên dashboard đang mở. Ảnh mới cho thấy alarm **SmartRoom Environment**, mức **Major**, originator **room-node-01**; danh sách Notification có cả **New alarm** và **Alarm cleared**, lặp qua nhiều đợt dữ liệu mô phỏng. T12 và T13 đã có minh chứng chức năng qua ảnh. Cơ chế thông báo sẵn có trên tài khoản đang hoạt động; không tạo thêm notification rule trùng lặp. Chưa xác định chính xác tên notification rule/template vì chưa có export của riêng các cấu hình thông báo này.
 
-Bước tiếp theo: lưu ảnh dashboard, Root Rule Chain, SmartRoom alarms và Notification vào `evidence/coreiot/`, rồi export dashboard đang dùng và hai rule chain. Những ảnh hiện tại được gửi trong cuộc trò chuyện, chưa có tệp trong workspace để nhúng PDF. Sau đó thực hiện kiểm thử mất mạng và hai board thật. Các script cập nhật trực tiếp bên dưới là công cụ tùy chọn, không cần đăng nhập hoặc chạy lại khi bạn đang sửa thủ công.
+Đã nhận đủ 4 PNG và 3 JSON export thực trong `evidence/coreiot/`; ảnh được chèn vào PDF. Kiểm tra bằng `python scripts/check_coreiot_exports.py`: switch lấy telemetry `fan` và gửi đúng boolean; đơn vị độ ẩm %, Root lọc đúng thiết bị và giữ RPC; nhánh tạo/xóa alarm đúng. Các tệp nguồn được giữ nguyên, có SHA-256 trong `evidence/coreiot_export_check.json`.
+
+Còn một điểm hiển thị: cả hai biểu đồ dùng AVG 30 giây, cửa sổ riêng 1 giờ. Sửa ngay trên dashboard đang dùng thành **Aggregation=None**; có thể bật **Use dashboard time window** để đồng bộ thời gian. Sau đó export lại dashboard để cập nhật minh chứng. Không cần import hoặc tạo dashboard mới. Tiếp theo là kiểm thử mất mạng và hai board thật. Các script REST chỉ là công cụ tùy chọn khi người dùng muốn dùng lại.
 
 ## Công cụ tùy chọn: cập nhật tại chỗ qua REST
 
@@ -18,7 +20,7 @@ Ngày 18/11/2026, người dùng xác nhận Latest telemetry và các nút RPC 
 
 Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
 
-Người dùng đã gửi ảnh dashboard CoreIOT: hai biểu đồ nhận dữ liệu từ `room-node-01`; bảng alarm trống. Ảnh cho thấy trục độ ẩm ghi nhầm °C dù legend ghi %. Đã sửa generator và JSON cục bộ; cần áp dụng bản mới trên tài khoản. Ảnh nằm trong cuộc trò chuyện, chưa có file ảnh/export trong repository.
+Các file mới xác nhận dashboard có hai biểu đồ, bảng lịch sử alarm đã clear và Single Switch; độ ẩm đã dùng %. Ảnh và export gốc đã có trong repository. Hai biểu đồ vẫn dùng AVG 30 giây như đã ghi ở phần kiểm tra bên trên.
 
 ### Hướng dẫn khởi tạo bản RPC trước đây
 

@@ -1,6 +1,12 @@
 {
-  "pages": 42,
+  "pages": 44,
   "latex_issues": [],
   "metadata_checked": true,
-  "source": "report/main.tex"
+  "source": "report/main.tex",
+  "coreiot_images_embedded": {
+    "SmartRoom_Dashboard.png": true,
+    "Rule_chains_root.png": true,
+    "Rule_chains_SmartRoom_alarms.png": true,
+    "Notification.png": true
+  }
 }

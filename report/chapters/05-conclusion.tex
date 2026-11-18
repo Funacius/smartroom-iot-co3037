@@ -8,11 +8,11 @@ SmartRoom đã có bộ mã nguồn thống nhất cho hai role ESP32-S3, gatewa
 \toprule Mã & Đã có & Còn cần thực hiện \\ \midrule
 F01 & Firmware đọc/gửi; build hai role & Lắp DHT20, pin/MAC thật, đo radio \\
 F02 & SQLite/dashboard/stale và kiểm thử & Chạy từ dữ liệu USB board thật \\
-F03 & Journal PC; ảnh CoreIOT alarm Major, tạo/xóa và Web notification & Lưu tệp ảnh/export và đo độ trễ lặp \\
+F03 & Journal PC; ảnh/export alarm tạo/xóa và Web notification & Đo độ trễ lặp, chạy dữ liệu cảm biến thực \\
 F04 & Model và metrics dữ liệu sinh & Thu nhãn thực, train và đánh giá ngoài phiên \\
 F05 & Cơ chế ID/ACK/TTL; kiểm thử local & Nạp board, quan sát driver/quạt và web bridge \\
 F06 & Telemetry và RPC cloud mô phỏng; local ghi command applied & Ảnh/export gateway-child và thử phần cứng \\
-F07 & Dashboard/switch sửa thủ công; ảnh alarm và Web notification & Export cấu hình đang dùng, lưu ảnh và kiểm thử thực \\
+F07 & Bốn ảnh, ba JSON export; switch/đơn vị đúng & Chỉnh AVG thành None, đối chiếu URL và kiểm thử thực \\
 F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã nhóm \\
 \bottomrule
 \end{tabular}
@@ -21,7 +21,7 @@ F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã
 Những đóng góp kỹ thuật dễ kiểm tra là lưu bền trước khi upload, không xác nhận lệnh chỉ vì đã gửi, chống lặp theo ID, hysteresis giảm dao động cảnh báo và phân biệt rõ dữ liệu sinh với dữ liệu cảm biến. Nhóm chưa dùng bảng này để quy đổi thành điểm đã đạt vì còn thiếu các bằng chứng bắt buộc trên thiết bị và server.
 
 \section{Hạn chế}
-Chưa nạp/chạy board, đo ESP-NOW hoặc có ảnh mạch thật. GPIO/flash cần đối chiếu board lớp. Dashboard, RPC, alarm tạo/xóa và Web notification đã được quan sát với dữ liệu mô phỏng. Còn thiếu file ảnh gốc trong repository, export cấu hình thực và phép đo độ trễ lặp; chưa kiểm chứng email/SMTP hoặc sự ổn định dài hạn.
+Chưa nạp/chạy board, đo ESP-NOW hoặc có ảnh mạch thật. GPIO/flash cần đối chiếu board lớp. Ảnh gốc và cấu hình export đã được kiểm tra; dashboard, RPC, alarm tạo/xóa và Web notification có minh chứng với nguồn mô phỏng. Hai biểu đồ vẫn AVG 30 giây; chưa có phép đo độ trễ lặp, email/SMTP hoặc kiểm thử ổn định dài hạn. Dashboard export không mang runtime ID nên cần đối chiếu riêng URL đang dùng.
 
 Mô hình AI học dữ liệu sinh và chỉ dùng hai biến tức thời; chưa có xu hướng theo thời gian hay thích nghi theo mùa/phòng. Ngưỡng mặc định để demo, chưa tối ưu theo nhu cầu người dùng. Hệ thống chưa kiểm tra công suất quạt, tốc độ thực hay điều khiển tự động kín vòng.
 

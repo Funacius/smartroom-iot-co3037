@@ -113,22 +113,50 @@ Khi thay dữ liệu hoặc phiên bản scikit-learn, nên train lại và kh�
 
 \section{Nền tảng CoreIOT}
 \subsection{Device Profile, template và dashboard (T11)}
-Nhóm sử dụng cổng web \url{https://app.coreiot.io/home}. Người dùng xác nhận Latest telemetry và gửi ảnh dashboard \code{SmartRoom CO3037} có hai biểu đồ Temperature/Humidity, chọn \code{room-node-01}; bảng Alarms chưa có dòng. API gateway tại cổng 8081 cho thấy nguồn \code{simulation}, các command RPC applied và outbox bằng 0. Thông tin ghi tại \code{evidence/coreiot_progress.json}; ảnh nằm trong cuộc trò chuyện, chưa có tệp ảnh để nhúng báo cáo hoặc export cấu hình thực. MQTT dùng \code{app.coreiot.io:1883} theo tài liệu CoreIOT \cite{coreiotconnect}.
+Nhóm sử dụng cổng web \url{https://app.coreiot.io/home}. Các ảnh và cấu hình thực đã được lưu trong \code{evidence/coreiot/}. Export \code{smartroom_co3037.json} có bốn widget: Temperature, Humidity, bảng Alarms và Single Switch Fan. Alias cảm biến tìm \code{room-node-01}; switch chọn cùng hệ thống thiết bị và lấy time-series \code{fan}. API local trước đó ghi nguồn \code{simulation}, RPC ID applied và outbox bằng 0. MQTT dùng \code{app.coreiot.io:1883} theo tài liệu CoreIOT \cite{coreiotconnect}.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{../evidence/coreiot/SmartRoom_Dashboard.png}
+\caption{Dashboard CoreIOT thực: hai biểu đồ, Single Switch Fan và lịch sử alarm đã clear; nguồn cảm biến mô phỏng.}
+\label{fig:coreiot-dashboard}
+\end{figure}
 
 \code{coreiot/smartroom_dashboard.json} giữ hai time-series widget và alarm table từ template Thermostats chính thức. File nguồn, commit SHA, SHA-256 và giấy phép Apache-2.0 được lưu trong \code{coreiot/templates/}. Dự án thay alias thành \code{room-node-01}, bố cục và nhãn; bỏ map và form quản trị không phục vụ đề tài. Phần giao diện widget kế thừa không được trình bày như mã hoàn toàn do nhóm viết.
 
-Ảnh gửi cho thấy trục Y của Humidity kế thừa đơn vị °C từ template dù legend đã là \%. Generator đã sửa đồng thời đơn vị data key và cả cấu hình trục cũ/mới. Hai biểu đồ dùng chung cửa sổ 10 phút và không tổng hợp trung bình, tránh cửa sổ widget 1 giờ lệch với điều khiển dashboard và giảm đỉnh bất thường ngắn. Các sửa đổi mới được thực hiện trong JSON cục bộ, cần import/kiểm tra lại trên CoreIOT.
+Ảnh và export mới xác nhận đơn vị trục Y của Humidity đã được sửa thành \%. Còn một điểm hiển thị chưa chỉnh trong bản export: hai biểu đồ dùng cửa sổ riêng 1 giờ, AVG mỗi 30 giây, không dùng time window của dashboard. Việc lấy trung bình có thể làm thấp đỉnh nóng ngắn; trong ảnh, nhiệt độ tối đa hiển thị khoảng 31,5~°C. RuleChain xét bản tin gốc và cờ anomaly, không dùng kết quả AVG của widget, nên alarm vẫn có thể xuất hiện. Nên chỉnh Aggregation=None trên dashboard hiện tại và export lại; bản export gốc được giữ nguyên để phản ánh đúng minh chứng đã thu.
 
 Bản \code{coreiot/smartroom_dashboard_rpc.json} trước đây được dùng khởi tạo hai RPC Button đặt method \code{setFan}, params boolean true/false và target alias sensor. Lệnh dùng two-way, timeout 10 giây; người dùng đã xác nhận vận hành và gateway ghi trạng thái applied cho các RPC ID. File này được giữ làm cấu hình ban đầu và fixture kiểm thử, không yêu cầu import lại khi đã có dashboard đang dùng.
 
-Người dùng xác nhận RPC chạy; API gateway local ghi command có RPC ID và trạng thái applied cho bật/tắt với nguồn mô phỏng. Sau đó người dùng tự thêm Fan switch trên dashboard đang mở: Initial state dùng time-series \code{fan}, Turn On/Off gọi \code{setFan} với boolean true/false. Cần đối chiếu telemetry và journal để xác nhận áp dụng; động tác gạt chưa thay cho phản hồi node. Công cụ REST cập nhật cùng ID, backup và Windows DPAPI đã được kiểm thử cục bộ nhưng chỉ là tùy chọn; người dùng chọn sửa thủ công nên không cần đăng nhập hoặc chạy công cụ này. ID dashboard hiện tại cần đối chiếu lại với export sau khi người dùng chuyển dashboard.
+Export xác nhận widget \code{system.single_switch} có Initial state=GET\_TIME\_SERIES, key \code{fan}; On/Off đều EXECUTE\_RPC, method \code{setFan}, tham số boolean true/false. Không có lời gọi getFan ở bước lấy trạng thái. Người dùng xác nhận RPC chạy và API local có command applied; chưa dùng ảnh động tác gạt thay cho phản hồi node. Người dùng sửa thủ công nên công cụ REST/DPAPI chỉ là tùy chọn. Dashboard export không chứa runtime ID; URL đang dùng cần đối chiếu riêng, không suy ra từ tiêu đề.
 
 \subsection{RuleChain và notification (T12, T13)}
 RuleChain mới tên \code{SmartRoom alarms}, không đặt làm root toàn tài khoản. Nhánh Post telemetry được lưu timeseries rồi lọc điều kiện nhiệt độ $\geq32$~°C hoặc độ ẩm $\geq80$~\%RH hoặc anomaly=true. Nhánh True tạo alarm type \code{SmartRoom Environment}, mức MAJOR. Nhánh False kiểm tra điều kiện phục hồi: nhiệt độ $\leq30$, độ ẩm $\leq75$ và không anomaly; chỉ khi đạt mới clear. Vùng giữa giữ alarm hiện tại.
 
-Người dùng đã gửi ảnh Root với đường Post telemetry vào filter theo \code{metadata.deviceName}; nhánh True gọi SmartRoom alarms, False về Save Timeseries. Các nhánh RPC giữ nguyên. Ảnh Alarms ghi type \code{SmartRoom Environment}, severity Major, originator \code{room-node-01}. Ảnh Notification hiển thị cả New alarm và Alarm cleared cho cùng thiết bị qua nhiều đợt dữ liệu mô phỏng, xác nhận chức năng tạo, phục hồi và gửi thông báo Web đã hoạt động.
+Export \code{root_rule_chain.json} xác nhận Post telemetry đi qua bộ lọc \code{metadata.deviceName === "room-node-01"}; True gọi SmartRoom alarms, False lưu timeseries cho các thiết bị khác. Nhánh RPC Request to Device vẫn tới RPC Call Request. Không còn đường lưu telemetry trực tiếp trùng lặp cho SmartRoom ở Root.
 
-Thông báo đã có trên tài khoản nên không tạo thêm rule trùng lặp. Nhóm đang sử dụng cơ chế Notification sẵn có; chưa export nên không khẳng định tự viết recipient/template/rule này. Hiện chưa có bằng chứng gửi email hoặc cấu hình SMTP. Các ảnh nằm trong cuộc trò chuyện, cần lưu tệp vào \code{evidence/coreiot/} để nhúng PDF; mô tả quan sát ở \code{evidence/coreiot_progress.json}. Không suy ra độ trễ định lượng từ nhãn thời gian tương đối trên ảnh.
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=.36\textheight,keepaspectratio]{../evidence/coreiot/Rule_chains_root.png}
+\caption{Root Rule Chain đã cấu hình trên tài khoản: lọc riêng SmartRoom và giữ đường RPC.}
+\label{fig:coreiot-root}
+\end{figure}
+
+Export \code{smartroom_alarms.json} xác nhận chuỗi Telemetry only $\rightarrow$ Save timeseries $\rightarrow$ High or anomaly; nhánh True tạo alarm, nhánh False kiểm tra điều kiện phục hồi trước khi clear. Hai action dùng cùng alarm type \code{SmartRoom Environment}; severity tạo là MAJOR.
+
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=.34\textheight,keepaspectratio]{../evidence/coreiot/Rule_chains_SmartRoom_alarms.png}
+\caption{SmartRoom alarms thực: tạo alarm và clear với điều kiện phục hồi có hysteresis.}
+\label{fig:coreiot-alarms}
+\end{figure}
+
+Ảnh dashboard ghi các alarm Major của \code{room-node-01} đã chuyển Cleared Unacknowledged. Ảnh Notification hiển thị cả New alarm và Alarm cleared qua nhiều đợt dữ liệu mô phỏng, xác nhận tạo, phục hồi và gửi Web notification.
+
+\begin{figure}[H]\centering
+\includegraphics[width=.48\textwidth,height=.63\textheight,keepaspectratio]{../evidence/coreiot/Notification.png}
+\caption{Thông báo Web đã nhận cho cả tạo và clear SmartRoom Environment trên CoreIOT.}
+\label{fig:coreiot-notifications}
+\end{figure}
+
+Thông báo đã có trên tài khoản nên không tạo thêm rule trùng lặp. Chưa có export recipient/template/notification rule nên không khẳng định nhóm tự viết các cấu hình đó. Chưa kiểm chứng email/SMTP. Ảnh gốc và ba JSON export được giữ nguyên; SHA-256 và kết quả kiểm tra nằm ở \code{evidence/coreiot_export_check.json}. Không suy ra độ trễ định lượng từ nhãn thời gian tương đối trên ảnh.
 
 \subsection{Cập nhật OTA (T14)}
 Không triển khai. Dự án nạp firmware qua USB bằng PlatformIO; không có phép đo thời gian OTA hoặc phiên bản trước/sau để nhận điểm T14.

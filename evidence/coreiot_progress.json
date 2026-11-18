@@ -13,7 +13,7 @@
   "rulechain_verified": true,
   "notification_verified": true,
   "cloud_screenshots_or_exports_available": true,
-  "next_step": "Save screenshots and export the current dashboard and root/child rule chains to evidence/coreiot/, then run hardware and offline recovery tests.",
+  "next_step": "Set chart aggregation to None on the existing dashboard, re-export, then hardware and offline recovery tests.",
   "local_gateway_observation": {
     "checked_at": "2026-11-18T20:03:13.162403+07:00",
     "url": "http://127.0.0.1:8081/api/state",
@@ -25,23 +25,21 @@
     "scope": "Local gateway status; outbox drained means transport acknowledgement, not proof of cloud dashboard or RPC behavior"
   },
   "cloud_dashboard_verification_scope": "User screenshots show Temperature/Humidity charts and a manually added Fan switch. User also supplied alarm and notification screenshots. Not a physical sensor test.",
-  "screenshot_storage": "Screenshot attached in conversation; image file not available in the workspace or embedded in the PDF.",
-  "cloud_dashboard_export_available": false,
+  "screenshot_storage": "Four original PNG screenshots are available under evidence/coreiot and embedded in the report.",
+  "cloud_dashboard_export_available": true,
   "screenshot_observations": {
     "temperature_chart_present": true,
     "humidity_chart_present": true,
     "alarm_table": "SmartRoom Environment, Major, originator room-node-01",
-    "humidity_axis_issue": "Axis tick labels show Celsius although humidity legend uses percent",
-    "timewindow_issue": "Dashboard last minute and charts last hour differ",
+    "humidity_axis_issue": "Fixed in supplied export and screenshot: percent unit.",
+    "timewindow_issue": "Both chart widgets independently use one-hour AVG windows with 30-second intervals; dashboard time window is not used.",
     "notifications": [
       "New alarm SmartRoom Environment",
       "Alarm SmartRoom Environment cleared"
     ]
   },
   "local_fixes_pending_cloud_check": [
-    "Humidity axis unit changed to percent",
-    "Shared ten-minute chart timewindow without averaging",
-    "Additional dashboard with two-way setFan true/false buttons"
+    "Both live chart exports still use AVG every 30000 ms and independent one-hour windows; change to None and re-export."
   ],
   "cloud_rpc_scope": "User reports buttons work; local gateway has MQTT RPC request ids and applied commands. Sensor is simulated.",
   "recent_rpc_commands": [
@@ -90,5 +88,9 @@
   "rulechain_verification_scope": "User screenshots show root telemetry routing through device-name filter to SmartRoom alarms, the child create/clear chain, and a Major alarm for room-node-01.",
   "notification_configuration_provenance": "Existing notification mechanism on the user account is functioning; exact recipient/template/rule names have not been exported. No additional notification rule was created by the agent.",
   "switch_edit_method": "User manually configured a Fan switch in the dashboard UI; no authenticated REST update was performed.",
-  "dashboard_url_status": "Previously supplied URL; user subsequently changed dashboard. Current active ID awaits verified dashboard export."
+  "dashboard_url_status": "Previously supplied URL; user subsequently changed dashboard. Current active ID awaits verified dashboard export.",
+  "rulechain_exports_available": true,
+  "switch_configuration_verified": true,
+  "switch_configuration_source": "smartroom_co3037.json: system.single_switch, initialState GET_TIME_SERIES fan, setFan constant boolean true/false.",
+  "export_validation_file": "evidence/coreiot_export_check.json"
 }

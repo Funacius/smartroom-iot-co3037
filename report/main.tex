@@ -92,7 +92,7 @@ Mã nhóm & \GroupCode. Tên PDF hiện dùng CHUA\_CAP\_MA\_NHOM. \\
 Tài liệu gốc & \code{Project_Annoucement_IoT.pdf} và \code{IoTReport_Template.docx}. \\
 \bottomrule
 \end{longtable}
-\notice{Hai firmware đã biên dịch; chưa nạp board. Với nguồn cảm biến mô phỏng, người dùng gửi ảnh dashboard/switch, Root Rule Chain, alarm Major và Web notification cho cả tạo/xóa alarm; gateway ghi RPC ID applied. Ảnh đang ở cuộc trò chuyện, chưa có tệp để nhúng PDF hoặc export cấu hình thực. Người dùng chọn sửa dashboard thủ công; không cần chạy script đăng nhập. Cần bổ sung tệp minh chứng, phần cứng, đo vô tuyến và video.}
+\notice{Hai firmware đã biên dịch; chưa nạp board. Bốn ảnh chụp và ba JSON export thực của CoreIOT đã được nhóm lưu, kiểm tra và đưa vào báo cáo; nguồn cảm biến vẫn là mô phỏng. Có minh chứng dashboard/switch, RuleChain, alarm tạo/xóa và Web notification; gateway ghi RPC ID applied. Biểu đồ còn AVG mỗi 30 giây, cần chỉnh hiển thị để không làm thấp đỉnh nóng. Phần cứng, phép đo vô tuyến và video vẫn cần bổ sung.}
 
 \chapter*{BẢNG PHÂN CÔNG CÔNG VIỆC}
 \addcontentsline{toc}{chapter}{Bảng phân công công việc}
@@ -124,9 +124,9 @@ T07 & Web trên thiết bị & 1 & Build & 3.2.2 & WebServer trong firmware brid
 T08 & Gateway PC hai chiều & 1 & Phần mềm & 3.4 & Telemetry và RPC cloud mô phỏng đã chạy; thiếu USB/phần cứng thật. \\
 T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_metrics.json}; model chạy PC, dữ liệu sinh. Cần đánh giá thực. \\
 T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Screenshot Chrome, điều khiển với ACK mô phỏng. \\
-T11 & Template CoreIOT & 1 & Phần mềm; ảnh & 3.6.1 & Hai biểu đồ có dữ liệu và nút RPC đã chạy; cần export cấu hình thực. \\
-T12 & RuleChain & 1 & Phần mềm; ảnh & 3.6.2 & Ảnh Root, chain, alarm Major và sự kiện tạo/xóa trên CoreIOT. \\
-T13 & Gửi thông báo & 0,5 & Phần mềm; ảnh & 3.6.2 & Web notification New alarm/cleared cho room-node-01; cần lưu tệp ảnh. \\
+T11 & Template CoreIOT & 1 & Phần mềm; ảnh & 3.6.1 & Hình \ref{fig:coreiot-dashboard}; export dashboard có switch, đơn vị \% đúng. \\
+T12 & RuleChain & 1 & Phần mềm; ảnh & 3.6.2 & Hình \ref{fig:coreiot-root}, \ref{fig:coreiot-alarms}; hai JSON export và kiểm tra logic. \\
+T13 & Gửi thông báo & 0,5 & Phần mềm; ảnh & 3.6.2 & Hình \ref{fig:coreiot-notifications}: Web notification tạo/xóa đã nhận. \\
 T14 & OTA & 2 & Không & 3.6.3 & Không có OTA. \\
 T15 & Đồng bộ gateway & 2 & Một phần & 3.4 & Uplink và RPC mô phỏng đã chạy; cần ảnh gateway-child và export. \\
 \bottomrule

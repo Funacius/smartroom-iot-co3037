@@ -1,0 +1,305 @@
+{
+  "scope": "User-provided cloud exports/screenshots; sensor data is simulated; no account mutation",
+  "passed": 35,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "One Single Switch and four widgets",
+      "pass": true
+    },
+    {
+      "check": "Switch reads fan telemetry",
+      "pass": true
+    },
+    {
+      "check": "onUpdateState sends setFan with a boolean",
+      "pass": true
+    },
+    {
+      "check": "offUpdateState sends setFan with a boolean",
+      "pass": true
+    },
+    {
+      "check": "temperature axis matches data unit",
+      "pass": true
+    },
+    {
+      "check": "temperature alias resolves to room-node-01",
+      "pass": true
+    },
+    {
+      "check": "humidity axis matches data unit",
+      "pass": true
+    },
+    {
+      "check": "humidity alias resolves to room-node-01",
+      "pass": true
+    },
+    {
+      "check": "Layout references existing widgets",
+      "pass": true
+    },
+    {
+      "check": "root graph indices are valid",
+      "pass": true
+    },
+    {
+      "check": "alarms graph indices are valid",
+      "pass": true
+    },
+    {
+      "check": "Root Post telemetry enters SmartRoom filter",
+      "pass": true
+    },
+    {
+      "check": "True routes to alarm chain",
+      "pass": true
+    },
+    {
+      "check": "False keeps other devices saving telemetry",
+      "pass": true
+    },
+    {
+      "check": "RPC Request to Device route is preserved",
+      "pass": true
+    },
+    {
+      "check": "No duplicate direct telemetry save route",
+      "pass": true
+    },
+    {
+      "check": "Child chain links save, high filter, create and clear",
+      "pass": true
+    },
+    {
+      "check": "Create and clear use same alarm type",
+      "pass": true
+    },
+    {
+      "check": "Alarm severity is Major",
+      "pass": true
+    },
+    {
+      "check": "normal high",
+      "pass": true
+    },
+    {
+      "check": "normal clear",
+      "pass": true
+    },
+    {
+      "check": "hot high",
+      "pass": true
+    },
+    {
+      "check": "hot clear",
+      "pass": true
+    },
+    {
+      "check": "humid high",
+      "pass": true
+    },
+    {
+      "check": "humid clear",
+      "pass": true
+    },
+    {
+      "check": "AI anomaly high",
+      "pass": true
+    },
+    {
+      "check": "AI anomaly clear",
+      "pass": true
+    },
+    {
+      "check": "hysteresis band high",
+      "pass": true
+    },
+    {
+      "check": "hysteresis band clear",
+      "pass": true
+    },
+    {
+      "check": "high boundary high",
+      "pass": true
+    },
+    {
+      "check": "high boundary clear",
+      "pass": true
+    },
+    {
+      "check": "clear boundary high",
+      "pass": true
+    },
+    {
+      "check": "clear boundary clear",
+      "pass": true
+    },
+    {
+      "check": "device filter room-node-01",
+      "pass": true
+    },
+    {
+      "check": "device filter another-device",
+      "pass": true
+    }
+  ],
+  "script_scenarios": [
+    {
+      "name": "normal high",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "normal clear",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "hot high",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "hot clear",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "humid high",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "humid clear",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "AI anomaly high",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "AI anomaly clear",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "hysteresis band high",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "hysteresis band clear",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "high boundary high",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "high boundary clear",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "clear boundary high",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "name": "clear boundary clear",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "device filter room-node-01",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "name": "device filter another-device",
+      "expected": false,
+      "actual": false
+    }
+  ],
+  "findings": [
+    {
+      "severity": "display_issue",
+      "chart": "Temperature",
+      "aggregation": "AVG",
+      "interval_ms": 30000,
+      "window_ms": 3600000,
+      "recommendation": "Use None aggregation to show raw transient peaks; optionally share dashboard time window"
+    },
+    {
+      "severity": "display_issue",
+      "chart": "Humidity",
+      "aggregation": "AVG",
+      "interval_ms": 30000,
+      "window_ms": 3600000,
+      "recommendation": "Use None aggregation to show raw transient peaks; optionally share dashboard time window"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "evidence/coreiot/Notification.png",
+      "bytes": 61108,
+      "sha256": "c1fc6bde574023da4d4ffe6ff4e253a54e06651c6bf28a29add2ba0effcdc396",
+      "pixels": [
+        350,
+        670
+      ]
+    },
+    {
+      "path": "evidence/coreiot/root_rule_chain.json",
+      "bytes": 8078,
+      "sha256": "e19b9d28d428158161612a542c173a2ae5e1217712758ab1db15ce2171555034"
+    },
+    {
+      "path": "evidence/coreiot/Rule_chains_root.png",
+      "bytes": 99286,
+      "sha256": "7f7afb6ff1b8bb90f708a8aec81033af1a7d01d5e1a73352debb7ecc3ae21546",
+      "pixels": [
+        1278,
+        566
+      ]
+    },
+    {
+      "path": "evidence/coreiot/Rule_chains_SmartRoom_alarms.png",
+      "bytes": 51381,
+      "sha256": "f37781d128750c966e50db0d9152b26478f807ad905c860008c5e419d22adf1f",
+      "pixels": [
+        1256,
+        443
+      ]
+    },
+    {
+      "path": "evidence/coreiot/smartroom_alarms.json",
+      "bytes": 4600,
+      "sha256": "37bb52cc0cb39467483f14ed659bd1b0a1f741ba33dbaaf2e812622021450074"
+    },
+    {
+      "path": "evidence/coreiot/smartroom_co3037.json",
+      "bytes": 39372,
+      "sha256": "784950bd0a37a50abab5348003112052a8c7161c6ad476af1666b4aadc63bb82"
+    },
+    {
+      "path": "evidence/coreiot/SmartRoom_Dashboard.png",
+      "bytes": 147596,
+      "sha256": "3ee5b855440f02902c02857e54306e154c4be18b083a70c0f4052a59ca43ffb1",
+      "pixels": [
+        1644,
+        803
+      ]
+    }
+  ],
+  "notes": [
+    "Dashboard export omits its runtime ID; current dashboard URL is not derived from its title.",
+    "Root export has root=false; this flag alone does not establish which runtime chain is active.",
+    "The root child-chain reference contains a server-specific ID; preserve original exports."
+  ]
+}
