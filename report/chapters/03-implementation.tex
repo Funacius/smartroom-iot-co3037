@@ -123,17 +123,48 @@ Nhóm sử dụng cổng web \url{https://app.coreiot.io/home}. Các ảnh và c
 
 \begin{figure}[H]\centering
 \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{../evidence/coreiot/SmartRoom_Dashboard.png}
-\caption{Dashboard CoreIOT thực: hai biểu đồ, Single Switch Fan và lịch sử alarm đã clear; nguồn cảm biến mô phỏng.}
+\caption{Ảnh CoreIOT gốc lưu ngày 18/11: hai biểu đồ, Single Switch Fan và alarm; chưa có các thẻ AI bổ sung ngày 26/11. Nguồn cảm biến mô phỏng.}
 \label{fig:coreiot-dashboard}
 \end{figure}
 
 \code{coreiot/smartroom_dashboard.json} giữ hai time-series widget và alarm table từ template Thermostats chính thức. File nguồn, commit SHA, SHA-256 và giấy phép Apache-2.0 được lưu trong \code{coreiot/templates/}. Dự án thay alias thành \code{room-node-01}, bố cục và nhãn; bỏ map và form quản trị không phục vụ đề tài. Phần giao diện widget kế thừa không được trình bày như mã hoàn toàn do nhóm viết.
 
-Ảnh và export gốc đã lưu xác nhận trục Humidity dùng đơn vị \%. Bản export đó còn hai cửa sổ riêng 1 giờ, AVG mỗi 30 giây; việc lấy trung bình có thể làm thấp đỉnh nóng ngắn. RuleChain xét bản tin gốc và cờ anomaly, không dùng kết quả AVG của widget. Ảnh mới trong trao đổi ngày 26/11 đã có dữ liệu và đỉnh khoảng 35,8~°C, nhưng chưa có JSON export mới để xác nhận aggregation hiện tại. Khi hoàn thiện dashboard nên dùng Aggregation=None cho dữ liệu gốc và export lại; giữ nguyên bản cũ để phản ánh đúng thời điểm thu.
+Ảnh và export gốc xác nhận trục Humidity dùng đơn vị \%. Bản ngày 18/11 còn AVG mỗi 30 giây; bản mới \code{smartroom_dashboard_20261126.json} đã xác nhận cả hai biểu đồ dùng aggregation NONE, cửa sổ riêng 1 giờ. Các đỉnh ngắn được hiển thị bằng dữ liệu gốc; RuleChain vẫn xét telemetry đầu vào. Hai bản export được giữ riêng theo ngày, không sửa cấu hình cũ để giả như thay đổi đã có trước đó.
 
 Bản \code{coreiot/smartroom_dashboard_rpc.json} trước đây được dùng khởi tạo hai RPC Button đặt method \code{setFan}, params boolean true/false và target alias sensor. Lệnh dùng two-way, timeout 10 giây; người dùng đã xác nhận vận hành và gateway ghi trạng thái applied cho các RPC ID. File này được giữ làm cấu hình ban đầu và fixture kiểm thử, không yêu cầu import lại khi đã có dashboard đang dùng.
 
 Export xác nhận widget \code{system.single_switch} có Initial state=GET\_TIME\_SERIES, key \code{fan}; On/Off đều EXECUTE\_RPC, method \code{setFan}, tham số boolean true/false. Không có lời gọi getFan ở bước lấy trạng thái. Người dùng xác nhận RPC chạy và API local có command applied; chưa dùng ảnh động tác gạt thay cho phản hồi node. Người dùng sửa thủ công nên công cụ REST/DPAPI chỉ là tùy chọn. Dashboard export không chứa runtime ID; URL đang dùng cần đối chiếu riêng, không suy ra từ tiêu đề.
+
+\subsubsection{Các thẻ AI bổ sung ngày 26/11/2026}
+Sau khi đánh giá AI và sửa đồng bộ switch, nhóm bổ sung các thẻ quan sát trực tiếp kết quả phân tích trên CoreIOT. Người dùng cung cấp ảnh và xác nhận hoàn tất cấu hình trong trao đổi. Tất cả đọc child \code{room-node-01}; Status widget lấy trạng thái bằng \emph{Get time series}, không gọi RPC để lấy trạng thái model. Các tiêu đề dùng tiếng Anh để thống nhất giao diện.
+
+\begin{longtable}{P{3.3cm}P{3.6cm}P{7cm}}
+\caption{Các thẻ trên dashboard sau khi bổ sung AI}\label{tab:coreiot-ai-cards}\\
+\toprule Tiêu đề & Widget / key & Ý nghĩa hiển thị \\ \midrule
+AI Availability & Status widget; \code{ai_available} & True: MODEL READY; false: MODEL UNAVAILABLE. Xác nhận model đã nạp, không phải độ chính xác của AI. \\
+Anomaly Score & Value card; \code{anomaly_score} & Score 4 chữ số thập phân, không có đơn vị; giá trị âm được model đánh dấu bất thường. \\
+Anomaly Detection & Status widget; \code{anomaly} & Cờ true: ANOMALY, nền đỏ; false: NORMAL, nền xanh. Export dùng điều kiện On khi kết quả bằng false. \\
+Inference Time & Value card; \code{inference_ms} & Thời gian suy luận trên PC, đơn vị ms; không phải độ trễ sensor--cloud. \\
+Data Source & Value card; \code{data_source} & Hiện simulation để nhận biết dữ liệu sinh; hardware chỉ khi thật sự chạy từ bridge. \\
+Fan & Single Switch; \code{fan} & Đọc trạng thái fan và gửi \code{setFan} boolean; đồng bộ hai chiều đã kiểm tra với node mô phỏng. \\
+\bottomrule
+\end{longtable}
+
+Ảnh mới đã lưu hiển thị MODEL READY, score 0,2435, NORMAL, inference 6~ms và nguồn simulation; score không âm khớp với trạng thái NORMAL. Hai biểu đồ hiển thị nhiệt độ khoảng 26,1--35,9~°C và độ ẩm 56--64\% trong cửa sổ đang xem; bảng Alarms có các bản ghi SmartRoom Environment đã clear. Biểu tượng score đã đổi từ tam giác cảnh báo đỏ cố định sang biểu tượng thông tin xanh để tránh làm người xem hiểu nhầm mọi score đều là cảnh báo. Đây là một quan sát giao diện, không phải benchmark hoặc phép đo lặp. Người dùng xác nhận đã sửa On/Off; ảnh lưu trực tiếp thể hiện trạng thái normal, chưa là minh chứng riêng cho mọi lần chuyển trạng thái.
+
+Nội dung quan sát, kích thước và SHA-256 ảnh/export mới được ghi tại \code{evidence/coreiot/dashboard_ai_user_check.json}. Hình \ref{fig:coreiot-dashboard} giữ ảnh gốc ngày 18/11; ảnh và JSON ngày 26/11 được lưu riêng. Export mới có 9 widget: 2 biểu đồ, bảng Alarms, Fan, 3 Value card và 2 Status widget. Kiểm tra tĩnh đạt 15/15 điều kiện, gồm layout hợp lệ, hai biểu đồ NONE, các key AI và RPC boolean; kết quả ở \code{evidence/coreiot_dashboard_ai_check.json}.
+
+Riêng Anomaly Detection, \code{compareToValue=false} làm cờ anomaly=false chọn bộ On với chữ Normal/nền xanh; anomaly=true chọn bộ Off với chữ Anomaly/nền đỏ. Đây là ánh xạ hợp lệ đã được đối chiếu trên JSON, không đổi ý nghĩa cờ AI. AI Availability dùng \code{compareToValue=true}, On là Model ready và Off là Model Unavailable. Ba Value card có type latest, lần lượt đọc score, inference và nguồn dữ liệu; score dùng 4 chữ số thập phân, inference có đơn vị ms và 2 chữ số. Giá trị trên thẻ là telemetry gần nhất: khi đánh giá hoạt động cần kiểm tra thời gian cập nhật, không chỉ nhìn chữ MODEL READY.
+
+\IfFileExists{../evidence/coreiot/SmartRoom_Dashboard_20261126.png}{%
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=.68\textheight,keepaspectratio]{../evidence/coreiot/SmartRoom_Dashboard_20261126.png}
+\caption{Dashboard CoreIOT bổ sung các thẻ AI; ảnh người dùng lưu ngày 26/11, nguồn dữ liệu mô phỏng.}
+\label{fig:coreiot-dashboard-updated}
+\end{figure}
+}{%
+Ảnh mới đã được xem trong trao đổi nhưng chưa có file gốc tại đường dẫn minh chứng khi dựng PDF. Nhóm cần lưu \code{evidence/coreiot/SmartRoom_Dashboard_20261126.png} để ảnh được tự động nhúng ở lần dựng tiếp theo; bảng cấu hình và quan sát ở trên được giữ rõ nguồn.
+}
 
 \subsection{RuleChain và notification (T12, T13)}
 RuleChain mới tên \code{SmartRoom alarms}, không đặt làm root toàn tài khoản. Nhánh Post telemetry được lưu timeseries rồi lọc điều kiện nhiệt độ $\geq32$~°C hoặc độ ẩm $\geq80$~\%RH hoặc anomaly=true. Nhánh True tạo alarm type \code{SmartRoom Environment}, mức MAJOR. Nhánh False kiểm tra điều kiện phục hồi: nhiệt độ $\leq30$, độ ẩm $\leq75$ và không anomaly; chỉ khi đạt mới clear. Vùng giữa giữ alarm hiện tại.

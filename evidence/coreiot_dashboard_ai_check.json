@@ -1,0 +1,77 @@
+{
+  "scope": "Static validation of user-provided CoreIOT export; no account mutation or physical test",
+  "source_file": "evidence/coreiot/smartroom_dashboard_20261126.json",
+  "source_sha256": "447030332f90ae86e1af4d1f55a130dd7373d22bf959aa38f22690b4757cab4c",
+  "passed": 15,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "Nine widgets: two charts, alarms, Fan, three values and two status widgets",
+      "pass": true
+    },
+    {
+      "check": "Both charts use NONE aggregation",
+      "pass": true
+    },
+    {
+      "check": "ai_available reads time-series state",
+      "pass": true
+    },
+    {
+      "check": "anomaly reads time-series state",
+      "pass": true
+    },
+    {
+      "check": "AI available=true renders Model ready",
+      "pass": true
+    },
+    {
+      "check": "AI available=false renders Model unavailable",
+      "pass": true
+    },
+    {
+      "check": "Anomaly=false renders Normal",
+      "pass": true
+    },
+    {
+      "check": "Anomaly=true renders Anomaly",
+      "pass": true
+    },
+    {
+      "check": "Latest-value card for anomaly_score",
+      "pass": true
+    },
+    {
+      "check": "Latest-value card for inference_ms",
+      "pass": true
+    },
+    {
+      "check": "Latest-value card for data_source",
+      "pass": true
+    },
+    {
+      "check": "Fan reads fan telemetry",
+      "pass": true
+    },
+    {
+      "check": "Fan onUpdateState uses setFan boolean",
+      "pass": true
+    },
+    {
+      "check": "Fan offUpdateState uses setFan boolean",
+      "pass": true
+    },
+    {
+      "check": "Layout references existing widgets",
+      "pass": true
+    }
+  ],
+  "anomaly_mapping": {
+    "compareToValue": false,
+    "onState": "Normal, green",
+    "offState": "Anomaly, red",
+    "semantics": "anomaly=false -> normal; anomaly=true -> anomaly"
+  },
+  "chart_aggregation": "NONE",
+  "historical_export_preserved": true
+}

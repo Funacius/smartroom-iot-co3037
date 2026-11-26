@@ -1,5 +1,5 @@
 {
-  "reported_on": "2026-11-18",
+  "reported_on": "2026-11-26",
   "user_confirmation": "Đã thấy kết nối, latest telemetry cũng hiện các thông tin",
   "cloud_observation_source": "User report in conversation; no direct authenticated browser observation by the agent",
   "verified_by_user": [
@@ -13,7 +13,7 @@
   "rulechain_verified": true,
   "notification_verified": true,
   "cloud_screenshots_or_exports_available": true,
-  "next_step": "Set chart aggregation to None on the existing dashboard, re-export, then hardware and offline recovery tests.",
+  "next_step": "Record software demo video, fill group/video metadata, then validate physical hardware when available.",
   "local_gateway_observation": {
     "checked_at": "2026-11-18T20:03:13.162403+07:00",
     "url": "http://127.0.0.1:8081/api/state",
@@ -32,15 +32,13 @@
     "humidity_chart_present": true,
     "alarm_table": "SmartRoom Environment, Major, originator room-node-01",
     "humidity_axis_issue": "Fixed in supplied export and screenshot: percent unit.",
-    "timewindow_issue": "Both chart widgets independently use one-hour AVG windows with 30-second intervals; dashboard time window is not used.",
+    "timewindow_issue": "Resolved in 26/11 export: both charts use NONE; separate one-hour windows remain.",
     "notifications": [
       "New alarm SmartRoom Environment",
       "Alarm SmartRoom Environment cleared"
     ]
   },
-  "local_fixes_pending_cloud_check": [
-    "Both live chart exports still use AVG every 30000 ms and independent one-hour windows; change to None and re-export."
-  ],
+  "local_fixes_pending_cloud_check": [],
   "cloud_rpc_scope": "User reports buttons work; local gateway has MQTT RPC request ids and applied commands. Sensor is simulated.",
   "recent_rpc_commands": [
     {
@@ -82,7 +80,7 @@
   ],
   "dashboard_url": "https://app.coreiot.io/dashboards/all/0ca724e0-e352-11f1-8cd8-29dc599bec29",
   "switch_update_prepared": true,
-  "switch_live_verified": false,
+  "switch_live_verified": true,
   "notification_channel": "Web",
   "notification_verification_scope": "User screenshot shows New alarm and Alarm cleared for SmartRoom Environment, severity major, originator room-node-01. Sensor source remains simulation. No notification latency was measured.",
   "rulechain_verification_scope": "User screenshots show root telemetry routing through device-name filter to SmartRoom alarms, the child create/clear chain, and a Major alarm for room-node-01.",
@@ -92,5 +90,11 @@
   "rulechain_exports_available": true,
   "switch_configuration_verified": true,
   "switch_configuration_source": "smartroom_co3037.json: system.single_switch, initialState GET_TIME_SERIES fan, setFan constant boolean true/false.",
-  "export_validation_file": "evidence/coreiot_export_check.json"
+  "export_validation_file": "evidence/coreiot_export_check.json",
+  "latest_dashboard_export": "evidence/coreiot/smartroom_dashboard_20261126.json",
+  "latest_dashboard_screenshot": "evidence/coreiot/SmartRoom_Dashboard_20261126.png",
+  "latest_dashboard_config_checks": "evidence/coreiot_dashboard_ai_check.json",
+  "current_chart_aggregation": "NONE",
+  "current_chart_aggregation_scope": "Verified in user-provided 26/11 export; no account mutation",
+  "latest_ai_cards_verified": true
 }

@@ -21,6 +21,7 @@ K13 & RPC ID được dùng lại sau reconnect & Lệnh phiên mới được �
 K14 & Switch web và lệnh RPC đến từ cloud & Cập nhật hai chiều; không phát POST vòng lặp & Chrome; MQTT giả \\
 K15 & Model thật và CSV sai nhãn/miền & Có raised/cleared; dữ liệu sai bị từ chối & Model cố định trên PC \\
 K16 & Dừng/chạy lại gateway & Lệnh lỗi khi dừng; đồng bộ lại sau chạy & Người dùng xác nhận \\
+K17 & Thẻ AI và nguồn dữ liệu trên CoreIOT & Score không âm khớp NORMAL; hiển thị model, ms và simulation & Ảnh lưu ngày 26/11 \\
 \bottomrule
 \end{longtable}
 
@@ -102,4 +103,4 @@ Các mục tiêu local về từ chối dữ liệu sai, loại trùng, hysteres
 
 Telemetry, switch hai chiều và RPC với node mô phỏng đã được xác nhận; các RPC mới được ghi applied. Bốn ảnh và ba JSON export CoreIOT từ lần thu trước đã được giữ nguyên, kiểm tra và nhúng trong Chương 3. Script \code{scripts/check_coreiot_exports.py} kiểm tra đồ thị, nhánh RPC, switch/đơn vị và chạy 16 trường hợp JavaScript. Kết quả nằm ở \code{evidence/coreiot_export_check.json}; các tệp gốc có SHA-256.
 
-Ảnh chứng minh alarm Major, New alarm và Alarm cleared notification với dữ liệu mô phỏng. Chưa đo lặp độ trễ sensor--cloud, notification hoặc mất gói vô tuyến. Bản export cũ còn AVG 30 giây; ảnh mới trong trao đổi đã hiển thị đỉnh khoảng 35,8~°C nhưng chưa có export mới để kết luận aggregation hiện tại. Cần export lại sau khi hoàn thiện dashboard; không sửa bản gốc để giả như cấu hình đã thay đổi. Kiểm thử cấu hình không thay thế phép đo phần cứng hoặc độ trễ.
+Ảnh ngày 26/11 đã lưu cho thấy score dương khớp NORMAL, MODEL READY, Inference Time, Data Source, hai biểu đồ và lịch sử alarm; các ảnh cũ có Major, New alarm và Alarm cleared notification. JSON mới xác nhận 9 widget, hai biểu đồ aggregation NONE và ánh xạ anomaly đúng ở cả hai trạng thái. Kiểm tra tĩnh đạt 15/15; hash ảnh/export nằm trong minh chứng riêng. Các kiểm tra này xác nhận cấu hình, không phải benchmark động hoặc phép đo phần cứng. Chưa đo lặp độ trễ sensor--cloud, notification hoặc mất gói vô tuyến.

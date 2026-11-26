@@ -1,5 +1,6 @@
 """Generate current facts from metadata/evidence, then compile LaTeX twice."""
 
+import hashlib
 import json
 import os
 import re
@@ -160,6 +161,7 @@ coreiot_image_files = [
     "Rule_chains_root.png",
     "Rule_chains_SmartRoom_alarms.png",
     "Notification.png",
+    "SmartRoom_Dashboard_20261126.png",
 ]
 embedded_sizes = {(item[2], item[3]) for page in document for item in page.get_images()}
 coreiot_images = {}
@@ -176,6 +178,14 @@ for name in ["dashboard_current_desktop.png", "ai_comparison.png", "ai_decision_
     new_images[name] = (pixmap.width, pixmap.height) in embedded_sizes
 if not all(new_images.values()):
     raise SystemExit("A current switch/AI figure is missing from the compiled PDF")
+ai_card_titles = ["AI Availability", "Anomaly Score", "Anomaly Detection", "Inference Time", "Data Source"]
+ai_cards_documented = {title: re.sub(r"\s+", "", title) in text for title in ai_card_titles}
+if not all(ai_cards_documented.values()):
+    raise SystemExit("Updated CoreIOT AI cards are missing from the PDF")
+dashboard_audit = json.loads((ROOT / "evidence/coreiot_dashboard_ai_check.json").read_text(encoding="utf-8"))
+dashboard_export = ROOT / "evidence/coreiot/smartroom_dashboard_20261126.json"
+if dashboard_audit["failed"] or hashlib.sha256(dashboard_export.read_bytes()).hexdigest() != dashboard_audit["source_sha256"]:
+    raise SystemExit("Current dashboard export does not match its successful configuration audit")
 (ROOT / "evidence/report_check.json").write_text(
     json.dumps(
         {
@@ -188,6 +198,10 @@ if not all(new_images.values()):
             "report_date": meta["report_date"],
             "test_count": int(suite.get("tests")),
             "ai_model_sha256": extended_ai["model_sha256"],
+            "coreiot_ai_cards_documented": ai_cards_documented,
+            "latest_coreiot_screenshot_available": "SmartRoom_Dashboard_20261126.png" in coreiot_images,
+            "latest_coreiot_export_verified": True,
+            "latest_coreiot_config_checks_passed": dashboard_audit["passed"],
         },
         indent=2,
     ),

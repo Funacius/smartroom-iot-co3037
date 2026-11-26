@@ -1,8 +1,12 @@
 # Minh chứng CoreIOT thực đã kiểm tra
 
+Cập nhật 26/11: ảnh mới nằm ở `SmartRoom_Dashboard_20261126.png`, JSON mới ở `smartroom_dashboard_20261126.json`. `dashboard_ai_user_check.json` ghi quan sát, kích thước, SHA-256 và phạm vi kiểm chứng. `../coreiot_dashboard_ai_check.json` có 15/15 kiểm tra cấu hình đạt: 9 widget, chart NONE, trạng thái AI và RPC đúng. Ảnh/export gốc ngày 18/11 được giữ nguyên.
+
 | Tệp | Nội dung |
 |---|---|
 | `SmartRoom_Dashboard.png` | Hai biểu đồ, switch Fan, độ ẩm %, lịch sử alarm Cleared |
+| `SmartRoom_Dashboard_20261126.png` | Ảnh mới: hai biểu đồ, Alarms, Fan và năm thẻ AI/nguồn dữ liệu |
+| `smartroom_dashboard_20261126.json` | Export mới 9 widget; chart NONE; Anomaly dùng compareToValue=false, On=Normal, Off=Anomaly |
 | `Rule_chains_root.png` | Root lọc room-node-01 và giữ đường RPC |
 | `Rule_chains_SmartRoom_alarms.png` | Chuỗi lưu telemetry, tạo alarm và clear có hysteresis |
 | `Notification.png` | Web notification New alarm và Alarm cleared |
@@ -18,6 +22,6 @@ Chạy lại kiểm tra tại gốc dự án với Python theo requirements và 
 python scripts/check_coreiot_exports.py
 ```
 
-Điểm cần chỉnh trên dashboard hiện tại: cả hai biểu đồ đang AVG mỗi 30 giây, cửa sổ riêng 1 giờ. Chọn Aggregation=None để hiển thị các đỉnh dữ liệu gốc; có thể dùng chung time window của dashboard. Sau khi sửa, export lại để cập nhật minh chứng. Không sửa JSON export gốc để giả như thay đổi đã có trên cloud.
+Phát hiện AVG 30 giây thuộc bản export cũ ngày 18/11. Bản ngày 26/11 đã xác nhận NONE trên cả hai biểu đồ; cửa sổ 1 giờ vẫn riêng cho từng widget. Các Value card có type latest, đọc giá trị gần nhất; trường timewindow AVG mặc định còn trong JSON của các card này không phải aggregation của biểu đồ.
 
 Export dashboard không chứa runtime ID; không suy ra URL đang dùng từ tên. Cờ `root=false` và ID child chain trong export cũng không được tự ý dùng để thay đổi tài khoản đang hoạt động. Notification hiện đã hoạt động, không cần tạo rule trùng lặp.

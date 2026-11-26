@@ -87,18 +87,19 @@ Chương 1.
 Chương 2.
 [5] [6] [7] [8]) (chapters/03-implementation.tex [9]
 Chương 3.
-[10] [11] [12] [13] [14] [15] [16] [17] [18]) (chapters/04-testing.tex [19]
+[10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20])
+(chapters/04-testing.tex [21]
 Chương 4.
-[20] [21] [22] (chapters/04-ai-evaluation.tex [23] (ai_evaluation.tex) [24]
-[25]) [26]) (chapters/05-conclusion.tex [27]
+[22] [23] [24] (chapters/04-ai-evaluation.tex [25] (ai_evaluation.tex) [26]
+[27]) [28]) (chapters/05-conclusion.tex [29]
 Chương 5.
-[28]) (chapters/06-guide.tex [29]
+[30]) (chapters/06-guide.tex [31]
 Chương 6.
-[30]
+[32]
 Underfull \hbox (badness 1789) in paragraph at lines 43--44
 [][][][][][][] [] [][][][][][][] [] [][][][][][] [] [][][][]$ \TU/TimesNewRoman
 (0)/m/n/12 từ profile CoreIOT riêng và mở dashboard mô phỏng tại
-[31]
+[33]
 Underfull \hbox (badness 2443) in paragraph at lines 73--74
 \TU/TimesNewRoman(0)/m/n/12 Để thêm cloud, sau khi nhập token và hostname đúng,
  thêm $[][][][][][][][][]$. Có thể dùng
@@ -106,7 +107,7 @@ Underfull \hbox (badness 2443) in paragraph at lines 73--74
 Underfull \hbox (badness 1337) in paragraph at lines 73--74
 [][][][][][][][][][][][][][][][][][][][][]$ \TU/TimesNewRoman(0)/m/n/12 để thử 
 API trước; dữ liệu phải giữ nhãn simulation và không dùng
-[32]) (references.tex [33]
+[34]) (references.tex [35]
 Underfull \hbox (badness 6348) in paragraph at lines 5--6
 []\TU/TimesNewRoman(0)/m/n/12 Espressif Systems, “ESP-NOW,” ESP-IDF Programming
  Guide v4.4.7, ESP32-S3.
@@ -146,11 +147,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 Underfull \hbox (badness 2626) in paragraph at lines 12--13
 []\TU/TimesNewRoman(0)/m/n/12 ThingsBoard Authors, “Rule Engine.” [Trực tuyến].
  [][]$[][][][][] [] [] [] [][][][][][][][][][][] [] [][] [] [][][][] []
-) (appendix.tex [34]
+) (appendix.tex [36]
 Appendix A.
-[35] [36]) [37] (C:\Study\IOT\BTL\report\build\main.aux) )
+[37] [38]) [39] (C:\Study\IOT\BTL\report\build\main.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
-Output written on C:\Study\IOT\BTL\report\build\main.pdf (48 pages).
+Output written on C:\Study\IOT\BTL\report\build\main.pdf (50 pages).
 Transcript written on C:\Study\IOT\BTL\report\build\main.log.
 miktex-dvipdfmx: major issue: So far, you have not checked for MiKTeX updates.
 xelatex: major issue: So far, you have not checked for MiKTeX updates.

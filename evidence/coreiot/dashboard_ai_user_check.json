@@ -1,0 +1,86 @@
+{
+  "reported_on": "2026-11-26",
+  "source": "User screenshots in conversation and user confirmation; no authenticated account inspection",
+  "scope": "CoreIOT dashboard with simulated sensor, real gateway AI model",
+  "user_confirmation": "Dashboard cards configured and corrected; user reports completion",
+  "cards": [
+    {
+      "title": "Fan",
+      "type": "Single Switch",
+      "telemetry_key": "fan",
+      "rpc_method": "setFan"
+    },
+    {
+      "title": "AI Availability",
+      "type": "Status widget",
+      "telemetry_key": "ai_available"
+    },
+    {
+      "title": "Anomaly Score",
+      "type": "Value card",
+      "telemetry_key": "anomaly_score"
+    },
+    {
+      "title": "Anomaly Detection",
+      "type": "Status widget",
+      "telemetry_key": "anomaly"
+    },
+    {
+      "title": "Inference Time",
+      "type": "Value card",
+      "telemetry_key": "inference_ms"
+    },
+    {
+      "title": "Data Source",
+      "type": "Value card",
+      "telemetry_key": "data_source"
+    }
+  ],
+  "anomaly_on_off_style": {
+    "compareToValue": false,
+    "onState": "Normal, green",
+    "offState": "Anomaly, red",
+    "semantic_false": "NORMAL",
+    "semantic_true": "ANOMALY",
+    "scope": "Verified in supplied export"
+  },
+  "screenshot_file": "evidence/coreiot/SmartRoom_Dashboard_20261126.png",
+  "dashboard_export_file": "evidence/coreiot/smartroom_dashboard_20261126.json",
+  "aggregation_in_latest_export_verified": true,
+  "physical_hardware_test": false,
+  "conversation_screenshot_observation": {
+    "fan": true,
+    "ai_availability_text": "MODEL READY",
+    "anomaly_score": 0.2376,
+    "anomaly_status_text": "NORMAL",
+    "inference_ms": 19.65,
+    "data_source": "simulation",
+    "score_icon": "Blue information icon",
+    "score_and_normal_status_consistent": true
+  },
+  "saved_screenshot_observation": {
+    "fan": true,
+    "ai_availability_text": "MODEL READY",
+    "anomaly_score": 0.2435,
+    "anomaly_status_text": "NORMAL",
+    "inference_ms": 6.0,
+    "data_source": "simulation",
+    "temperature_min_max": [
+      26.1,
+      35.9
+    ],
+    "humidity_min_max": [
+      56,
+      64
+    ],
+    "score_and_normal_status_consistent": true,
+    "scope": "Single screenshot, not a benchmark or repeated measurement"
+  },
+  "screenshot_sha256": "e6a89c7a2c29baa7e93244709d54acbef394fab83da2635e3e17d93819de3f38",
+  "screenshot_pixels": [
+    1859,
+    901
+  ],
+  "historical_screenshot_preserved": true,
+  "dashboard_export_sha256": "447030332f90ae86e1af4d1f55a130dd7373d22bf959aa38f22690b4757cab4c"
+}

@@ -6,7 +6,7 @@ Người dùng đã chọn sửa switch thủ công trên dashboard đang mở. 
 
 Đã nhận đủ 4 PNG và 3 JSON export thực trong `evidence/coreiot/`; ảnh được chèn vào PDF. Kiểm tra bằng `python scripts/check_coreiot_exports.py`: switch lấy telemetry `fan` và gửi đúng boolean; đơn vị độ ẩm %, Root lọc đúng thiết bị và giữ RPC; nhánh tạo/xóa alarm đúng. Các tệp nguồn được giữ nguyên, có SHA-256 trong `evidence/coreiot_export_check.json`.
 
-Bản export gốc còn AVG 30 giây, cửa sổ riêng 1 giờ. Ảnh mới ngày 26/11 đã hiển thị đỉnh khoảng 35,8 °C, nhưng chưa có export mới để xác nhận aggregation hiện tại. Khi thêm các ô AI theo Mục 6, kiểm tra **Aggregation=None** và export lại. Người dùng đã thử dừng/chạy lại gateway; hiện chưa có mạch nên chưa kiểm tra hai board. Các script REST chỉ là công cụ tùy chọn khi cần dùng lại.
+Ảnh và JSON mới ngày 26/11 đã lưu riêng trong `evidence/coreiot/`. Export có 9 widget; hai biểu đồ dùng **Aggregation=None**, cửa sổ riêng 1 giờ. `evidence/coreiot_dashboard_ai_check.json` ghi 15/15 kiểm tra cấu hình đạt. Các bản ngày 18/11 giữ nguyên để đối chiếu lịch sử. Người dùng đã thử dừng/chạy lại gateway; hiện chưa có mạch nên chưa kiểm tra hai board.
 
 ## Công cụ tùy chọn: cập nhật tại chỗ qua REST
 
@@ -22,7 +22,7 @@ Ngày 18/11/2026, người dùng xác nhận Latest telemetry và các nút RPC 
 
 Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
 
-Các file gốc xác nhận dashboard có hai biểu đồ, lịch sử alarm đã clear và Single Switch; độ ẩm dùng %. Bản export gốc còn AVG 30 giây; cần export mới sau khi hoàn thiện dashboard để xác nhận cấu hình hiện tại.
+Các file gốc có hai biểu đồ, lịch sử alarm và Single Switch; độ ẩm dùng %. Bản ngày 26/11 bổ sung năm thẻ AI/nguồn và đã sửa aggregation hai biểu đồ thành NONE; xem ảnh/JSON có hậu tố `20261126`.
 
 ### Hướng dẫn khởi tạo bản RPC trước đây
 
@@ -126,7 +126,7 @@ T14 OTA không triển khai. Không nhận điểm T01 vì cảm biến I2C ch�
 
 ## 6. Hoàn thiện dashboard hiện tại khi chưa có mạch
 
-Luồng telemetry, switch và RuleChain đang hoạt động. Các bước dưới đây chỉ thêm thông tin giám sát trên **dashboard hiện có**, datasource là **`room-node-01`**. Tên nhóm widget/tab có thể khác theo phiên bản CoreIOT; ưu tiên loại **Latest values**, **Cards → Simple card** hoặc **Value card** tương đương.
+Luồng telemetry, switch và RuleChain đang hoạt động. Người dùng đã bổ sung các thẻ AI theo hướng dẫn dưới đây và xác nhận hoàn tất. Datasource là **`room-node-01`**. Bản CoreIOT đang dùng có **Value card**, **Label & value card** và **Status widget**; danh sách thực tế không có tên Simple card.
 
 ### Bước 1 — Kiểm tra các key đã có
 
@@ -134,47 +134,58 @@ Giữ `python scripts/start_coreiot.py` chạy với token của **smartroom-pc-
 
 ### Bước 2 — Thêm các thẻ Latest values
 
-Mở dashboard SmartRoom → **Edit** (bút chì) → **Add widget** → chọn **Cards → Simple card**. Nếu bản server có **Value card** thì dùng thẻ tương đương. Chọn datasource trực tiếp **Device → room-node-01**, hoặc alias **SmartRoom sensor** đã trỏ đúng child; thêm key có loại **Time series**. Lưu thẻ và lặp lại:
+Mở dashboard SmartRoom → **Edit** → **Add widget**. Với số/chuỗi, chọn **Cards → Value card** hoặc **Label & value card**, datasource **Device → room-node-01** (hoặc alias SmartRoom sensor), key loại **Time series**. Với hai trạng thái boolean, chọn **Status indicators → Status widget** và cấu hình như bước 3. Tiêu đề dùng tiếng Anh:
 
 | Tiêu đề | Key | Cách trình bày |
 |---|---|---|
-| AI đang sẵn sàng | `ai_available` | Boolean; true = model đã nạp, false = chưa có model |
-| Phát hiện bất thường | `anomaly` | Boolean; true = bất thường, false = bình thường; có thể đổi thành chữ như bước 3 |
-| Điểm bất thường AI | `anomaly_score` | 4 chữ số thập phân, không có đơn vị; score < 0 là bất thường |
-| Thời gian suy luận | `inference_ms` | Đơn vị `ms`, 2 chữ số thập phân; chỉ là thời gian AI trên PC |
-| Nguồn dữ liệu | `data_source` | Chuỗi `simulation`/`hardware`; có thể đổi thành chữ như bước 3 |
+| AI Availability | `ai_available` | Status widget; true = MODEL READY, false = MODEL UNAVAILABLE |
+| Anomaly Detection | `anomaly` | Status widget; true = ANOMALY (đỏ), false = NORMAL (xanh) |
+| Anomaly Score | `anomaly_score` | Value card; 4 chữ số thập phân, không đơn vị; score < 0 là bất thường |
+| Inference Time | `inference_ms` | Value card; đơn vị `ms`, 2 chữ số thập phân; thời gian AI trên PC |
+| Data Source | `data_source` | Value card; hiển thị chuỗi `simulation`/`hardware` |
 
 Chọn **Latest value**, không dùng AVG cho các thẻ trạng thái/score. Nếu widget có tùy chọn hiển thị thời gian cập nhật, bật nó để phân biệt giá trị gần nhất với dữ liệu mới đang tới. `Active` hoặc giá trị cũ còn trên thẻ không thay thế việc kiểm tra timestamp.
 
-### Bước 3 — Đổi boolean/nguồn dữ liệu thành chữ
+### Bước 3 — Cấu hình Status widget và nhãn
 
-Trong datasource của thẻ, nhấn bút chì cạnh data key → **Use data post-processing function**. Nếu chưa thấy, chuyển widget sang **Advanced**. Chỉ dán **thân hàm** dưới đây, không thêm lớp `function(...)` bên ngoài. Chức năng này chỉ đổi cách hiển thị, không sửa telemetry và không tác động switch.
+Với **Status widget**, giữ target **room-node-01**. Nhấn bút chì cạnh **Initial state**: Action = **Get time series**, key = `ai_available` hoặc `anomaly`, converter = None, **'On' when result is = True**. Disabled state = **Do nothing / False**. Trong **Card style**, chỉnh riêng cả On và Off:
+
+| Widget | On | Off |
+|---|---|---|
+| AI Availability | Label: AI Availability; Status: MODEL READY; xanh | Label: AI Availability; Status: MODEL UNAVAILABLE; xám |
+| Anomaly Detection | Label: Anomaly Detection; Status: ANOMALY; đỏ | Label: Anomaly Detection; Status: NORMAL; xanh |
+
+On/Off ở Card style là chọn bộ cấu hình giao diện, độc lập với telemetry. Lưu cả hai kiểu rồi Apply/Save dashboard. Dấu score và cờ anomaly phải khớp khi so cùng mẫu. Icon của Anomaly Score nên trung tính (information), tránh tam giác đỏ cố định khi score bình thường.
+
+**Cấu hình thực đã xác nhận trong export 26/11:** Anomaly Detection đặt **'On' when result is = False**, Card style On = Normal/xanh, Off = Anomaly/đỏ. Cách này cũng đúng vì `anomaly=false` hiển thị NORMAL và `anomaly=true` hiển thị ANOMALY. Giữ điều kiện và hai kiểu hiển thị nhất quán; không chỉ đổi một phía theo ví dụ ở bảng trên.
+
+Nếu dùng **Label & value card** thay cho Status widget, có thể đổi boolean thành chữ bằng **Use data post-processing function** ở cấu hình data key. Chỉ dán thân hàm dưới đây; các hàm này không áp dụng cho Initial state của Status widget.
 
 Với key `anomaly`:
 
 ```javascript
-if (value === true || value === 'true') return 'Bất thường';
-if (value === false || value === 'false') return 'Bình thường';
-return 'Chưa có dữ liệu';
+if (value === true || value === 'true') return 'ANOMALY';
+if (value === false || value === 'false') return 'NORMAL';
+return 'NO DATA';
 ```
 
 Với key `ai_available`:
 
 ```javascript
-if (value === true || value === 'true') return 'Đã nạp model';
-if (value === false || value === 'false') return 'Chưa có model';
-return 'Chưa có dữ liệu';
+if (value === true || value === 'true') return 'MODEL READY';
+if (value === false || value === 'false') return 'MODEL UNAVAILABLE';
+return 'NO DATA';
 ```
 
 Với key `data_source`:
 
 ```javascript
-if (value === 'simulation') return 'MÔ PHỎNG';
-if (value === 'hardware') return 'CẢM BIẾN THẬT';
-return 'Chưa xác định';
+if (value === 'simulation') return 'SIMULATION';
+if (value === 'hardware') return 'HARDWARE';
+return 'UNKNOWN';
 ```
 
-Nếu thẻ số của phiên bản đang dùng không hiển thị chuỗi sau chuyển đổi, chọn **Simple card** hỗ trợ chuỗi hoặc giữ boolean gốc với tiêu đề giải thích. Không chuyển đổi `fan` của switch sang chuỗi: switch vẫn dùng boolean.
+Data Source có thể giữ nguyên `simulation` như giao diện người dùng đã cấu hình. Switch Fan tiếp tục đọc boolean, không chuyển key `fan` thành chuỗi.
 
 ### Bước 4 — Sắp xếp và lưu
 

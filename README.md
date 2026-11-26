@@ -19,8 +19,8 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
 - Cập nhật 26/11: switch web ↔ CoreIOT đã đồng bộ hai chiều sau khi sửa phạm vi chống lặp RPC theo phiên MQTT. Người dùng thử dừng/chạy lại gateway: lệnh báo error khi dừng, đồng bộ lại khi chạy. Xem `evidence/fan_sync_live_check.json` và `evidence/gateway_recovery_user_check.json`.
 - Đánh giá AI mở rộng dùng model cố định: bộ gốc, 5 seed mới (6.000 mẫu), normal dịch phân bố, lạnh khác train và bất thường hiếm. Luật ngưỡng tốt hơn AI trên bộ nóng/ẩm; AI có FPR 20,1% khi normal dịch phân bố và precision 59,70% ở tập bất thường hiếm. Đây là kết quả dữ liệu sinh, chưa phải hiệu quả thực địa. Xem `evidence/ai_evaluation.json` và Chương 4 của báo cáo.
-- Đã kiểm tra 4 ảnh và 3 JSON export CoreIOT gốc: dashboard/switch, Root/child RuleChain và Web notification tạo/xóa alarm. Switch dùng telemetry `fan`, RPC `setFan` boolean; độ ẩm có đơn vị %. Bản export cũ còn AVG 30 giây; ảnh mới đã thấy đỉnh khoảng 35,8 °C, cần export mới sau khi hoàn thiện dashboard để xác nhận cấu hình hiện tại. Xem `evidence/coreiot_export_check.json`.
-- PDF cập nhật ngày 26/11, 48 trang, đủ sáu chương và 56 test; đã thêm ảnh switch hiện tại, so sánh AI và ghi rõ phần chưa kiểm chứng. Cần mã nhóm, video và ảnh/đo phần cứng trước khi nộp.
+- Đã kiểm tra ảnh/JSON dashboard mới ngày 26/11: 9 widget, hai biểu đồ aggregation NONE, các thẻ AI và switch đúng. `evidence/coreiot_dashboard_ai_check.json` có 15/15 kiểm tra cấu hình đạt. Bốn ảnh và ba JSON gốc ngày 18/11 vẫn được bảo toàn riêng.
+- PDF cập nhật ngày 26/11, đủ sáu chương và 56 test; có ảnh switch hiện tại, so sánh AI, bảng cấu hình và ảnh CoreIOT mới với AI Availability, Anomaly Score, Anomaly Detection, Inference Time, Data Source. Ảnh/JSON mới lưu riêng theo ngày, có SHA-256; vẫn cần mã nhóm, video và phép đo phần cứng trước khi nộp.
 
 ## Chạy thử nhanh trên Windows
 
@@ -115,7 +115,7 @@ Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 | T08 | 1 | Gateway hai chiều, lưu bền, ACK | Telemetry/RPC cloud và dừng/chạy lại đã xác nhận với sensor mô phỏng; cần USB thật |
 | T09 | 1 | Isolation Forest trên gateway | Model thật, baseline và stress test đã chạy; dữ liệu vẫn sinh |
 | T10 | 1 | Giao diện giám sát/điều khiển PC | Đã chạy local |
-| T11 | 1 | Template dashboard CoreIOT | Có ảnh/export và switch hai chiều; cần export mới sau khi thêm các ô AI |
+| T11 | 1 | Template dashboard CoreIOT | Ảnh/JSON mới 9 widget, 15/15 kiểm tra đạt; switch hai chiều, AI và biểu đồ NONE |
 | T12 | 1 | RuleChain cảnh báo với hysteresis | Ảnh alarm Major và thông báo tạo/xóa đã nhận trên CoreIOT |
 | T13 | 0,5 | Notification khi tạo alarm | Có ảnh Web notification tạo/xóa cho room-node-01 |
 | T15 | 2 | Child synchronization qua Gateway API | Telemetry và RPC hai chiều đã xác nhận; cần ảnh gateway-child và thử phần cứng |

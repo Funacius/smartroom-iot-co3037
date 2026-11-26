@@ -12,7 +12,7 @@ F03 & Journal PC; ảnh/export alarm tạo/xóa và Web notification & Đo độ
 F04 & Model thật; baseline, seed mới, drift và bất thường hiếm & Thu nhãn thực, đánh giá theo phòng/ngày \\
 F05 & Switch hai chiều; ACK/TTL và chống lặp theo phiên & Nạp board, quan sát driver/quạt và web bridge \\
 F06 & RPC mới applied; dừng/chạy lại khôi phục đồng bộ & Đo reconnect/phát lại có log và thử phần cứng \\
-F07 & Ảnh/export cũ; telemetry/switch đang chạy & Thêm ô AI, export lại dashboard và thử thực \\
+F07 & Ảnh/JSON mới; 9 widget, NONE và thẻ AI đúng; switch hai chiều & Demo video, kiểm thử và đo phần cứng \\
 F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã nhóm \\
 \bottomrule
 \end{tabular}
@@ -21,13 +21,13 @@ F08 & Journal/CSV, test, biểu đồ và report & Video demo, timestamp và mã
 Những đóng góp kỹ thuật dễ kiểm tra là lưu bền trước khi upload, không xác nhận lệnh chỉ vì đã gửi, chống lặp theo ID, hysteresis giảm dao động cảnh báo và phân biệt rõ dữ liệu sinh với dữ liệu cảm biến. Nhóm chưa dùng bảng này để quy đổi thành điểm đã đạt vì còn thiếu các bằng chứng bắt buộc trên thiết bị và server.
 
 \section{Hạn chế}
-Nhóm hiện chưa có mạch nên chưa nạp/chạy board, đo ESP-NOW hoặc có ảnh lắp thật. GPIO/flash cần đối chiếu board lớp. Dashboard, switch hai chiều, RPC, alarm tạo/xóa và Web notification đã có minh chứng với nguồn mô phỏng. Người dùng xác nhận dừng/chạy lại gateway khôi phục đồng bộ, chưa đo thời gian hoặc số bản tin gửi bù. Export cũ còn AVG 30 giây; chưa có export mới để xác nhận aggregation hiện tại. Chưa đo độ trễ lặp, email/SMTP hoặc ổn định dài hạn.
+Nhóm hiện chưa có mạch nên chưa nạp/chạy board, đo ESP-NOW hoặc có ảnh lắp thật. GPIO/flash cần đối chiếu board lớp. Dashboard, switch hai chiều, RPC, alarm tạo/xóa và Web notification có minh chứng với nguồn mô phỏng; ảnh/JSON dashboard mới đã lưu và kiểm tra. Người dùng xác nhận dừng/chạy lại gateway khôi phục đồng bộ, chưa đo thời gian hoặc số bản tin gửi bù. Chưa đo độ trễ lặp, email/SMTP hoặc ổn định dài hạn.
 
 Mô hình AI học dữ liệu sinh và chỉ dùng hai biến tức thời. Luật ngưỡng tốt hơn AI trên các cụm nóng/ẩm đang dùng; AI nhạy với dịch phân bố normal và có precision thấp hơn khi bất thường hiếm. Phát hiện tình huống lạnh khác phân bố là khả năng bổ sung, chưa chứng minh ưu thế với mọi baseline. Chưa có phân tích xu hướng hoặc thích nghi theo mùa/phòng. Hệ thống chưa đo công suất quạt, tốc độ thực hay điều khiển tự động kín vòng.
 
 ID lệnh được lưu bền ở gateway và node; nếu xóa DB mà giữ NVS, ID mới có thể nhỏ hơn ID node nhớ và bị từ chối. Lệnh cũng chỉ có ACK trạng thái firmware, chưa có clock đồng bộ để loại trừ mọi lệnh trễ trong đường truyền. Outbox có giới hạn bản tin nhưng readings/events chưa có retention. Dashboard local chưa có phân quyền đa người dùng; không mở ra Internet.
 
 \section{Hướng phát triển}
-Khi chưa có mạch, nhóm có thể hoàn thiện ô AI/score/nguồn dữ liệu trên CoreIOT, lưu export mới và quay demo phần mềm với nhãn mô phỏng. Khi có thiết bị, tiếp tục xác nhận pin, chạy hai board, log seq/ACK, đo độ trễ và bổ sung video thực. Dữ liệu AI cần thu nhiều phiên/phòng, mô tả nhãn độc lập và giữ test tách theo ngày; không điều chỉnh model chỉ để tăng điểm trên bộ sinh hiện tại.
+Các thẻ AI/score/nguồn dữ liệu đã được bổ sung, ảnh đã nhúng báo cáo và JSON mới đã kiểm tra. Khi chưa có mạch, bước tiếp theo là quay demo phần mềm với nhãn mô phỏng, điền link video và mã nhóm. Khi có thiết bị, tiếp tục xác nhận pin, chạy hai board, log seq/ACK, đo độ trễ và bổ sung video thực. Dữ liệu AI cần thu nhiều phiên/phòng, mô tả nhãn độc lập và giữ test tách theo ngày; không điều chỉnh model chỉ để tăng điểm trên bộ sinh hiện tại.
 
 Phiên bản hiện tại đã tách request ID RPC theo phiên MQTT. Bước tiếp theo có thể bổ sung command epoch giữa gateway và node để khôi phục sau thay máy, đồng bộ thời gian phục vụ đo end-to-end, retention/sao lưu DB và kiểm thử 24 giờ. Khi cần tự động điều khiển, nên thêm cảm biến phản hồi quạt và chính sách an toàn độc lập AI. OTA chỉ đăng ký khi có quy trình đóng gói, kiểm tra phiên bản, rollback và minh chứng cập nhật thật; chưa đưa vào điểm hiện tại.
