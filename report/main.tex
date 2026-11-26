@@ -92,7 +92,7 @@ Mã nhóm & \GroupCode. Tên PDF hiện dùng CHUA\_CAP\_MA\_NHOM. \\
 Tài liệu gốc & \code{Project_Annoucement_IoT.pdf} và \code{IoTReport_Template.docx}. \\
 \bottomrule
 \end{longtable}
-\notice{Hai firmware đã biên dịch; chưa nạp board. Bốn ảnh chụp và ba JSON export thực của CoreIOT đã được nhóm lưu, kiểm tra và đưa vào báo cáo; nguồn cảm biến vẫn là mô phỏng. Có minh chứng dashboard/switch, RuleChain, alarm tạo/xóa và Web notification; gateway ghi RPC ID applied. Biểu đồ còn AVG mỗi 30 giây, cần chỉnh hiển thị để không làm thấp đỉnh nóng. Phần cứng, phép đo vô tuyến và video vẫn cần bổ sung.}
+\notice{Cập nhật ngày 26/11/2026: web PC đã dùng switch và đồng bộ hai chiều với CoreIOT; các RPC mới có trạng thái applied. Người dùng đã thử dừng/chạy lại gateway: lệnh báo lỗi khi dừng, đồng bộ trở lại sau khởi động. Đánh giá AI bổ sung so sánh ngưỡng, năm seed mới, bất thường hiếm và dịch phân bố; model vẫn dùng dữ liệu sinh. Hai firmware đã build nhưng nhóm hiện chưa có mạch để nạp và đo phần cứng. Các ảnh/export CoreIOT gốc được giữ nguyên theo ngày thu; chưa có video và mã nhóm chính thức.}
 
 \chapter*{BẢNG PHÂN CÔNG CÔNG VIỆC}
 \addcontentsline{toc}{chapter}{Bảng phân công công việc}
@@ -122,13 +122,13 @@ T05 & Công cụ TinyML & 1 & Không & 3.5 & Không xuất model cho board. \\
 T06 & ESP-NOW & 1,5 & Build & 3.3 & \code{firmware/src/main.cpp}; log build. Thiếu log hai board thực. \\
 T07 & Web trên thiết bị & 1 & Build & 3.2.2 & WebServer trong firmware bridge. Thiếu ảnh/trình diễn board. \\
 T08 & Gateway PC hai chiều & 1 & Phần mềm & 3.4 & Telemetry và RPC cloud mô phỏng đã chạy; thiếu USB/phần cứng thật. \\
-T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_metrics.json}; model chạy PC, dữ liệu sinh. Cần đánh giá thực. \\
-T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Screenshot Chrome, điều khiển với ACK mô phỏng. \\
+T09 & AI trên gateway & 1 & Phần mềm & 3.5 & \code{ai_evaluation.json}; so sánh ngưỡng, dịch phân bố, test model thật; chưa có dữ liệu thực. \\
+T10 & Giao diện gateway & 1 & Phần mềm & 3.4 & Switch, kiểm tra Chrome và ACK mô phỏng; đồng bộ RPC hai chiều. \\
 T11 & Template CoreIOT & 1 & Phần mềm; ảnh & 3.6.1 & Hình \ref{fig:coreiot-dashboard}; export dashboard có switch, đơn vị \% đúng. \\
 T12 & RuleChain & 1 & Phần mềm; ảnh & 3.6.2 & Hình \ref{fig:coreiot-root}, \ref{fig:coreiot-alarms}; hai JSON export và kiểm tra logic. \\
 T13 & Gửi thông báo & 0,5 & Phần mềm; ảnh & 3.6.2 & Hình \ref{fig:coreiot-notifications}: Web notification tạo/xóa đã nhận. \\
 T14 & OTA & 2 & Không & 3.6.3 & Không có OTA. \\
-T15 & Đồng bộ gateway & 2 & Một phần & 3.4 & Uplink và RPC mô phỏng đã chạy; cần ảnh gateway-child và export. \\
+T15 & Đồng bộ gateway & 2 & Phần mềm & 3.4 & RPC mới applied, đồng bộ hai chiều và thử dừng/chạy lại; nguồn sensor mô phỏng. \\
 \bottomrule
 \end{longtable}
 

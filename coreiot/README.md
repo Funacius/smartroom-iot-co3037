@@ -6,7 +6,7 @@ Người dùng đã chọn sửa switch thủ công trên dashboard đang mở. 
 
 Đã nhận đủ 4 PNG và 3 JSON export thực trong `evidence/coreiot/`; ảnh được chèn vào PDF. Kiểm tra bằng `python scripts/check_coreiot_exports.py`: switch lấy telemetry `fan` và gửi đúng boolean; đơn vị độ ẩm %, Root lọc đúng thiết bị và giữ RPC; nhánh tạo/xóa alarm đúng. Các tệp nguồn được giữ nguyên, có SHA-256 trong `evidence/coreiot_export_check.json`.
 
-Còn một điểm hiển thị: cả hai biểu đồ dùng AVG 30 giây, cửa sổ riêng 1 giờ. Sửa ngay trên dashboard đang dùng thành **Aggregation=None**; có thể bật **Use dashboard time window** để đồng bộ thời gian. Sau đó export lại dashboard để cập nhật minh chứng. Không cần import hoặc tạo dashboard mới. Tiếp theo là kiểm thử mất mạng và hai board thật. Các script REST chỉ là công cụ tùy chọn khi người dùng muốn dùng lại.
+Bản export gốc còn AVG 30 giây, cửa sổ riêng 1 giờ. Ảnh mới ngày 26/11 đã hiển thị đỉnh khoảng 35,8 °C, nhưng chưa có export mới để xác nhận aggregation hiện tại. Khi thêm các ô AI theo Mục 6, kiểm tra **Aggregation=None** và export lại. Người dùng đã thử dừng/chạy lại gateway; hiện chưa có mạch nên chưa kiểm tra hai board. Các script REST chỉ là công cụ tùy chọn khi cần dùng lại.
 
 ## Công cụ tùy chọn: cập nhật tại chỗ qua REST
 
@@ -16,11 +16,13 @@ Chạy `python scripts/update_coreiot_dashboard.py --apply --remember-session` t
 
 ## Trạng thái và bước tiếp theo
 
+**Cập nhật 26/11/2026:** switch local và CoreIOT đã đồng bộ hai chiều, các RPC mới có ACK `applied`. Người dùng thử dừng gateway: switch báo error; chạy lại thì đồng bộ bình thường. Nguồn cảm biến vẫn mô phỏng. Xem `evidence/fan_sync_live_check.json` và `evidence/gateway_recovery_user_check.json`. Để bổ sung các ô AI trên dashboard hiện có, làm theo **Mục 6** ở cuối tài liệu; không import lại dashboard.
+
 Ngày 18/11/2026, người dùng xác nhận Latest telemetry và các nút RPC chạy. API gateway local cổng 8081 ghi nguồn `simulation`, dữ liệu mới, outbox bằng 0 và các lệnh có RPC ID ở trạng thái applied. Đây là kiểm chứng với node mô phỏng, chưa phải quạt phần cứng.
 
 Giữ terminal `start_coreiot.py` đang chạy. Mở **Dashboards → + → Import dashboard**, chọn `coreiot/smartroom_dashboard.json` rồi Import. Nếu nút Import nằm riêng ở thanh công cụ, chọn nút đó. Mở dashboard **SmartRoom CO3037**, vào Edit → Entity aliases và kiểm tra alias **SmartRoom sensor** trỏ đến `room-node-01`. Nếu alias không resolve, đổi thành **Single entity → Device → room-node-01** và Save.
 
-Các file mới xác nhận dashboard có hai biểu đồ, bảng lịch sử alarm đã clear và Single Switch; độ ẩm đã dùng %. Ảnh và export gốc đã có trong repository. Hai biểu đồ vẫn dùng AVG 30 giây như đã ghi ở phần kiểm tra bên trên.
+Các file gốc xác nhận dashboard có hai biểu đồ, lịch sử alarm đã clear và Single Switch; độ ẩm dùng %. Bản export gốc còn AVG 30 giây; cần export mới sau khi hoàn thiện dashboard để xác nhận cấu hình hiện tại.
 
 ### Hướng dẫn khởi tạo bản RPC trước đây
 
@@ -44,11 +46,11 @@ Trang của lớp: <https://app.coreiot.io/home>. Bạn chưa cần tạo cảm 
 
 Script tự tạo `runtime/coreiot_config.json`, không lưu token. Mặc định chạy mô phỏng và gửi dữ liệu sinh lên tài khoản của bạn; dùng database riêng `runtime/coreiot_simulation.sqlite3` để không phát lại lịch sử demo local trước đó. **Không cần tạo child bằng tay trong lần thử đầu**: gateway gửi connect để CoreIOT tạo/đăng ký child. Nếu server báo không đủ quyền, ghi lại thông báo để xử lý quyền hoặc tạo child theo chính sách của lớp.
 
-Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket-noi-va-gui-du-lieu/), MQTT dùng hostname **`app.coreiot.io`**, cổng **1883**. Profile riêng `gateway/config.coreiot.example.json` đặt `mqtt_tls=false`; kênh MQTT này không mã hóa. Kiểm tra endpoint tại máy ngày 18/11/2026: TCP 1883 truy cập được, TCP 8883 bị từ chối. Sau đó người dùng đã xác nhận nhận telemetry trên CoreIOT; chưa xác minh RPC và các tính năng cloud còn lại. Nếu quản trị lớp cấp endpoint TLS, cập nhật hostname/cổng/TLS trong cấu hình runtime tương ứng.
+Theo [tài liệu kết nối chính thức CoreIOT](https://coreiot.io/docs/ket-noi-va-gui-du-lieu/), MQTT dùng hostname **`app.coreiot.io`**, cổng **1883**. Profile riêng `gateway/config.coreiot.example.json` đặt `mqtt_tls=false`; kênh MQTT này không mã hóa. Kiểm tra endpoint ngày 18/11: TCP 1883 truy cập được, TCP 8883 bị từ chối. Ngày 26/11, telemetry và switch/RPC hai chiều đã được xác nhận với node mô phỏng. Nếu quản trị lớp cấp endpoint TLS, cập nhật hostname/cổng/TLS trong cấu hình runtime tương ứng.
 
 Sau khi child có telemetry, mới làm các mục dashboard, RPC và RuleChain bên dưới. Khi có board, sửa `serial_port` trong runtime config rồi chạy `python scripts/start_coreiot.py --hardware`.
 
-Dashboard và các nút RPC đã được người dùng xác nhận chạy. Switch cập nhật tại chỗ và RuleChain còn cần xác minh trên tài khoản.
+Dashboard, switch hai chiều, RuleChain và Web notification đã được xác nhận trên tài khoản với nguồn sensor mô phỏng. Các bước khởi tạo ở trên được giữ cho lần cài mới.
 Gateway dùng MQTT Gateway API theo tài liệu ThingsBoard; telemetry và RPC mô phỏng đã chạy trên CoreIOT.
 Không cần gửi mật khẩu đăng nhập hay token cho người khác. Bạn tự nhập token vào terminal trên máy mình.
 
@@ -121,3 +123,69 @@ Alarm xuất hiện trong bảng **chưa đồng nghĩa** đã gửi notificatio
 - Đổi mã nhóm trong `report/metadata.json`, cập nhật video/dashboard URL, chạy lại `python scripts/build_report.py`.
 
 T14 OTA không triển khai. Không nhận điểm T01 vì cảm biến I2C chạy Arduino, không chạy Tasmota. Không nhận T04/T05 vì AI chạy PC, không phải TinyML trên board.
+
+## 6. Hoàn thiện dashboard hiện tại khi chưa có mạch
+
+Luồng telemetry, switch và RuleChain đang hoạt động. Các bước dưới đây chỉ thêm thông tin giám sát trên **dashboard hiện có**, datasource là **`room-node-01`**. Tên nhóm widget/tab có thể khác theo phiên bản CoreIOT; ưu tiên loại **Latest values**, **Cards → Simple card** hoặc **Value card** tương đương.
+
+### Bước 1 — Kiểm tra các key đã có
+
+Giữ `python scripts/start_coreiot.py` chạy với token của **smartroom-pc-gateway**. Mở **Devices → room-node-01 → Latest telemetry** và kiểm tra các key sau có thời gian cập nhật mới: `ai_available`, `anomaly`, `anomaly_score`, `inference_ms`, `data_source`. Không cần gửi thêm payload hoặc tạo attribute thủ công.
+
+### Bước 2 — Thêm các thẻ Latest values
+
+Mở dashboard SmartRoom → **Edit** (bút chì) → **Add widget** → chọn **Cards → Simple card**. Nếu bản server có **Value card** thì dùng thẻ tương đương. Chọn datasource trực tiếp **Device → room-node-01**, hoặc alias **SmartRoom sensor** đã trỏ đúng child; thêm key có loại **Time series**. Lưu thẻ và lặp lại:
+
+| Tiêu đề | Key | Cách trình bày |
+|---|---|---|
+| AI đang sẵn sàng | `ai_available` | Boolean; true = model đã nạp, false = chưa có model |
+| Phát hiện bất thường | `anomaly` | Boolean; true = bất thường, false = bình thường; có thể đổi thành chữ như bước 3 |
+| Điểm bất thường AI | `anomaly_score` | 4 chữ số thập phân, không có đơn vị; score < 0 là bất thường |
+| Thời gian suy luận | `inference_ms` | Đơn vị `ms`, 2 chữ số thập phân; chỉ là thời gian AI trên PC |
+| Nguồn dữ liệu | `data_source` | Chuỗi `simulation`/`hardware`; có thể đổi thành chữ như bước 3 |
+
+Chọn **Latest value**, không dùng AVG cho các thẻ trạng thái/score. Nếu widget có tùy chọn hiển thị thời gian cập nhật, bật nó để phân biệt giá trị gần nhất với dữ liệu mới đang tới. `Active` hoặc giá trị cũ còn trên thẻ không thay thế việc kiểm tra timestamp.
+
+### Bước 3 — Đổi boolean/nguồn dữ liệu thành chữ
+
+Trong datasource của thẻ, nhấn bút chì cạnh data key → **Use data post-processing function**. Nếu chưa thấy, chuyển widget sang **Advanced**. Chỉ dán **thân hàm** dưới đây, không thêm lớp `function(...)` bên ngoài. Chức năng này chỉ đổi cách hiển thị, không sửa telemetry và không tác động switch.
+
+Với key `anomaly`:
+
+```javascript
+if (value === true || value === 'true') return 'Bất thường';
+if (value === false || value === 'false') return 'Bình thường';
+return 'Chưa có dữ liệu';
+```
+
+Với key `ai_available`:
+
+```javascript
+if (value === true || value === 'true') return 'Đã nạp model';
+if (value === false || value === 'false') return 'Chưa có model';
+return 'Chưa có dữ liệu';
+```
+
+Với key `data_source`:
+
+```javascript
+if (value === 'simulation') return 'MÔ PHỎNG';
+if (value === 'hardware') return 'CẢM BIẾN THẬT';
+return 'Chưa xác định';
+```
+
+Nếu thẻ số của phiên bản đang dùng không hiển thị chuỗi sau chuyển đổi, chọn **Simple card** hỗ trợ chuỗi hoặc giữ boolean gốc với tiêu đề giải thích. Không chuyển đổi `fan` của switch sang chuỗi: switch vẫn dùng boolean.
+
+### Bước 4 — Sắp xếp và lưu
+
+- Hàng đầu: AI sẵn sàng, bất thường, score, thời gian suy luận, nguồn dữ liệu.
+- Hàng giữa: hai biểu đồ nhiệt độ/độ ẩm hiện có. Dùng cửa sổ 10 phút để dễ theo dõi chu kỳ mô phỏng; đặt aggregation **None** nếu đang AVG.
+- Hàng dưới: switch Fan và bảng Alarms. Giữ nguyên `setFan` và RuleChain đang hoạt động.
+- Có thể thêm biểu đồ `anomaly_score` với đường tham chiếu **0** để thấy các lần đổi dấu. Score không phải phần trăm chính xác hoặc xác suất nguy hiểm.
+- Lưu từng widget và **Save dashboard**. Qua chu kỳ nóng/bình thường, đối chiếu thẻ `anomaly`, score và timestamp; alarm có thể còn giữ trong vùng hysteresis.
+
+### Bước 5 — Lưu minh chứng sau khi hoàn thiện
+
+Export dashboard mới từ CoreIOT, lưu thành `evidence/coreiot/smartroom_dashboard_20261126.json` và ảnh cùng ngày. Bản này bổ sung cho export cũ, không ghi đè để giả như cấu hình mới đã có trước đây. Trong báo cáo, dữ liệu vẫn phải ghi rõ **simulation**. Không cần tạo thêm Notification rule vì cơ chế hiện tại đã nhận thông báo.
+
+Tham khảo giao diện và hàm xử lý hiển thị: [Widgets](https://thingsboard.io/docs/user-guide/widgets/), [Simple card](https://thingsboard.io/iot-hub/widgets/simple-card/), [Data post-processing function](https://thingsboard.io/docs/user-guide/advanced-data-key-configuration/#data-post-processing-function).

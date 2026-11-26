@@ -81,12 +81,14 @@ Topic: v1/gateway/rpc
 \end{figure}
 Mỗi thời điểm chỉ cho một lệnh pending để tránh retry bật/tắt đến đảo thứ tự. Trường hợp hết TTL được ghi failed; ACK đến muộn không đổi thành applied. Trạng thái thực tế vẫn theo telemetry, vì ACK có thể mất sau khi GPIO đã đổi. ACK xác nhận trạng thái đầu ra do firmware báo, chưa đo dòng điện hoặc tốc độ quạt.
 
+Trong lần kiểm tra ngày 26/11, request ID RPC được dùng lại nhưng SQLite còn lệnh từ phiên cũ, khiến lệnh mới bị coi là lặp hoặc khác tham số. Bản sửa thêm phạm vi phiên MQTT vào khóa chống lặp; mỗi kết nối thành công có session ID riêng. ID lệnh local gửi xuống node vẫn tăng và lưu bền. Test kiểm tra cả lệnh cùng/khác giá trị giữa hai phiên và lệnh lặp trong cùng phiên. Sau khi khởi động lại bản sửa, người dùng xác nhận web--CoreIOT đồng bộ hai chiều; API gateway ghi các RPC ID 4, 5, 6 tương ứng lệnh 18, 19, 20 đều applied. Minh chứng nằm ở \code{evidence/fan_sync_live_check.json}; sensor vẫn mô phỏng.
+
 \subsection{Giao diện giám sát và điều khiển (T10)}
-HTTP server mặc định chỉ bind \code{127.0.0.1}. API \code{/api/state} trả reading mới nhất, 120 mẫu gần nhất, 60 sự kiện gần nhất, 20 lệnh gần nhất và số outbox. Sau 15 giây không có mẫu mới, trạng thái hiển thị stale. Dashboard có nút bật/tắt và phân biệt pending/applied/failed. Phản hồi HTTP 202 chỉ có nghĩa nhận yêu cầu, không phải lệnh đã thực thi.
+HTTP server mặc định chỉ bind \code{127.0.0.1}. API \code{/api/state} trả reading mới nhất, 120 mẫu gần nhất, 60 sự kiện gần nhất, 20 lệnh gần nhất và số outbox. Sau 15 giây không có mẫu mới, trạng thái hiển thị stale. Dashboard dùng một switch bật/tắt và phân biệt pending/applied/failed. Switch cập nhật từ telemetry hoặc ACK mới hơn bản tin gần nhất, tạm khóa khi chờ xác nhận hoặc mất dữ liệu mới. Cập nhật do RPC không tự phát thêm POST từ web, tránh vòng lặp điều khiển. Phản hồi HTTP 202 chỉ có nghĩa nhận yêu cầu, không phải lệnh đã thực thi.
 
 \begin{figure}[H]\centering
-\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{../evidence/dashboard_desktop.png}
-\caption{Ảnh chụp Chrome của dashboard chạy thật trên PC, nguồn cảm biến mô phỏng.}
+\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{../evidence/dashboard_current_desktop.png}
+\caption{Ảnh Chrome ngày 26/11 của gateway đang chạy tại cổng 8081: switch quạt và AI đã nạp model; nguồn sensor mô phỏng. Chụp chỉ đọc, không gửi lệnh trong lượt chụp.}
 \end{figure}
 Nhật ký được ghi SQLite và xuất CSV toàn bộ events qua \code{/api/events.csv}. Hiển thị bảng dùng \code{textContent} để dữ liệu không bị thực thi như HTML. API điều khiển kiểm tra Origin cùng Host khi trình duyệt cung cấp; mặc định loopback hạn chế truy cập mạng ngoài. Phiên bản hiện tại chưa có tài khoản người dùng, reverse proxy HTTPS hoặc phân quyền nhiều người, nên không mở trực tiếp cổng này ra Internet.
 
@@ -95,6 +97,8 @@ Nhật ký được ghi SQLite và xuất CSV toàn bộ events qua \code{/api/e
 \code{ai/train.py} có hai chế độ. Chế độ mặc định sinh 1.500 mẫu bình thường để train; tập test độc lập gồm 800 bình thường, 200 nóng và 200 ẩm cao, tổng 1.200. Bộ sinh dùng seed 2353007. Mẫu bình thường có phân bố quanh 27~°C và 60~\%RH; các tình huống nóng/ẩm được đặt phân bố khác để kiểm tra pipeline. Vì những tình huống này tách khá rõ, accuracy cao không phải bằng chứng về độ khó thực tế.
 
 Chế độ CSV yêu cầu cột \code{temperature,humidity,label}, nhãn 0/1 và thứ tự thời gian. 60\% đầu là miền train, chỉ lấy mẫu normal trong phần này; 40\% cuối dành cho test. Cần ít nhất 100 mẫu normal train và 50 mẫu test hữu hạn có đủ hai lớp. Khi thu thập thực tế, phải ghi bối cảnh, phiên/phòng và cách gán nhãn; không tự tạo nhãn bằng đúng luật ngưỡng rồi dùng kết quả để khẳng định AI vượt luật đó.
+
+Bản cập nhật kiểm tra toàn bộ CSV trước khi chia tập: đủ cột; nhãn đúng 0 hoặc 1, không làm tròn nhãn thập phân; nhiệt độ hữu hạn trong $[-40,85]$ và độ ẩm trong $[0,100]$. Miền này khớp hàng rào dữ liệu gateway, không phải chứng nhận cảm biến. Thứ tự thời gian vẫn do người cung cấp CSV đảm bảo vì định dạng hiện không bắt buộc cột timestamp.
 
 \subsection{Huấn luyện và đánh giá}
 Isolation Forest gồm 100 cây, contamination 0,02, random state cố định và chạy CPU một job. Không có bước chọn hyperparameter dựa trên tập test. Mô hình trả decision score; giá trị âm được đánh dấu anomaly. Tài liệu thư viện mô tả tham số và quy ước score này \cite{isolation}.
@@ -105,6 +109,8 @@ P=\frac{TP}{TP+FP},\qquad R=\frac{TP}{TP+FN},\qquad
 F_1=\frac{2PR}{P+R}.
 \]
 Số liệu cụ thể và confusion matrix nằm ở Chương 4; file CSV lưu từng dự đoán để tái kiểm tra. Tách đánh giá AI khỏi đánh giá ngưỡng tránh đồng nhất hai cơ chế.
+
+Module \code{ai/evaluate.py} nạp model cố định, kiểm tra SHA-256 và so sánh với luật ngưỡng nhiệt độ $\geq32$ hoặc độ ẩm $\geq80$. Luật so sánh từng mẫu không có hysteresis; hysteresis của ứng dụng đã được kiểm tra bằng chuỗi riêng. Đánh giá gồm bộ gốc, năm seed mới cùng phân bố, trường hợp normal dịch phân bố, lạnh chưa có trong tập huấn luyện và bất thường hiếm. Không huấn luyện lại, tìm ngưỡng hoặc đổi contamination sau khi xem kết quả. Nhãn do kịch bản sinh dữ liệu quy định, không phải số đo thực. Decision score không phải xác suất tin cậy; không đổi score thành phần trăm chính xác.
 
 \subsection{Triển khai mô hình}
 Model được xuất \code{ai/model.joblib} và nạp một lần khi gateway khởi động. Mỗi mẫu hợp lệ được bổ sung \code{anomaly_score}, \code{anomaly}, \code{inference_ms} và \code{ai_available}. Nếu chưa có model, giao diện hiển thị chưa có model; không gán nhãn ``bình thường'' giả. Model đặt trên PC, không đưa lên ESP32 nên không đăng ký TinyML.
@@ -123,7 +129,7 @@ Nhóm sử dụng cổng web \url{https://app.coreiot.io/home}. Các ảnh và c
 
 \code{coreiot/smartroom_dashboard.json} giữ hai time-series widget và alarm table từ template Thermostats chính thức. File nguồn, commit SHA, SHA-256 và giấy phép Apache-2.0 được lưu trong \code{coreiot/templates/}. Dự án thay alias thành \code{room-node-01}, bố cục và nhãn; bỏ map và form quản trị không phục vụ đề tài. Phần giao diện widget kế thừa không được trình bày như mã hoàn toàn do nhóm viết.
 
-Ảnh và export mới xác nhận đơn vị trục Y của Humidity đã được sửa thành \%. Còn một điểm hiển thị chưa chỉnh trong bản export: hai biểu đồ dùng cửa sổ riêng 1 giờ, AVG mỗi 30 giây, không dùng time window của dashboard. Việc lấy trung bình có thể làm thấp đỉnh nóng ngắn; trong ảnh, nhiệt độ tối đa hiển thị khoảng 31,5~°C. RuleChain xét bản tin gốc và cờ anomaly, không dùng kết quả AVG của widget, nên alarm vẫn có thể xuất hiện. Nên chỉnh Aggregation=None trên dashboard hiện tại và export lại; bản export gốc được giữ nguyên để phản ánh đúng minh chứng đã thu.
+Ảnh và export gốc đã lưu xác nhận trục Humidity dùng đơn vị \%. Bản export đó còn hai cửa sổ riêng 1 giờ, AVG mỗi 30 giây; việc lấy trung bình có thể làm thấp đỉnh nóng ngắn. RuleChain xét bản tin gốc và cờ anomaly, không dùng kết quả AVG của widget. Ảnh mới trong trao đổi ngày 26/11 đã có dữ liệu và đỉnh khoảng 35,8~°C, nhưng chưa có JSON export mới để xác nhận aggregation hiện tại. Khi hoàn thiện dashboard nên dùng Aggregation=None cho dữ liệu gốc và export lại; giữ nguyên bản cũ để phản ánh đúng thời điểm thu.
 
 Bản \code{coreiot/smartroom_dashboard_rpc.json} trước đây được dùng khởi tạo hai RPC Button đặt method \code{setFan}, params boolean true/false và target alias sensor. Lệnh dùng two-way, timeout 10 giây; người dùng đã xác nhận vận hành và gateway ghi trạng thái applied cho các RPC ID. File này được giữ làm cấu hình ban đầu và fixture kiểm thử, không yêu cầu import lại khi đã có dashboard đang dùng.
 

@@ -17,6 +17,10 @@ K09 & Cloud reconnect và RPC đúng payload & Connect child trước telemetry;
 K10 & Chrome desktop/mobile, bật/tắt mô phỏng & Không lỗi JS, không tràn ngang, có applied & Trình duyệt thật \\
 K11 & Build hai firmware & Thành công, có file nhị phân và thống kê bộ nhớ & Build thật \\
 K12 & Radio, GPIO/quạt và RPC CoreIOT & Đủ ảnh, log, video và số đo lặp & Chưa thực hiện \\
+K13 & RPC ID được dùng lại sau reconnect & Lệnh phiên mới được áp dụng; lặp cùng phiên không tạo lại & Test phần mềm \\
+K14 & Switch web và lệnh RPC đến từ cloud & Cập nhật hai chiều; không phát POST vòng lặp & Chrome; MQTT giả \\
+K15 & Model thật và CSV sai nhãn/miền & Có raised/cleared; dữ liệu sai bị từ chối & Model cố định trên PC \\
+K16 & Dừng/chạy lại gateway & Lệnh lỗi khi dừng; đồng bộ lại sau chạy & Người dùng xác nhận \\
 \bottomrule
 \end{longtable}
 
@@ -36,6 +40,8 @@ Bridge & 45.344 & 751.573 & 1.310.720 \\
 \end{tabular}
 \end{table}
 Các con số trên là mức bộ nhớ build, không phải đỉnh heap/stack khi chạy. Chưa có dữ liệu heap dài hạn, nhiệt độ chip hoặc độ ổn định USB.
+
+Ngày 26/11, bộ Chrome riêng trong \code{scripts/check_fan_sync.py} kiểm tra switch local, RPC qua callback MQTT giả, ACK, cập nhật không phát thêm POST, phím Space, giao diện mobile và khóa switch khi stale. \code{evidence/fan_sync_check.json} ghi kết quả đạt; bộ này không kết nối tài khoản cloud. Kiểm tra cloud thực được tách ở \code{evidence/fan_sync_live_check.json}: người dùng xác nhận đồng bộ hai chiều, API local ghi các RPC mới applied, nguồn sensor vẫn simulation.
 
 \subsection{Thời gian xử lý phần mềm}
 \code{scripts/evaluate.py} tạo database SQLite tạm trên đĩa, thực hiện 1.000 lần ingest và 100 lần snapshot. Ingest đo kiểm tra + lưu SQLite/outbox, \textbf{không nạp AI} để tách chi phí từng khối. Snapshot đọc trạng thái và 120 mẫu gần nhất. Các mẫu không phải số đo cảm biến; CSV lưu 1.100 thời gian thực đo trên PC.
@@ -61,6 +67,9 @@ Trong lượt đo, số bản tin outbox trước giả lập lỗi publish là 
 
 Vì QoS 1 có thể phát lại, timestamp và nội dung gói được giữ; journal không tạo lại khi flush. Chưa kiểm thử mất điện bất ngờ giữa lúc ghi, ổ đĩa đầy, database hỏng hoặc giới hạn lưu trữ nhiều tháng. WAL/giao dịch không thay thế chính sách sao lưu.
 
+\paragraph{Thử dừng/chạy lại do người dùng thực hiện.}
+Ngày 26/11/2026, người dùng mô tả: dừng gateway thì thao tác switch báo error; chạy lại thì đồng bộ bình thường. Nội dung xác nhận được lưu ở \code{evidence/gateway_recovery_user_check.json}. Đây là kiểm chứng chức năng phục hồi ứng dụng với node mô phỏng và CoreIOT thật. Chưa ghi thời gian reconnect, số lần lặp hoặc số bản tin phát lại nên không suy ra các số đo đó. Người dùng không xác nhận thử ngắt Internet riêng; báo cáo không đồng nhất dừng chương trình với mất đường truyền.
+
 \subsection{Đánh giá AI trên dữ liệu sinh}
 Huấn luyện dùng \AITrainCount\ mẫu bình thường; tập kiểm thử có \AITestCount\ mẫu độc lập theo seed đã công bố. Accuracy là \AIAccuracy\%; với lớp bất thường, precision \AIPrecision\%, recall \AIRecall\%, F1 = \AIFone. Ma trận nhầm lẫn có TN=\TrueNegative, FP=\FalsePositive, FN=\FalseNegative, TP=\TruePositive.
 
@@ -69,6 +78,8 @@ Huấn luyện dùng \AITrainCount\ mẫu bình thường; tập kiểm thử c�
 \caption{Confusion matrix trên dữ liệu sinh giữ riêng; không phải dữ liệu phòng học thực.}
 \end{figure}
 Những bất thường được sinh cách phân bố bình thường tương đối xa nên mô hình có lợi thế phân tách. Mười bốn báo động giả và ba mẫu bỏ sót trong lượt dữ liệu này cho thấy ngay cả giả thiết đơn giản vẫn có lỗi. Khi dùng phòng thật có thể có thay đổi theo giờ, vị trí cảm biến và nhiều trạng thái hợp lệ chưa có trong train. Cần giữ riêng phiên/ngày/phòng để kiểm tra tổng quát hóa, báo cáo false alarm theo thời gian và xem xét recalibration.
+
+\input{chapters/04-ai-evaluation.tex}
 
 \subsection{Kế hoạch đo phần cứng cần bổ sung}
 \begin{longtable}{P{4cm}P{7.2cm}P{3.5cm}}
@@ -89,6 +100,6 @@ Tỷ lệ mất gói theo một phiên có thể tính $100(N_{sent}-N_{received
 \section{Đánh giá kết quả}
 Các mục tiêu local về từ chối dữ liệu sai, loại trùng, hysteresis, ACK/timeout và outbox đã có test tương ứng. AI đã có mô hình, phép đo CPU và dữ liệu dự đoán truy xuất được; mức tin cậy hiện giới hạn trong dữ liệu sinh. Hai firmware đủ điều kiện bước tiếp theo là cấu hình MAC/pin và nạp thử, không phải kết luận đã vận hành ổn định.
 
-Telemetry và RPC mô phỏng đã được xác nhận; API local ghi các RPC ID applied và outbox bằng 0. Bốn ảnh và ba JSON export thực đã được lưu, kiểm tra và nhúng trong Chương 3. Script \code{scripts/check_coreiot_exports.py} kiểm tra đồ thị, nhánh RPC, cấu hình switch/đơn vị và chạy 16 trường hợp JavaScript, gồm ngưỡng, vùng hysteresis, AI anomaly và lọc thiết bị. Kết quả nằm ở \code{evidence/coreiot_export_check.json}; các tệp gốc được giữ nguyên kèm SHA-256.
+Telemetry, switch hai chiều và RPC với node mô phỏng đã được xác nhận; các RPC mới được ghi applied. Bốn ảnh và ba JSON export CoreIOT từ lần thu trước đã được giữ nguyên, kiểm tra và nhúng trong Chương 3. Script \code{scripts/check_coreiot_exports.py} kiểm tra đồ thị, nhánh RPC, switch/đơn vị và chạy 16 trường hợp JavaScript. Kết quả nằm ở \code{evidence/coreiot_export_check.json}; các tệp gốc có SHA-256.
 
-Ảnh chứng minh alarm Major, New alarm và Alarm cleared notification với dữ liệu mô phỏng. Chưa đo lặp độ trễ sensor--cloud, notification hoặc mất gói vô tuyến. Phát hiện hiển thị còn lại là AVG 30 giây của hai biểu đồ làm thấp đỉnh ngắn; nên đổi None rồi export lại, không sửa tệp gốc để giả như cấu hình đó đã được áp dụng. Kiểm thử cấu hình export không thay thế phép đo phần cứng hoặc độ trễ.
+Ảnh chứng minh alarm Major, New alarm và Alarm cleared notification với dữ liệu mô phỏng. Chưa đo lặp độ trễ sensor--cloud, notification hoặc mất gói vô tuyến. Bản export cũ còn AVG 30 giây; ảnh mới trong trao đổi đã hiển thị đỉnh khoảng 35,8~°C nhưng chưa có export mới để kết luận aggregation hiện tại. Cần export lại sau khi hoàn thiện dashboard; không sửa bản gốc để giả như cấu hình đã thay đổi. Kiểm thử cấu hình không thay thế phép đo phần cứng hoặc độ trễ.

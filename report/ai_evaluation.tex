@@ -1,0 +1,18 @@
+\begin{longtable}{P{3.9cm}P{2.7cm}r r r r}
+\caption{Model cố định so với luật ngưỡng; toàn bộ là dữ liệu sinh}\label{tab:ai-comparison}\\
+\toprule Tập đánh giá & Phương pháp & Acc. (\%) & Recall (\%) & FPR (\%) & F1 \\ \midrule
+\endfirsthead
+\toprule Tập đánh giá & Phương pháp & Acc. (\%) & Recall (\%) & FPR (\%) & F1 \\ \midrule
+\endhead
+Gốc, 1.200 mẫu & Isolation Forest & 98.58 & 99.25 & 1.75 & 0.9790 \\
+Gốc, 1.200 mẫu & Ngưỡng 32/80 & 99.67 & 99.00 & 0.00 & 0.9950 \\
+Năm seed mới, 6.000 mẫu & Isolation Forest & 98.30 & 97.80 & 1.45 & 0.9746 \\
+Năm seed mới, 6.000 mẫu & Ngưỡng 32/80 & 99.88 & 99.65 & 0.00 & 0.9982 \\
+Bất thường hiếm, 2.040 mẫu & Isolation Forest & 98.68 & 100.00 & 1.35 & 0.7477 \\
+Bất thường hiếm, 2.040 mẫu & Ngưỡng 32/80 & 99.95 & 100.00 & 0.05 & 0.9877 \\
+Normal dịch phân bố, 1.000 mẫu & Isolation Forest & 79.90 & --- & 20.10 & --- \\
+Normal dịch phân bố, 1.000 mẫu & Ngưỡng 32/80 & 99.00 & --- & 1.00 & --- \\
+Lạnh bất thường, 300 mẫu & Isolation Forest & 100.00 & 100.00 & --- & 1.0000 \\
+Lạnh bất thường, 300 mẫu & Ngưỡng 32/80 & 0.00 & 0.00 & --- & 0.0000 \\
+\bottomrule
+\end{longtable}

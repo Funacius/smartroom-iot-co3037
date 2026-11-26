@@ -17,8 +17,10 @@ Máy tính có dashboard riêng tại `http://127.0.0.1:8080`; bridge có web se
 - Firmware `sensor` và `bridge` đã build trên PlatformIO; chưa nạp lên board trong phiên làm việc này.
 - Gateway, HTTP dashboard, journal, xử lý lệnh/ACK, outbox và adapter CoreIOT đã kiểm thử tự động. Xem `evidence/pytest.xml` và `evidence/verification.json`.
 - AI Isolation Forest được train và đánh giá trên **dữ liệu sinh**, không phải số đo phòng học. Metrics/CSV có nguồn dữ liệu rõ ràng.
-- Đã nhận và kiểm tra 4 ảnh cùng 3 JSON export thực trong `evidence/coreiot/`: dashboard/switch, Root/child RuleChain và Web notification tạo/xóa alarm. Switch dùng telemetry `fan`, RPC `setFan` với boolean đúng; độ ẩm đã có đơn vị %. Còn cần đổi AVG 30 giây thành None trên hai biểu đồ để không làm thấp đỉnh nóng, rồi kiểm thử phần cứng. Xem `evidence/coreiot_export_check.json` và báo cáo đã nhúng ảnh.
-- PDF bám mẫu Word, đủ sáu chương; phần chưa kiểm chứng được ghi rõ. Cần mã nhóm, video và ảnh/đo thực tế trước khi nộp.
+- Cập nhật 26/11: switch web ↔ CoreIOT đã đồng bộ hai chiều sau khi sửa phạm vi chống lặp RPC theo phiên MQTT. Người dùng thử dừng/chạy lại gateway: lệnh báo error khi dừng, đồng bộ lại khi chạy. Xem `evidence/fan_sync_live_check.json` và `evidence/gateway_recovery_user_check.json`.
+- Đánh giá AI mở rộng dùng model cố định: bộ gốc, 5 seed mới (6.000 mẫu), normal dịch phân bố, lạnh khác train và bất thường hiếm. Luật ngưỡng tốt hơn AI trên bộ nóng/ẩm; AI có FPR 20,1% khi normal dịch phân bố và precision 59,70% ở tập bất thường hiếm. Đây là kết quả dữ liệu sinh, chưa phải hiệu quả thực địa. Xem `evidence/ai_evaluation.json` và Chương 4 của báo cáo.
+- Đã kiểm tra 4 ảnh và 3 JSON export CoreIOT gốc: dashboard/switch, Root/child RuleChain và Web notification tạo/xóa alarm. Switch dùng telemetry `fan`, RPC `setFan` boolean; độ ẩm có đơn vị %. Bản export cũ còn AVG 30 giây; ảnh mới đã thấy đỉnh khoảng 35,8 °C, cần export mới sau khi hoàn thiện dashboard để xác nhận cấu hình hiện tại. Xem `evidence/coreiot_export_check.json`.
+- PDF cập nhật ngày 26/11, 48 trang, đủ sáu chương và 56 test; đã thêm ảnh switch hiện tại, so sánh AI và ghi rõ phần chưa kiểm chứng. Cần mã nhóm, video và ảnh/đo phần cứng trước khi nộp.
 
 ## Chạy thử nhanh trên Windows
 
@@ -87,6 +89,7 @@ CoreIOT adapter dùng API ThingsBoard chuẩn; cần kiểm chứng tương thí
 ```powershell
 .venv\Scripts\python -m pytest -q --junitxml=evidence/pytest.xml
 .venv\Scripts\python scripts/evaluate.py
+.venv\Scripts\python -m ai.evaluate
 .venv\Scripts\python scripts/verify.py --firmware
 .venv\Scripts\python scripts/build_report.py
 ```
@@ -98,6 +101,8 @@ Muốn train với dữ liệu thực: `.venv\Scripts\python ai/train.py --csv d
 
 Kiểm tra switch và đồng bộ lệnh hai chiều bằng Chrome: `python scripts/check_fan_sync.py` (cần `playwright` và Chrome). Script dùng gateway trong RAM, sensor và MQTT giả lập; không gửi lên CoreIOT. Kết quả tại `evidence/fan_sync_check.json`, ảnh tại `evidence/fan_switch_desktop.png` và `evidence/fan_switch_mobile.png`.
 
+`python -m ai.evaluate` không train hoặc ghi đè model. Module kiểm tra dự đoán gốc, so sánh luật `temperature >= 32 OR humidity >= 80` không có hysteresis, xuất dự đoán từng mẫu và các lỗi vào `evidence/ai_evaluation_trials.csv`, `evidence/ai_error_samples.csv`. Các test `tests/test_ai.py` dùng model thật và kiểm tra CSV sai nhãn/miền. Score âm nghĩa là khác phân bố huấn luyện, không phải xác suất hay mức nguy hiểm. Hướng dẫn hoàn thiện dashboard tại [Mục 6 của CoreIOT README](coreiot/README.md#6-hoàn-thiện-dashboard-hiện-tại-khi-chưa-có-mạch).
+
 Thu thập từ phần cứng: `python scripts/record_hardware.py --seconds 300`; script từ chối lưu simulation làm minh chứng phần cứng.
 Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 
@@ -107,13 +112,13 @@ Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 |---|---:|---|---|
 | T06 | 1,5 | ESP-NOW unicast mã hóa, packet và ACK | Build đạt; cần thử hai board |
 | T07 | 1 | Web server trên bridge | Build đạt; cần ảnh web/điều khiển board |
-| T08 | 1 | Gateway hai chiều, lưu bền, ACK | Telemetry cloud được xác nhận; cần USB thật và RPC từ cloud |
-| T09 | 1 | Isolation Forest trên gateway | Đã chạy với dữ liệu sinh; cần train/đánh giá thực |
+| T08 | 1 | Gateway hai chiều, lưu bền, ACK | Telemetry/RPC cloud và dừng/chạy lại đã xác nhận với sensor mô phỏng; cần USB thật |
+| T09 | 1 | Isolation Forest trên gateway | Model thật, baseline và stress test đã chạy; dữ liệu vẫn sinh |
 | T10 | 1 | Giao diện giám sát/điều khiển PC | Đã chạy local |
-| T11 | 1 | Template dashboard CoreIOT | Có ảnh/export; switch và đơn vị đúng, còn chỉnh AVG 30 giây |
+| T11 | 1 | Template dashboard CoreIOT | Có ảnh/export và switch hai chiều; cần export mới sau khi thêm các ô AI |
 | T12 | 1 | RuleChain cảnh báo với hysteresis | Ảnh alarm Major và thông báo tạo/xóa đã nhận trên CoreIOT |
 | T13 | 0,5 | Notification khi tạo alarm | Có ảnh Web notification tạo/xóa cho room-node-01 |
-| T15 | 2 | Child synchronization qua Gateway API | Latest telemetry đã được xác nhận; cần ảnh gateway-child và thử RPC |
+| T15 | 2 | Child synchronization qua Gateway API | Telemetry và RPC hai chiều đã xác nhận; cần ảnh gateway-child và thử phần cứng |
 | N06 | 1 | Dashboard riêng phát hiện/ghi sự kiện, CSV | Đã chạy local |
 
 Tổng công nghệ **mục tiêu** 10 điểm trước trần → tối đa 8; báo cáo tối đa 2; bonus tối đa 1; tổng cuối vẫn tối đa 10. **Không phải điểm đã đạt**.

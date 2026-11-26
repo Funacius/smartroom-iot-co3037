@@ -1,0 +1,14 @@
+{
+  "reported_on": "2026-11-26",
+  "source": "User report in conversation, not an independently instrumented measurement",
+  "scope": "Gateway application stop/restart with simulated node and live CoreIOT",
+  "user_statement": "Tôi dừng gateway rồi chạy lại, khi dừng thì lệnh switch sẽ báo error, kết nối lại thì đồng bộ bình thường",
+  "scenario": "Stop gateway, attempt switch command, restart gateway, observe synchronization",
+  "observed_while_stopped": "Switch command reports error",
+  "observed_after_restart": "Switch synchronization returns to normal",
+  "measured_reconnect_seconds": null,
+  "repetition_count": null,
+  "internet_disconnect_test_confirmed": false,
+  "backlog_replay_confirmed": false,
+  "physical_hardware_test": false
+}

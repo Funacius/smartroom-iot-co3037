@@ -1,0 +1,592 @@
+{
+  "checked_at": "2026-11-26T20:22:04.203757+07:00",
+  "scope": "Frozen model; all evaluation data is synthetic; local gateway integration, no live cloud or board",
+  "model_sha256": "e6472612f29de5aa7ed8f4b7969e7bdb66b2284443170c46e2bb8980b15261b9",
+  "reference_csv_sha256": "47f69d343ca716a9038fdb49b6877a41ce1f9d30086ed57c3e941a71653a7e7e",
+  "model_unchanged": true,
+  "reference_predictions_match": true,
+  "protocol": {
+    "baseline": "Stateless temperature>=32 OR humidity>=80; no hysteresis in classification metrics",
+    "fresh_seeds": [
+      26101,
+      26102,
+      26103,
+      26104,
+      26105
+    ],
+    "stress_seed": 26106,
+    "rare_seed": 26107,
+    "shifted_normal_assumption": "All 1000 shifted samples are assumed valid normal conditions, not field labels",
+    "unseen_cold_assumption": "All 300 cold samples are generator-defined anomalies, not health limits",
+    "no_tuning": "Model, contamination and threshold fixed before evaluation; no retraining or threshold search"
+  },
+  "datasets": {
+    "reference": {
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            786,
+            14
+          ],
+          [
+            3,
+            397
+          ]
+        ],
+        "accuracy": 0.9858333333333333,
+        "precision": 0.9659367396593674,
+        "recall": 0.9925,
+        "f1": 0.9790382244143033,
+        "false_positive_rate": 0.0175,
+        "false_negative_rate": 0.0075
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            4,
+            396
+          ]
+        ],
+        "accuracy": 0.9966666666666667,
+        "precision": 1.0,
+        "recall": 0.99,
+        "f1": 0.9949748743718593,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.01
+      }
+    },
+    "fresh_same_distribution": {
+      "isolation_forest": {
+        "samples": 6000,
+        "normal": 4000,
+        "anomalous": 2000,
+        "confusion_matrix": [
+          [
+            3942,
+            58
+          ],
+          [
+            44,
+            1956
+          ]
+        ],
+        "accuracy": 0.983,
+        "precision": 0.971201588877855,
+        "recall": 0.978,
+        "f1": 0.9745889387144993,
+        "false_positive_rate": 0.0145,
+        "false_negative_rate": 0.022
+      },
+      "threshold": {
+        "samples": 6000,
+        "normal": 4000,
+        "anomalous": 2000,
+        "confusion_matrix": [
+          [
+            4000,
+            0
+          ],
+          [
+            7,
+            1993
+          ]
+        ],
+        "accuracy": 0.9988333333333334,
+        "precision": 1.0,
+        "recall": 0.9965,
+        "f1": 0.9982469321312296,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0035
+      }
+    },
+    "shifted_normal": {
+      "isolation_forest": {
+        "samples": 1000,
+        "normal": 1000,
+        "anomalous": 0,
+        "confusion_matrix": [
+          [
+            799,
+            201
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "accuracy": 0.799,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.201,
+        "false_negative_rate": null
+      },
+      "threshold": {
+        "samples": 1000,
+        "normal": 1000,
+        "anomalous": 0,
+        "confusion_matrix": [
+          [
+            990,
+            10
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "accuracy": 0.99,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.01,
+        "false_negative_rate": null
+      }
+    },
+    "unseen_cold": {
+      "isolation_forest": {
+        "samples": 300,
+        "normal": 0,
+        "anomalous": 300,
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            300
+          ]
+        ],
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": null,
+        "false_negative_rate": 0.0
+      },
+      "threshold": {
+        "samples": 300,
+        "normal": 0,
+        "anomalous": 300,
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            300,
+            0
+          ]
+        ],
+        "accuracy": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": null,
+        "false_negative_rate": 1.0
+      }
+    },
+    "rare_anomaly": {
+      "isolation_forest": {
+        "samples": 2040,
+        "normal": 2000,
+        "anomalous": 40,
+        "confusion_matrix": [
+          [
+            1973,
+            27
+          ],
+          [
+            0,
+            40
+          ]
+        ],
+        "accuracy": 0.986764705882353,
+        "precision": 0.5970149253731343,
+        "recall": 1.0,
+        "f1": 0.7476635514018691,
+        "false_positive_rate": 0.0135,
+        "false_negative_rate": 0.0
+      },
+      "threshold": {
+        "samples": 2040,
+        "normal": 2000,
+        "anomalous": 40,
+        "confusion_matrix": [
+          [
+            1999,
+            1
+          ],
+          [
+            0,
+            40
+          ]
+        ],
+        "accuracy": 0.9995098039215686,
+        "precision": 0.975609756097561,
+        "recall": 1.0,
+        "f1": 0.9876543209876543,
+        "false_positive_rate": 0.0005,
+        "false_negative_rate": 0.0
+      }
+    }
+  },
+  "fresh_repeats": [
+    {
+      "seed": 26101,
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            792,
+            8
+          ],
+          [
+            9,
+            391
+          ]
+        ],
+        "accuracy": 0.9858333333333333,
+        "precision": 0.9799498746867168,
+        "recall": 0.9775,
+        "f1": 0.9787234042553191,
+        "false_positive_rate": 0.01,
+        "false_negative_rate": 0.0225
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            0,
+            400
+          ]
+        ],
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      }
+    },
+    {
+      "seed": 26102,
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            784,
+            16
+          ],
+          [
+            8,
+            392
+          ]
+        ],
+        "accuracy": 0.98,
+        "precision": 0.9607843137254902,
+        "recall": 0.98,
+        "f1": 0.9702970297029703,
+        "false_positive_rate": 0.02,
+        "false_negative_rate": 0.02
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            1,
+            399
+          ]
+        ],
+        "accuracy": 0.9991666666666666,
+        "precision": 1.0,
+        "recall": 0.9975,
+        "f1": 0.9987484355444305,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0025
+      }
+    },
+    {
+      "seed": 26103,
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            788,
+            12
+          ],
+          [
+            11,
+            389
+          ]
+        ],
+        "accuracy": 0.9808333333333333,
+        "precision": 0.970074812967581,
+        "recall": 0.9725,
+        "f1": 0.9712858926342073,
+        "false_positive_rate": 0.015,
+        "false_negative_rate": 0.0275
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            4,
+            396
+          ]
+        ],
+        "accuracy": 0.9966666666666667,
+        "precision": 1.0,
+        "recall": 0.99,
+        "f1": 0.9949748743718593,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.01
+      }
+    },
+    {
+      "seed": 26104,
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            793,
+            7
+          ],
+          [
+            4,
+            396
+          ]
+        ],
+        "accuracy": 0.9908333333333333,
+        "precision": 0.9826302729528535,
+        "recall": 0.99,
+        "f1": 0.9863013698630136,
+        "false_positive_rate": 0.00875,
+        "false_negative_rate": 0.01
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            0,
+            400
+          ]
+        ],
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.0
+      }
+    },
+    {
+      "seed": 26105,
+      "isolation_forest": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            785,
+            15
+          ],
+          [
+            12,
+            388
+          ]
+        ],
+        "accuracy": 0.9775,
+        "precision": 0.9627791563275434,
+        "recall": 0.97,
+        "f1": 0.9663760896637609,
+        "false_positive_rate": 0.01875,
+        "false_negative_rate": 0.03
+      },
+      "threshold": {
+        "samples": 1200,
+        "normal": 800,
+        "anomalous": 400,
+        "confusion_matrix": [
+          [
+            800,
+            0
+          ],
+          [
+            2,
+            398
+          ]
+        ],
+        "accuracy": 0.9983333333333333,
+        "precision": 1.0,
+        "recall": 0.995,
+        "f1": 0.9974937343358395,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.005
+      }
+    }
+  ],
+  "point_checks": [
+    {
+      "name": "normal",
+      "temperature": 27,
+      "humidity": 60,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": 0.2415069906138675,
+      "anomaly": false,
+      "inference_ms": 38.36130001582205,
+      "threshold_alarm": false
+    },
+    {
+      "name": "temperature_high_boundary",
+      "temperature": 32,
+      "humidity": 60,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": -0.022868508401148846,
+      "anomaly": true,
+      "inference_ms": 7.015099981799722,
+      "threshold_alarm": true
+    },
+    {
+      "name": "humidity_high_boundary",
+      "temperature": 27,
+      "humidity": 80,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": -0.008113556243862785,
+      "anomaly": true,
+      "inference_ms": 12.13150005787611,
+      "threshold_alarm": true
+    },
+    {
+      "name": "below_both_thresholds",
+      "temperature": 27,
+      "humidity": 78,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": -0.008113556243862785,
+      "anomaly": true,
+      "inference_ms": 8.947300026193261,
+      "threshold_alarm": false
+    },
+    {
+      "name": "unusual_cold",
+      "temperature": 20,
+      "humidity": 40,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": -0.10009640397538333,
+      "anomaly": true,
+      "inference_ms": 7.854599971324205,
+      "threshold_alarm": false
+    },
+    {
+      "name": "temperature_clear_boundary",
+      "temperature": 30,
+      "humidity": 60,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": 0.07767648098487534,
+      "anomaly": false,
+      "inference_ms": 6.9500000681728125,
+      "threshold_alarm": false
+    },
+    {
+      "name": "humidity_clear_boundary",
+      "temperature": 27,
+      "humidity": 75,
+      "fan": false,
+      "boot": 1,
+      "seq": 1,
+      "data_source": "simulation",
+      "ai_available": true,
+      "anomaly_score": 3.0160259551270663e-05,
+      "anomaly": false,
+      "inference_ms": 6.027499912306666,
+      "threshold_alarm": false
+    }
+  ],
+  "inference_ms": {
+    "n": 200,
+    "warmup": 10,
+    "mean": 7.845140016870573,
+    "min": 4.742200020700693,
+    "max": 32.680500065907836,
+    "p95": 16.329575155396004
+  },
+  "versions": {
+    "python": "3.12.7",
+    "sklearn": "1.8.0",
+    "numpy": "2.4.4"
+  },
+  "limitations": [
+    "Synthetic separation is easy; no field accuracy claim",
+    "Normal distribution drift may cause many false alarms",
+    "Anomaly score is not a probability or confidence percentage",
+    "Single-class stress sets have undefined class-specific metrics; interpret counts/FPR only",
+    "Snapshot model uses two instantaneous variables; does not infer trends or room occupancy"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "pages": 44,
+  "pages": 48,
   "latex_issues": [],
   "metadata_checked": true,
   "source": "report/main.tex",
@@ -8,5 +8,13 @@
     "Rule_chains_root.png": true,
     "Rule_chains_SmartRoom_alarms.png": true,
     "Notification.png": true
-  }
+  },
+  "updated_figures_embedded": {
+    "dashboard_current_desktop.png": true,
+    "ai_comparison.png": true,
+    "ai_decision_regions.png": true
+  },
+  "report_date": "26/11/2026",
+  "test_count": 56,
+  "ai_model_sha256": "e6472612f29de5aa7ed8f4b7969e7bdb66b2284443170c46e2bb8980b15261b9"
 }

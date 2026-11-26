@@ -23,12 +23,27 @@ from sklearn.ensemble import IsolationForest
 from sklearn.metrics import classification_report, confusion_matrix
 
 
+def load_csv_data(csv_path):
+    rows = np.atleast_1d(np.genfromtxt(csv_path, delimiter=",", names=True))
+    required = {"temperature", "humidity", "label"}
+    if not required.issubset(rows.dtype.names or ()):
+        raise ValueError("CSV requires temperature,humidity,label columns")
+    if not rows.size:
+        raise ValueError("CSV contains no samples")
+    x = np.column_stack([rows["temperature"], rows["humidity"]])
+    labels = rows["label"]
+    if not np.isfinite(labels).all() or not np.isin(labels, [0, 1]).all():
+        raise ValueError("CSV labels must be exactly 0 or 1")
+    if (not np.isfinite(x).all() or (x[:, 0] < -40).any() or (x[:, 0] > 85).any()
+            or (x[:, 1] < 0).any() or (x[:, 1] > 100).any()):
+        raise ValueError("CSV requires finite temperature in [-40,85] and humidity in [0,100]")
+    return x, labels.astype(int)
+
+
 def train(csv_path=None):
     rng = np.random.default_rng(2353007)
     if csv_path:
-        rows = np.genfromtxt(csv_path, delimiter=",", names=True)
-        x = np.column_stack([rows["temperature"], rows["humidity"]])
-        y = rows["label"].astype(int)
+        x, y = load_csv_data(csv_path)
         cut = int(len(x) * 0.6)
         train_x, test_x, test_y = x[:cut][y[:cut] == 0], x[cut:], y[cut:]
         source = "user_csv:" + str(csv_path)
@@ -97,7 +112,7 @@ def train(csv_path=None):
         yticklabels=["Normal", "Anomaly"],
         xlabel="Prediction",
         ylabel="Ground truth",
-        title="Isolation Forest — synthetic held-out data",
+        title="Isolation Forest — CSV held-out data" if csv_path else "Isolation Forest — synthetic held-out data",
     )
     fig.colorbar(image, ax=ax)
     fig.tight_layout()

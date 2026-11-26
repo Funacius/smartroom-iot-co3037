@@ -53,7 +53,7 @@ F03 và F04 là hai cơ chế tách biệt: luật ngưỡng dễ giải thích,
 \section{Phạm vi và giới hạn}
 Mô hình triển khai dự kiến gồm hai YoloUNO, một DHT20, một bộ driver/quạt và một PC. Chưa xét cấp nguồn pin, công suất tiêu thụ, độ bền 24 giờ, mạng nhiều phòng hoặc chứng nhận an toàn. Không dùng RS485, BLE, Tasmota, TinyML, OTA hay ứng dụng di động native.
 
-Tại ngày dựng báo cáo, các kết quả đã thực hiện là build firmware, chạy gateway mô phỏng, huấn luyện trên dữ liệu sinh và đo phần mềm. Hình wiring là bản đề xuất; ảnh dashboard là ảnh chụp ứng dụng thực chạy với nguồn mô phỏng. Tương thích CoreIOT phải xác nhận bằng tài khoản và cấu hình server của lớp. Cách giới hạn này giúp bảng tự đánh giá bám đúng yêu cầu minh chứng của đề bài.
+Tại ngày 26/11/2026, nhóm đã build firmware, chạy gateway mô phỏng, đồng bộ switch web--CoreIOT hai chiều và đánh giá AI trên dữ liệu sinh. Người dùng xác nhận dừng/chạy lại gateway khôi phục đồng bộ; chưa có phép đo thời gian phục hồi. Nhóm hiện chưa có mạch nên chưa nạp firmware hoặc đo cảm biến/radio. Hình wiring là bản đề xuất; ảnh ứng dụng và log cloud dùng nguồn mô phỏng. Các giới hạn này được giữ rõ trong bảng tự đánh giá.
 
 \section{Cấu trúc báo cáo}
 Chương 2 ánh xạ tính năng vào kiến trúc, phần cứng và mã chấm điểm. Chương 3 mô tả firmware, gateway, AI và cấu hình cloud. Chương 4 nêu cách đo, kết quả đã chạy và các phép đo cần bổ sung. Chương 5 tổng kết mức hoàn thành và hướng phát triển. Chương 6 hướng dẫn cài, cấu hình, build, nạp và vận hành mã nguồn. Phụ lục ghi nguồn minh chứng, kịch bản demo và phạm vi dùng AI.

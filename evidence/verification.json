@@ -6,9 +6,12 @@
       "-m",
       "pytest",
       "-q",
-      "--junitxml=evidence/pytest.xml"
+      "--junitxml=evidence/pytest.xml",
+      "-p",
+      "no:cacheprovider"
     ],
-    "scope": "software/build; no physical board or live cloud"
+    "scope": "software tests, including real frozen AI model; simulated transports, no physical board or live cloud",
+    "checked_at": "2026-11-26T20:22:13.340476+07:00"
   },
   "firmware_build": {
     "exit_code": 0,

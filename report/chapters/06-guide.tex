@@ -76,10 +76,14 @@ COM5/COM6 là ví dụ phải thay theo máy. Nếu \code{pio} chưa có trong P
 \begin{verbatim}
 .venv\Scripts\python -m pytest -q --junitxml=evidence/pytest.xml
 .venv\Scripts\python scripts/evaluate.py
+.venv\Scripts\python -m ai.evaluate
+.venv\Scripts\python scripts/check_fan_sync.py
 .venv\Scripts\python scripts/verify.py --firmware
 .venv\Scripts\python scripts/build_report.py
 \end{verbatim}
 Script dựng báo cáo lấy tên, mã nhóm, email và link từ \code{report/metadata.json}; đọc số đo AI/benchmark/JUnit rồi chạy XeLaTeX hai lượt. Khi đã có mã nhóm, thay metadata và dựng lại để tên PDF đúng \code{[ClassCode]_[GroupCode]_IoTReport.pdf}. Ngày trong metadata là ngày báo cáo, cần cập nhật khi nộp.
+
+\code{python -m ai.evaluate} nạp nguyên model đã có và chỉ ghi kết quả đánh giá, không train lại. Bộ đánh giá hiện dành cho model/reference dữ liệu sinh của dự án; không dùng nhãn synthetic cho CSV thực. Bộ Chrome cần \code{playwright} và Google Chrome. Hướng dẫn thêm ô AI, score, inference time và nguồn dữ liệu trên dashboard hiện có nằm ở Mục 6 của \code{coreiot/README.md}; datasource vẫn là child \code{room-node-01}.
 
 \subsection{Xử lý lỗi thường gặp}
 \begin{longtable}{P{4cm}P{10.8cm}}
