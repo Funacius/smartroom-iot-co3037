@@ -110,11 +110,13 @@ class Gateway:
             self._queue("v1/gateway/telemetry", {device: [{"ts": int(now * 1000), "values": values}]})
             return True
 
-    def command(self, device, value, rpc_id=None):
+    def command(self, device, value, rpc_id=None, rpc_scope=None):
         if device != self.config["device"] or type(value) is not bool:
             raise ValueError("Expected known device and boolean value")
-        # Gateway ids are monotonic/persistent; cloud RPC ids are scoped per child.
-        rpc_key = None if rpc_id is None else json.dumps([device, rpc_id])
+        # Cloud request IDs can be reused by a new transport session. Keep local
+        # command IDs persistent, but deduplicate RPCs only within their session.
+        identity = [device, rpc_id] if rpc_scope is None else [device, rpc_scope, rpc_id]
+        rpc_key = None if rpc_id is None else json.dumps(identity)
         with self.lock, self.db:
             if rpc_key is not None:
                 found = self.db.execute("SELECT * FROM commands WHERE rpc_key=?", (rpc_key,)).fetchone()

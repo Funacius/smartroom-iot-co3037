@@ -1,0 +1,10 @@
+{
+  "scope": "Chrome + isolated in-memory gateway; simulated sensor/MQTT, no live cloud",
+  "local_switch_on_off": "PASS",
+  "incoming_rpc_updates_switch": "PASS",
+  "no_command_echo": "PASS",
+  "keyboard_control": "PASS",
+  "stale_disables_switch": "PASS",
+  "mobile_overflow": false,
+  "console_errors": []
+}

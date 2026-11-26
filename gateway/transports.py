@@ -8,6 +8,7 @@ import queue
 import random
 import threading
 import time
+import uuid
 
 LOG = logging.getLogger(__name__)
 
@@ -129,6 +130,7 @@ class CoreIOT:
         self.ready = threading.Event()
         self.incoming = queue.Queue(maxsize=100)
         self.connect_needed = threading.Event()
+        self.rpc_scope = None
         self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         token = os.getenv("COREIOT_TOKEN", "")
         if not token:
@@ -145,6 +147,7 @@ class CoreIOT:
 
     def _on_connect(self, client, userdata, flags, reason, properties):
         if reason == 0:
+            self.rpc_scope = uuid.uuid4().hex
             client.subscribe("v1/gateway/rpc", qos=1)
             self.connect_needed.set()
             LOG.info("CoreIOT MQTT connected; registering child device")
@@ -181,8 +184,14 @@ class CoreIOT:
                 data = body["data"]
                 if data["method"] != "setFan":
                     raise ValueError("Supported method: setFan")
-                self.gateway.command(body["device"], data["params"], rpc_id=data["id"])
+                command = self.gateway.command(
+                    body["device"], data["params"], rpc_id=data["id"],
+                    rpc_scope=self.rpc_scope,
+                )
+                LOG.info("CoreIOT setFan received: RPC %s -> command #%s (%s)",
+                         data["id"], command["id"], command["status"])
             except (KeyError, TypeError, ValueError) as exc:
+                LOG.warning("CoreIOT RPC rejected: %s", exc)
                 if isinstance(body, dict) and isinstance(body.get("data"), dict) and "id" in body["data"]:
                     with self.gateway.lock, self.gateway.db:
                         self.gateway._queue(

@@ -88,13 +88,53 @@
       text-decoration: none;
       display: inline-block;
     }
-    button.secondary {
-      background: #e5eee8;
-      color: #163433;
+    .fan-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin: 18px 0;
+      font-weight: 600;
+      cursor: pointer;
     }
-    button:disabled {
+    #fanSwitch {
+      appearance: none;
+      position: relative;
+      width: 58px;
+      height: 34px;
+      margin: 0;
+      border: 2px solid #a8bab1;
+      border-radius: 20px;
+      background: #dce6df;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    #fanSwitch::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 3px;
+      left: 3px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 3px #16343340;
+      transition: transform 0.15s;
+    }
+    #fanSwitch:checked {
+      background: #176550;
+      border-color: #176550;
+    }
+    #fanSwitch:checked::before {
+      transform: translateX(24px);
+    }
+    #fanSwitch:focus-visible {
+      outline: 3px solid #88b9a6;
+      outline-offset: 4px;
+    }
+    #fanSwitch:disabled {
       opacity: 0.45;
-      cursor: wait;
+      cursor: not-allowed;
     }
     canvas {
       width: 100%;
@@ -180,11 +220,13 @@
     <section>
       <h2>Điều khiển quạt</h2>
       <p>Trạng thái gần nhất: <strong id="fan">—</strong></p>
-      <button onclick="sendFanCommand(true)">Bật quạt</button
-      ><button class="secondary" onclick="sendFanCommand(false)">
-        Tắt quạt
-      </button>
-      <p id="commandStatus" class="small">
+      <label class="fan-control" for="fanSwitch">
+        <input id="fanSwitch" type="checkbox" role="switch"
+          aria-label="Bật/tắt quạt" aria-describedby="commandStatus"
+          onchange="sendFanCommand(this.checked)" disabled />
+        <span id="fanSwitchLabel">Đang kết nối…</span>
+      </label>
+      <p id="commandStatus" class="small" role="status" aria-live="polite">
         Lệnh chỉ hoàn thành khi node xác nhận.
       </p>
       <p id="age" class="small"></p>
@@ -214,6 +256,23 @@
   <script>
     const $ = (id) => document.getElementById(id);
     let lastState;
+    let commandSubmitting = false;
+    let refreshing = false;
+    function renderFanControl(s) {
+      const v = s.latest?.values;
+      const pending = s.commands.find((c) => c.status === "pending");
+      // An ACK can arrive before the next periodic telemetry sample.
+      const applied = s.commands.find((c) => c.status === "applied");
+      const confirmed = applied && s.latest && applied.sent > s.latest.received
+        ? Boolean(applied.value) : Boolean(v?.fan);
+      $("fan").textContent = v ? (confirmed ? "Đang bật" : "Đang tắt") : "—";
+      $("fanSwitch").checked = pending ? Boolean(pending.value) : confirmed;
+      $("fanSwitch").disabled = commandSubmitting || Boolean(pending) || s.stale || !v;
+      $("fanSwitch").setAttribute("aria-busy", String(commandSubmitting || Boolean(pending)));
+      $("fanSwitchLabel").textContent = pending || commandSubmitting
+        ? "Đang chờ xác nhận…" : !v || s.stale
+          ? "Chưa có dữ liệu mới" : confirmed ? "Bật" : "Tắt";
+    }
     function chart(history) {
       const c = $("chart"),
         ctx = c.getContext("2d");
@@ -248,6 +307,8 @@
       ctx.stroke();
     }
     async function refresh() {
+      if (refreshing) return;
+      refreshing = true;
       try {
         const r = await fetch("/api/state");
         if (!r.ok) throw Error("HTTP " + r.status);
@@ -262,7 +323,6 @@
         if (v) {
           $("temperature").textContent = v.temperature.toFixed(1) + " °C";
           $("humidity").textContent = v.humidity.toFixed(1) + " %";
-          $("fan").textContent = v.fan ? "Đang bật" : "Đang tắt";
           $("anomaly").textContent = !v.ai_available
             ? "Chưa có model"
             : v.anomaly
@@ -290,12 +350,7 @@
               failed: "hết hạn, chưa rõ trạng thái vật lý",
             }[c.status];
         }
-        document
-          .querySelectorAll("button")
-          .forEach(
-            (b) =>
-              (b.disabled = s.commands.some((c) => c.status === "pending")),
-          );
+        renderFanControl(s);
         $("eventRows").replaceChildren();
         for (const e of s.events) {
           const tr = document.createElement("tr");
@@ -315,9 +370,18 @@
       } catch (e) {
         $("status").textContent = "Không kết nối gateway";
         $("status").className = "alarm";
+        $("fanSwitch").disabled = true;
+        $("fanSwitchLabel").textContent = "Mất kết nối gateway";
+      } finally {
+        refreshing = false;
       }
     }
     async function sendFanCommand(value) {
+      if (commandSubmitting) return;
+      commandSubmitting = true;
+      $("fanSwitch").disabled = true;
+      $("fanSwitch").setAttribute("aria-busy", "true");
+      $("fanSwitchLabel").textContent = "Đang chờ xác nhận…";
       try {
         const r = await fetch("/api/command", {
           method: "POST",
@@ -330,6 +394,11 @@
         await refresh();
       } catch (e) {
         $("commandStatus").textContent = e.message;
+      } finally {
+        commandSubmitting = false;
+        if (lastState && $("status").textContent !== "Không kết nối gateway") {
+          renderFanControl(lastState);
+        }
       }
     }
     setInterval(refresh, 1000);

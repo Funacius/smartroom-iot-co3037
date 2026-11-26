@@ -23,6 +23,7 @@ def cloud_stub(gateway):
     c.ready = threading.Event()
     c.ready.set()
     c.connect_needed = threading.Event()
+    c.rpc_scope = "test-session"
     c.incoming = queue.Queue()
     c.publish = Mock(return_value=True)
     return c
@@ -52,6 +53,38 @@ def test_cloud_reconnect_registers_child_before_telemetry(gateway):
         {"device": "room-node-01", "type": "SmartRoom"},
     )
     assert cloud.publish.call_args_list[1].args[0] == "v1/gateway/telemetry"
+
+
+@pytest.mark.parametrize("value", [False, True])
+def test_rpc_id_reused_after_reconnect_is_a_new_command(gateway, value):
+    # Reproduce the persisted RPCs from an earlier run, including a matching
+    # value which used to return old success without applying the new request.
+    old = gateway.command("room-node-01", True, rpc_id=0)
+    assert gateway.ack(old["id"], True)
+    gateway.flush(lambda *_: True)
+    cloud = cloud_stub(gateway)
+    client = Mock()
+    cloud._on_connect(client, None, None, 0, None)
+    first_scope = cloud.rpc_scope
+    body = {"device": "room-node-01", "data": {"id": 0, "method": "setFan", "params": value}}
+    cloud.incoming.put(body)
+    cloud.poll()
+    current = gateway.snapshot()["commands"][0]
+    assert current["id"] > old["id"]
+    assert current["status"] == "pending"
+    assert bool(current["value"]) is value
+    cloud.incoming.put(body)
+    cloud.poll()
+    assert gateway.snapshot()["commands"][0]["id"] == current["id"]
+    assert gateway.ack(current["id"], value)
+    cloud.poll()
+    assert cloud.publish.call_args.args[1]["id"] == 0
+    assert cloud.publish.call_args.args[1]["data"]["fan"] is value
+    cloud._on_connect(client, None, None, 0, None)
+    assert cloud.rpc_scope != first_scope
+    cloud.incoming.put(body)
+    cloud.poll()
+    assert gateway.snapshot()["commands"][0]["id"] > current["id"]
 
 
 @pytest.mark.parametrize("params", ["true", 1, {}, None])

@@ -96,6 +96,8 @@ File xuất hiện tại `report/CO3037_CHUA_CAP_MA_NHOM_IoTReport.pdf` khi chư
 Tất cả lệnh chạy ở **gốc repository**. Log và số đo gốc ở `evidence/`. `scripts/evaluate.py` đo xử lý SQLite trên PC, không đo độ trễ sensor→cloud.
 Muốn train với dữ liệu thực: `.venv\Scripts\python ai/train.py --csv duong_dan.csv`; cột `temperature,humidity,label`, label=0 bình thường/1 bất thường, sắp xếp thời gian. 60% đầu dùng lấy mẫu normal train, 40% cuối test. Không tự gắn nhãn bằng ngưỡng rồi dùng accuracy đó để chứng minh AI vượt luật ngưỡng.
 
+Kiểm tra switch và đồng bộ lệnh hai chiều bằng Chrome: `python scripts/check_fan_sync.py` (cần `playwright` và Chrome). Script dùng gateway trong RAM, sensor và MQTT giả lập; không gửi lên CoreIOT. Kết quả tại `evidence/fan_sync_check.json`, ảnh tại `evidence/fan_switch_desktop.png` và `evidence/fan_switch_mobile.png`.
+
 Thu thập từ phần cứng: `python scripts/record_hardware.py --seconds 300`; script từ chối lưu simulation làm minh chứng phần cứng.
 Kịch bản demo và câu hỏi bảo vệ: [docs/DEMO.md](docs/DEMO.md).
 
@@ -133,6 +135,8 @@ evidence/       log build/test, CSV, biểu đồ và screenshot thật từ ph�
 
 Luồng quan trọng: `Gateway.ingest` kiểm tra dữ liệu → loại trùng `(device,boot,seq)` → AI/ngưỡng → lưu reading + event + outbox trong giao dịch SQLite. `Gateway.flush` chỉ xóa bản tin khi MQTT báo PUBACK; ngữ nghĩa **at least once**, không phải exactly once.
 `Gateway.command` tạo pending → `tick` gửi/retry → `ack` kiểm tra ID và giá trị → applied; hết TTL → failed. Không dùng `toggle` nên phát lại không đảo đầu ra ngoài ý muốn.
+
+Web local dùng một switch, tự cập nhật từ telemetry/ACK của cả lệnh local và RPC CoreIOT. Switch tạm khóa khi chờ xác nhận hoặc dữ liệu đã cũ. RPC được chống lặp theo thiết bị, phiên MQTT và request ID; một phiên mới có thể dùng lại request ID mà không bị nhầm với lệnh cũ trong SQLite. ID lệnh gửi xuống board vẫn tăng và lưu bền. Sau khi cập nhật mã Python, khởi động lại gateway bằng `python scripts/start_coreiot.py`, nhập token **smartroom-pc-gateway**, rồi tải lại trang web. Log `CoreIOT setFan received` cho biết lệnh cloud đã vào gateway; cần thêm trạng thái `applied` để xác nhận node đã thực hiện.
 
 ## Phân công và sử dụng AI
 

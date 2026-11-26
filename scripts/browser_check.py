@@ -13,7 +13,7 @@ with sync_playwright() as p:
     page.goto("http://127.0.0.1:8080", wait_until="networkidle")
     page.wait_for_function("document.querySelector('#temperature').textContent.includes('°C')")
     with page.expect_response(lambda r: r.url.endswith("/api/command")) as created:
-        page.get_by_role("button", name="Bật quạt").click()
+        page.get_by_role("switch", name="Bật/tắt quạt").check()
     command_id = created.value.json()["id"]
     page.wait_for_function(
         "id => {const text=document.querySelector('#commandStatus').textContent; return text.startsWith('Lệnh #'+id+':') && text.includes('node đã xác nhận')}",
@@ -29,7 +29,7 @@ with sync_playwright() as p:
     page.screenshot(path=str(root / "evidence/dashboard_mobile.png"), full_page=False)
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
     with page.expect_response(lambda r: r.url.endswith("/api/command")) as created:
-        page.get_by_role("button", name="Tắt quạt").click()
+        page.get_by_role("switch", name="Bật/tắt quạt").uncheck()
     command_id = created.value.json()["id"]
     page.wait_for_function(
         "id => {const text=document.querySelector('#commandStatus').textContent; return text.startsWith('Lệnh #'+id+':') && text.includes('node đã xác nhận')}",
